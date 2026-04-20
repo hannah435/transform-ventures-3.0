@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+
+# Working files — not part of the shipping site
+scratch/
+screenshots/
+uploads/
