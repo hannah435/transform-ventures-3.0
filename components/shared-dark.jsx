@@ -32,7 +32,7 @@ const Icon = ({ name, size = 16 }) => {
 
 const inPages = typeof window !== 'undefined' && window.location.pathname.includes('/pages/');
 const P = inPages ? '' : 'pages/';
-const HOME = inPages ? '../index-dark.html' : 'index-dark.html';
+const HOME = inPages ? '../index.html' : 'index.html';
 const ASSET = inPages ? '../assets/' : 'assets/';
 
 const DIVISION_MENU = [

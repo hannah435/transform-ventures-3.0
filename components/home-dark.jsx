@@ -87,7 +87,7 @@ const Nav = () => {
   return (
     <>
       <nav className="d-nav">
-        <a href="index-dark.html" className="brand">
+        <a href="index.html" className="brand">
           <img src="assets/transform-ventures-white.png" alt="Transform Ventures"/>
         </a>
         <ul>
