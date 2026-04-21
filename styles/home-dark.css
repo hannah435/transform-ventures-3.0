@@ -631,6 +631,7 @@ p {
   align-items: center;
   opacity: 1;
 }
+
 .hero-socials a {
   width: 46px;
   height: 46px;
@@ -649,11 +650,13 @@ p {
     0 6px 20px rgba(91, 55, 232, 0.15);
   transition: all .25s ease;
 }
+
 .hero-socials a svg {
   width: 18px;
   height: 18px;
   filter: drop-shadow(0 0 6px rgba(168, 150, 255, 0.35));
 }
+
 .hero-socials a:hover {
   color: #fff;
   background:
@@ -939,6 +942,169 @@ p {
   }
 }
 
+/* Editorial list layout for divisions */
+.divisions-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 1100px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(22, 26, 38, 0.5) 0%, rgba(15, 19, 32, 0.5) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.division-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 32px;
+  align-items: start;
+  padding: 32px 36px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background .25s ease;
+}
+.division-entry:last-child {
+  border-bottom: none;
+}
+.division-entry:hover {
+  background: linear-gradient(90deg, rgba(91, 55, 232, 0.09), rgba(91, 55, 232, 0.02) 60%, transparent);
+}
+
+.division-entry .num {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--lime);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.division-entry .info {
+  min-width: 0;
+}
+
+.division-entry .info .head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.division-entry .info h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.division-entry .info .tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 5px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.division-entry .info p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 640px;
+}
+
+.division-entry .meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  min-width: 180px;
+  padding-top: 4px;
+}
+
+.division-entry .meta .kpi {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--lime);
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.division-entry .meta .cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color .2s ease, transform .2s ease;
+}
+
+.division-entry:hover .meta .cta {
+  color: var(--text);
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .division-entry {
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    padding: 26px 24px;
+  }
+  .division-entry .meta {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .division-entry .meta .kpi {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .divisions-list {
+    border-radius: 18px;
+  }
+  .division-entry {
+    padding: 22px 18px;
+    gap: 14px;
+  }
+  .division-entry .num {
+    font-size: 18px;
+  }
+  .division-entry .info h3 {
+    font-size: 20px;
+  }
+  .division-entry .info .head {
+    gap: 10px;
+  }
+  .division-entry .info p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .division-entry .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* legacy row/card classes — kept for back-compat with DivisionDetail caps */
 .divisions-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -985,7 +1151,9 @@ p {
   opacity: 1;
 }
 
-.dark-card .ico { display: none; }
+.dark-card .ico {
+  display: none;
+}
 
 .dark-card h3 {
   font-size: 22px;
@@ -1207,6 +1375,7 @@ p {
   grid-template-columns: repeat(4, 1fr);
   max-width: 960px;
 }
+
 .stat-band .sub-stats.sub-stats-4up .n {
   font-size: clamp(28px, 3.6vw, 42px);
   white-space: nowrap;
