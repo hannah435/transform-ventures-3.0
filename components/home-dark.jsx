@@ -357,8 +357,7 @@ const Events = () => (
       <div className="events-grid-d">
         {EVENTS.map((e, i) => (
           <a href={e.url} target="_blank" rel="noopener" key={e.name} className={`event-card-d reveal-d d${i+1}`}>
-            <img src={e.img} alt={e.name}/>
-            <div className="overlay"/>
+            <div className="thumb"><img src={e.img} alt={e.name}/></div>
             <div className="meta">
               <div className="t">{e.tag}</div>
               <h3>{e.name}</h3>
