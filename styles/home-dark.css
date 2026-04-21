@@ -1724,27 +1724,43 @@ p {
 
   .leader-d {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 24px;
   }
 
   .leader-d .photo {
-    max-width: 280px;
+    max-width: 320px;
     margin: 0 auto;
+    aspect-ratio: 4/5;
   }
 
+  .leader-d .photo .photo-caption {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+  .leader-d .photo .photo-caption .quote { font-size: 13px; }
+  .leader-d .photo .photo-caption .source { font-size: 9.5px; }
+
+  .leader-d .info .name { font-size: 26px; }
+  .leader-d .info p { font-size: 14.5px; }
+
   .leader-d .info .leader-stats-d {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 18px 0;
+    margin-top: 22px;
   }
 
   .leader-d .info .leader-stats-d .stat {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    text-align: center;
   }
-
+  .leader-d .info .leader-stats-d .stat .n { font-size: 18px; }
   .leader-d .info .leader-stats-d .stat .l {
-    margin-top: 0;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
   }
 
   .d-footer .cols {
@@ -1779,6 +1795,14 @@ p {
   .events-grid-d {
     grid-template-columns: 1fr;
   }
+
+  .leader-d .photo { max-width: 100%; aspect-ratio: 5/6; }
+  .leader-d .info .leader-stats-d .stat .n { font-size: 20px; }
+  .leader-d .info .tags { gap: 6px; }
+  .leader-d .info .tags span { font-size: 10px; padding: 3px 9px; }
+
+  .sec-head h2 { font-size: 30px; }
+  .sec-head p.sub { font-size: 14px; }
 
   .d-nav {
     padding: 8px 8px 8px 16px;
