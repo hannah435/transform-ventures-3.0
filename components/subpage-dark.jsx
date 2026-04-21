@@ -404,7 +404,6 @@ function DivisionDetail({ slug }) {
     <>
       <Nav/>
       <section className="d-page-hero division-hero">
-        <div className="hero-watermark" aria-hidden="true">{d.num}</div>
         <div className="hero-glow" aria-hidden="true"/>
         <div className="container">
           <a href={`${P}divisions.html`} className="back-link">← All divisions</a>

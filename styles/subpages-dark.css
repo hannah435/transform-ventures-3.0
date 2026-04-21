@@ -10,27 +10,6 @@
   overflow: hidden;
 }
 
-/* Giant division number behind the hero title — decorative */
-.d-page-hero.division-hero .hero-watermark {
-  position: absolute;
-  top: 40px;
-  right: -10px;
-  font-family: var(--font-mono);
-  font-size: clamp(180px, 30vw, 420px);
-  font-weight: 600;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(189, 168, 255, 0.35);
-  background: linear-gradient(135deg, rgba(189, 168, 255, 0.28) 0%, rgba(91, 55, 232, 0.12) 60%, transparent 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  filter: drop-shadow(0 0 40px rgba(91, 55, 232, 0.25));
-}
-
 /* Soft pulsing glow behind the eyebrow/title */
 .d-page-hero.division-hero .hero-glow {
   position: absolute;
@@ -460,14 +439,6 @@ a.event-card-d { text-decoration: none; color: inherit; display: block; }
   .d-page-hero p.lead { font-size: 15px; line-height: 1.6; margin-top: 18px; }
   .d-page-hero .ctas { margin-top: 24px; gap: 10px; }
 
-  /* Decorative watermark number — smaller & repositioned for phones */
-  .d-page-hero.division-hero .hero-watermark {
-    font-size: 200px;
-    top: 50px;
-    right: -30px;
-    -webkit-text-stroke: 1.5px rgba(189, 168, 255, 0.45);
-    filter: drop-shadow(0 0 24px rgba(91, 55, 232, 0.35));
-  }
   .d-page-hero.division-hero .hero-glow {
     width: 380px;
     height: 380px;
