@@ -1021,8 +1021,9 @@ p {
   border-top: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--lime);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bda8ff;
 }
 
 /* ===== FEATURE (every-lead equivalent) ===== */
