@@ -629,7 +629,7 @@ p {
   margin-top: 24px;
   justify-content: center;
   align-items: center;
-  animation: fade-up 1s ease .9s both;
+  opacity: 1;
 }
 .hero-socials a {
   width: 40px;
