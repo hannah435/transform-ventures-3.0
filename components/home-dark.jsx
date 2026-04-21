@@ -405,22 +405,36 @@ const Fund = () => (
 
 const Leader = () => (
   <section id="leadership" className="d-section">
+    <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Leadership</div>
         <h2>Meet the founder.</h2>
+        <p className="sub">Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund.</p>
       </div>
       <div className="leader-d reveal-d">
-        <div className="photo"><img src="assets/michael-terpin.jpg" alt="Michael Terpin"/></div>
+        <div className="photo">
+          <img src="assets/michael-terpin.jpg" alt="Michael Terpin"/>
+          <div className="photo-caption">
+            <span className="quote">"Godfather of Crypto"</span>
+            <span className="source">— CNBC</span>
+          </div>
+        </div>
         <div className="info">
           <div className="role">Founder & CEO · CIO, Bitcoin Supercycle Fund</div>
           <div className="name">Michael Terpin</div>
           <p style={{marginTop: 20}}>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</p>
           <p style={{marginTop: 14}}>Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M.</p>
+          <div className="leader-stats-d">
+            <div className="stat"><div className="n">100+</div><div className="l">ICO-era launches</div></div>
+            <div className="stat"><div className="n">$200M</div><div className="l">Marketwire exit</div></div>
+            <div className="stat"><div className="n">2013</div><div className="l">First crypto angel group</div></div>
+          </div>
           <div className="tags">
             <span>Godfather of Crypto</span>
             <span>BitAngels Co-Founder</span>
             <span>Tokenize Creator</span>
+            <span>Author</span>
             <span>Puerto Rico</span>
           </div>
           <div style={{marginTop: 28}}>
