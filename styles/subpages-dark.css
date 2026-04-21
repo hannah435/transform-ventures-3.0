@@ -405,4 +405,23 @@ a.event-card-d { text-decoration: none; color: inherit; display: block; }
 @media (max-width: 560px) {
   .timeline-d .item { grid-template-columns: 1fr; gap: 6px; }
   .form-d { padding: 22px; }
+
+  /* Division/subpage hero — calmer hierarchy on small screens */
+  .d-page-hero { padding: 100px 18px 28px; }
+  .d-page-hero .back-link { padding: 6px 12px; font-size: 10px; margin-bottom: 20px; }
+  .d-page-hero .eyebrow-inline { font-size: 10px; padding: 4px 10px; margin-bottom: 18px; }
+  .d-page-hero h1 { font-size: 30px; line-height: 1.1; letter-spacing: -0.025em; }
+  .d-page-hero p.lead { font-size: 15px; line-height: 1.6; margin-top: 18px; }
+  .d-page-hero .ctas { margin-top: 24px; gap: 10px; }
+
+  /* Division-detail capability + stats — tighter */
+  .cap-grid-d { grid-template-columns: 1fr; gap: 12px; }
+  .cap-grid-d .dark-card { padding: 20px; }
+  .cap-grid-d .dark-card h3 { font-size: 17px; margin-bottom: 8px; }
+  .cap-grid-d .dark-card p { font-size: 13.5px; line-height: 1.55; }
+
+  /* sec-head scaling */
+  .sec-head { margin-bottom: 36px; }
+  .sec-head h2 { font-size: 26px; }
+  .sec-head p.sub { font-size: 14px; margin-top: 14px; }
 }
