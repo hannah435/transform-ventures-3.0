@@ -220,12 +220,12 @@ const Globe = () => {
         const depth = Math.max(0, tz + 0.3);
         // highlight on top-left lit side
         const lit = Math.max(0, -x * 0.5 + ty * 0.5 + 0.4);
-        const alpha = Math.min(1, depth * 0.55 + lit * 0.7);
-        const size = 1 + depth * 1;
+        const alpha = Math.min(1, 0.3 + depth * 0.7 + lit * 0.9);
+        const size = 1.2 + depth * 1.2;
 
         // purple dot grid — brighter accent on the lit equator band
         const isAccent = (lit > 0.85 && Math.abs(d.lat) < 0.3);
-        const color = isAccent ? `rgba(200,180,255,${alpha})` : `rgba(168,150,255,${alpha})`;
+        const color = isAccent ? `rgba(232,222,255,${alpha})` : `rgba(190,170,255,${alpha})`;
 
         ctx.fillStyle = color;
         ctx.beginPath(); ctx.arc(px, py, size, 0, Math.PI * 2); ctx.fill();
