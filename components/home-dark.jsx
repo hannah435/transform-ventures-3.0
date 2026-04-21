@@ -140,7 +140,6 @@ const Nav = () => {
 const Hero = () => (
   <section className="d-hero">
     <Stars/>
-    <span className="chip"><span className="dot"/>Blockchain & Crypto Ventures · Est. 2013</span>
     <h1><span className="grad">Where crypto builds<br/>with conviction.</span></h1>
     <p className="lead">
       Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."
