@@ -274,11 +274,8 @@ const Divisions = () => (
             e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
             e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
           }}>
-            <div className="ico">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 2v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            </div>
-            <div className="tag">{d.tag}</div>
             <h3>{d.name}</h3>
+            <div className="tag">{d.tag}</div>
             <p>{d.desc}</p>
             <div className="kpi">{d.kpi}</div>
           </div>
@@ -291,11 +288,8 @@ const Divisions = () => (
             e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
             e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
           }}>
-            <div className="ico">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 2v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-            </div>
-            <div className="tag">{d.tag}</div>
             <h3>{d.name}</h3>
+            <div className="tag">{d.tag}</div>
             <p>{d.desc}</p>
             <div className="kpi">{d.kpi}</div>
           </div>
