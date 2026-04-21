@@ -403,7 +403,9 @@ function DivisionDetail({ slug }) {
   return (
     <>
       <Nav/>
-      <section className="d-page-hero">
+      <section className="d-page-hero division-hero">
+        <div className="hero-watermark" aria-hidden="true">{d.num}</div>
+        <div className="hero-glow" aria-hidden="true"/>
         <div className="container">
           <a href={`${P}divisions.html`} className="back-link">← All divisions</a>
           <div className="eyebrow-inline" style={{color: d.color}}><span className="d" style={{background: d.color}}/>/ {d.num} — {d.tag}</div>
