@@ -890,12 +890,12 @@ p {
 /* ===== DIVISIONS BAND (wavy bg, dark) ===== */
 .d-section {
   position: relative;
-  padding: clamp(60px, 8vw, 100px) 0;
+  padding: clamp(48px, 6vw, 80px) 0;
   overflow: hidden;
 }
 
-/* Tighten consecutive sections so they read as connected */
-.d-section + .d-section { padding-top: clamp(40px, 5vw, 72px); }
+/* Tight stacking so consecutive sections read as one flowing canvas */
+.d-section + .d-section { padding-top: clamp(16px, 2.5vw, 36px); }
 
 .d-section .container {
   position: relative;
@@ -1246,13 +1246,13 @@ p {
 }
 
 /* Fund section — softer ambient (dimmer than default d-section wavy-bg) */
-/* Softer ambient on most sections so they read as a continuous canvas */
+/* Ambient glow on most sections so they read as a continuous canvas */
 #fund .wavy-bg,
 #events .wavy-bg,
 #feature .wavy-bg,
 #contact .wavy-bg,
 #leadership .wavy-bg {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 #fund .wavy-bg::before,
