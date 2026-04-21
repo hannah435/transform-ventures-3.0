@@ -890,9 +890,12 @@ p {
 /* ===== DIVISIONS BAND (wavy bg, dark) ===== */
 .d-section {
   position: relative;
-  padding: clamp(80px, 12vw, 140px) 0;
+  padding: clamp(60px, 8vw, 100px) 0;
   overflow: hidden;
 }
+
+/* Tighten consecutive sections so they read as connected */
+.d-section + .d-section { padding-top: clamp(40px, 5vw, 72px); }
 
 .d-section .container {
   position: relative;
@@ -1243,12 +1246,25 @@ p {
 }
 
 /* Fund section — softer ambient (dimmer than default d-section wavy-bg) */
-#fund .wavy-bg {
+/* Softer ambient on most sections so they read as a continuous canvas */
+#fund .wavy-bg,
+#events .wavy-bg,
+#feature .wavy-bg,
+#contact .wavy-bg,
+#leadership .wavy-bg {
   opacity: 0.4;
 }
 
 #fund .wavy-bg::before,
-#fund .wavy-bg::after {
+#fund .wavy-bg::after,
+#events .wavy-bg::before,
+#events .wavy-bg::after,
+#feature .wavy-bg::before,
+#feature .wavy-bg::after,
+#contact .wavy-bg::before,
+#contact .wavy-bg::after,
+#leadership .wavy-bg::before,
+#leadership .wavy-bg::after {
   filter: blur(70px);
 }
 

@@ -301,6 +301,7 @@ const Divisions = () => (
 
 const Feature = () => (
   <section id="feature" className="d-section">
+    <div className="wavy-bg"/>
     <div className="container">
       <div className="feature-split reveal-d">
         <div className="visual"><div className="morph"/></div>
@@ -348,6 +349,7 @@ const EVENTS = [
 
 const Events = () => (
   <section id="events" className="d-section">
+    <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Transform Events</div>
@@ -448,6 +450,7 @@ const Leader = () => (
 
 const FinalCTA = () => (
   <section id="contact" className="d-section">
+    <div className="wavy-bg"/>
     <div className="container">
       <div className="final-cta reveal-d">
         <h2>Ready to transform your blockchain venture?</h2>
