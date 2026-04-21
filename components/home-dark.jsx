@@ -251,11 +251,11 @@ const Globe = () => {
 };
 
 const DIVISIONS = [
-  { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013", href: "pages/division-group.html" },
-  { name: "Transform Events", tag: "Tokenize · BitAngels · Tiger Mansion", desc: "Premier blockchain events connecting founders and investors worldwide through curated gatherings.", kpi: "3 flagship events", href: "pages/division-events.html" },
-  { name: "Transform Capital", tag: "Family Office", desc: "Strategic investments across the digital asset landscape with a long-term investment horizon.", kpi: "Multi-strategy", href: "pages/division-capital.html" },
-  { name: "Transform Strategies", tag: "Advisory & Consulting", desc: "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.", kpi: "Seed → Scale", href: "pages/division-strategies.html" },
-  { name: "Bitcoin Supercycle Fund", tag: "BTC Investment Fund", desc: "The first liquid bitcoin-only hedge fund using the \"Four Seasons of Bitcoin\" cycle model and algorithmic trading.", kpi: "100% BTC · Algo", href: "pages/division-fund.html" },
+  { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013" },
+  { name: "Transform Events", tag: "Tokenize · BitAngels · Tiger Mansion", desc: "Premier blockchain events connecting founders and investors worldwide through curated gatherings.", kpi: "3 flagship events" },
+  { name: "Transform Capital", tag: "Family Office", desc: "Strategic investments across the digital asset landscape with a long-term investment horizon.", kpi: "Multi-strategy" },
+  { name: "Transform Strategies", tag: "Advisory & Consulting", desc: "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.", kpi: "Seed → Scale" },
+  { name: "Bitcoin Supercycle Fund", tag: "BTC Investment Fund", desc: "The first liquid bitcoin-only hedge fund using the \"Four Seasons of Bitcoin\" cycle model and algorithmic trading.", kpi: "100% BTC · Algo" },
 ];
 
 const Divisions = () => (
@@ -267,22 +267,32 @@ const Divisions = () => (
         <h2>Five divisions. One vision.</h2>
         <p className="sub">Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.</p>
       </div>
-      <div className="divisions-list reveal-d">
-        {DIVISIONS.map((d, i) => (
-          <a key={d.name} href={d.href} className="division-entry">
-            <div className="num">{String(i+1).padStart(2, '0')}</div>
-            <div className="info">
-              <div className="head">
-                <h3>{d.name}</h3>
-                <span className="tag">{d.tag}</span>
-              </div>
-              <p>{d.desc}</p>
-            </div>
-            <div className="meta">
-              <div className="kpi">{d.kpi}</div>
-              <div className="cta">Explore →</div>
-            </div>
-          </a>
+      <div className="divisions-row">
+        {DIVISIONS.slice(0, 3).map((d, i) => (
+          <div key={d.name} className={`dark-card reveal-d d${i+1}`} onMouseMove={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+            e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+          }}>
+            <h3>{d.name}</h3>
+            <div className="tag">{d.tag}</div>
+            <p>{d.desc}</p>
+            <div className="kpi">{d.kpi}</div>
+          </div>
+        ))}
+      </div>
+      <div className="divisions-row divisions-row-2up">
+        {DIVISIONS.slice(3).map((d, i) => (
+          <div key={d.name} className={`dark-card reveal-d d${i+1}`} onMouseMove={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+            e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+          }}>
+            <h3>{d.name}</h3>
+            <div className="tag">{d.tag}</div>
+            <p>{d.desc}</p>
+            <div className="kpi">{d.kpi}</div>
+          </div>
         ))}
       </div>
     </div>
