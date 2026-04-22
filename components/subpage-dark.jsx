@@ -112,7 +112,7 @@ const Leader = () => (
   <section className="d-section">
     <div className="container">
       <div className="leader-d reveal-d">
-        <div className="photo"><img src={`${ASSET}michael-terpin.jpg`} alt="Michael Terpin"/></div>
+        <div className="photo"><img src={`${ASSET}michael-terpin.jpg`} alt="Michael Terpin" loading="lazy" decoding="async"/></div>
         <div className="info">
           <div className="role">Founder & CEO · CIO, Bitcoin Supercycle Fund</div>
           <div className="name">Michael Terpin</div>
@@ -214,7 +214,7 @@ const Media = () => {
               <div className={`thumb ${it.type}`}>
                 {it.type === 'youtube' ? (
                   <>
-                    <img src={`https://img.youtube.com/vi/${it.ytid}/maxresdefault.jpg`} alt={it.title}/>
+                    <img src={`https://img.youtube.com/vi/${it.ytid}/maxresdefault.jpg`} alt={it.title} loading="lazy" decoding="async"/>
                     <div className="play-ovr"><Icon name="play" size={22}/></div>
                   </>
                 ) : (
@@ -272,8 +272,8 @@ const PartnersBar = () => (
   <section className="partners-bar-d">
     <div className="label">Portfolio & Partners</div>
     <div className="logos">
-      <img src={`${ASSET}transform-group.png`} alt="Transform Group"/>
-      <img src={`${ASSET}bitangels.png`} alt="BitAngels"/>
+      <img src={`${ASSET}transform-group.png`} alt="Transform Group" loading="lazy" decoding="async"/>
+      <img src={`${ASSET}bitangels.png`} alt="BitAngels" loading="lazy" decoding="async"/>
       <span className="txt">Tokenize</span>
       <span className="txt">Ethereum</span>
       <span className="txt">Tether</span>
@@ -298,7 +298,7 @@ const EventsList = () => {
         <div className="events-grid-d">
           {events.map((e, i) => (
             <a href={e.url} target="_blank" rel="noopener" key={e.name} className={`event-card-d reveal-d d${i+1}`}>
-              <div className="thumb"><img src={e.img} alt={e.name}/></div>
+              <div className="thumb"><img src={e.img} alt={e.name} loading="lazy" decoding="async"/></div>
               <div className="meta">
                 <div className="t">{e.tag}</div>
                 <h3>{e.name}</h3>
@@ -449,7 +449,7 @@ function DivisionDetail({ slug }) {
         <section className="d-section">
           <div className="container">
             <div className="fund-banner reveal-d">
-              <div className="book"><img src={d.book.img} alt={d.book.title}/></div>
+              <div className="book"><img src={d.book.img} alt={d.book.title} loading="lazy" decoding="async"/></div>
               <div className="copy">
                 <span className="tag-orange">{d.book.tag}</span>
                 <h3>{d.book.title}</h3>

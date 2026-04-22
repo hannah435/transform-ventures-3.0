@@ -359,7 +359,7 @@ const Events = () => (
       <div className="events-grid-d">
         {EVENTS.map((e, i) => (
           <a href={e.url} target="_blank" rel="noopener" key={e.name} className={`event-card-d reveal-d d${i+1}`}>
-            <div className="thumb"><img src={e.img} alt={e.name}/></div>
+            <div className="thumb"><img src={e.img} alt={e.name} loading="lazy" decoding="async"/></div>
             <div className="meta">
               <div className="t">{e.tag}</div>
               <h3>{e.name}</h3>
@@ -385,7 +385,7 @@ const Fund = () => (
         <p className="sub">The first liquid bitcoin-only hedge fund combining the "Four Seasons of Bitcoin" cycle model with algorithmic trading.</p>
       </div>
       <div className="fund-banner reveal-d">
-        <div className="book"><img src="assets/bitcoin-supercycle-book.jpg" alt="Bitcoin Supercycle book"/></div>
+        <div className="book"><img src="assets/bitcoin-supercycle-book.jpg" alt="Bitcoin Supercycle book" loading="lazy" decoding="async"/></div>
         <div className="copy">
           <span className="tag-orange">Amazon Best Seller · 2024</span>
           <h3>Bitcoin Supercycle</h3>
@@ -416,7 +416,7 @@ const Leader = () => (
       </div>
       <div className="leader-d reveal-d">
         <div className="photo">
-          <img src="assets/michael-terpin.jpg" alt="Michael Terpin"/>
+          <img src="assets/michael-terpin.jpg" alt="Michael Terpin" loading="lazy" decoding="async"/>
           <div className="photo-caption">
             <span className="quote">"Godfather of Crypto"</span>
             <span className="source">— CNBC</span>
@@ -469,7 +469,7 @@ const Footer = () => (
     <div className="container">
       <div className="cols">
         <div className="brand-col">
-          <img src="assets/transform-ventures-white.png" alt="Transform Ventures"/>
+          <img src="assets/transform-ventures-white.png" alt="Transform Ventures" loading="lazy" decoding="async"/>
           <p>Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.</p>
         </div>
         <div className="col">

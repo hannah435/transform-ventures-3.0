@@ -701,84 +701,6 @@ p {
   }
 }
 
-/* legacy sphere (unused but kept for safety) */
-.d-hero-sphere {
-  position: relative;
-  width: min(1200px, 120vw);
-  height: min(720px, 62vh);
-  margin-top: -40px;
-  pointer-events: none;
-}
-
-.sphere-core {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 900px;
-  height: 900px;
-  transform: translate(-50%, -20%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 38% 32%, rgba(170, 200, 255, 0.9) 0%, rgba(90, 130, 210, 0.6) 18%, rgba(40, 60, 130, 0.3) 38%, transparent 55%),
-    radial-gradient(circle at 50% 50%, #0b1028 0%, #090b1a 60%, #050608 100%);
-  box-shadow:
-    inset -40px -40px 120px rgba(0, 0, 0, 0.8),
-    inset 20px 20px 80px rgba(109, 74, 255, 0.3),
-    0 0 180px rgba(109, 74, 255, 0.35),
-    0 0 400px rgba(15, 181, 165, 0.15);
-  animation: sphere-rise 1.4s cubic-bezier(.2, .7, .2, 1) .3s both, sphere-breathe 8s ease-in-out infinite;
-}
-
-@keyframes sphere-rise {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 15%) scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, -20%) scale(1);
-  }
-}
-
-@keyframes sphere-breathe {
-
-  0%,
-  100% {
-    filter: hue-rotate(0deg);
-  }
-
-  50% {
-    filter: hue-rotate(10deg);
-  }
-}
-
-/* sphere ring highlight */
-.sphere-ring {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 960px;
-  height: 960px;
-  transform: translate(-50%, -20%);
-  border-radius: 50%;
-  border: 1px solid rgba(170, 200, 255, 0.12);
-  animation: sphere-rise 1.6s cubic-bezier(.2, .7, .2, 1) .5s both;
-}
-
-/* atmospheric glow over sphere */
-.sphere-atmos {
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  width: 1100px;
-  height: 1100px;
-  transform: translate(-50%, -20%);
-  border-radius: 50%;
-  background: radial-gradient(circle, transparent 44%, rgba(120, 160, 230, 0.12) 46%, transparent 52%);
-  filter: blur(4px);
-}
-
 /* stars behind sphere */
 .d-hero-stars {
   position: absolute;
@@ -1417,8 +1339,6 @@ p {
   flex-wrap: wrap;
 }
 
-.fund-banner .kpis .k {}
-
 .fund-banner .kpis .k .n {
   font-size: 22px;
   font-weight: 500;
@@ -1783,21 +1703,6 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
-  .sphere-core {
-    width: 600px;
-    height: 600px;
-  }
-
-  .sphere-ring {
-    width: 640px;
-    height: 640px;
-  }
-
-  .sphere-atmos {
-    width: 740px;
-    height: 740px;
-  }
-
   .d-hero {
     padding-top: 120px;
   }
@@ -1871,21 +1776,6 @@ p {
     font-size: 13.5px;
     justify-content: center;
     white-space: nowrap;
-  }
-
-  .sphere-core {
-    width: 450px;
-    height: 450px;
-  }
-
-  .sphere-ring {
-    width: 480px;
-    height: 480px;
-  }
-
-  .sphere-atmos {
-    width: 560px;
-    height: 560px;
   }
 
   .stat-band .sub-stats {
