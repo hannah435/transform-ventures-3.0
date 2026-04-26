@@ -1,0 +1,15 @@
+{
+  "name": "transform-ventures",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "build:components": "babel components --out-dir dist/components --presets=@babel/preset-react --extensions .jsx",
+    "build:pages": "babel pages-src --out-dir dist/pages-src --presets=@babel/preset-react --extensions .jsx",
+    "build": "npm run build:components && npm run build:pages"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.25.9",
+    "@babel/preset-react": "^7.25.9"
+  }
+}

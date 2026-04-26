@@ -5,3 +5,7 @@
 scratch/
 screenshots/
 uploads/
+
+# Build deps
+node_modules/
+package-lock.json

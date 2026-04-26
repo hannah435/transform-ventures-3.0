@@ -87,7 +87,19 @@ const Contact = () => (
             </div>
           </div>
         </div>
-        <form className="form-d" onSubmit={(e) => { e.preventDefault(); alert("Thanks — we'll be in touch shortly."); }}>
+        <form className="form-d" onSubmit={(e) => {
+          // TODO: wire up to a real backend — Formspree, Web3Forms, or a Cloudflare Worker.
+          // Static hosting (Cloudflare Pages / GitHub Pages) cannot accept POSTs, so we currently
+          // open the user's mail client as a graceful fallback.
+          e.preventDefault();
+          const form = e.currentTarget;
+          const [name, email, topic, message] = Array.from(form.elements).filter(el => el.name !== '' || el.tagName !== 'BUTTON');
+          const subject = encodeURIComponent(`Transform Ventures inquiry${topic && topic.value ? ` — ${topic.value}` : ''}`);
+          const body = encodeURIComponent(
+            `Name: ${name.value}\nEmail: ${email.value}\nInterested in: ${topic.value || '(unspecified)'}\n\n${message.value}`
+          );
+          window.location.href = `mailto:info@transformventures.io?subject=${subject}&body=${body}`;
+        }}>
           <label><span className="lab">Name</span><input required placeholder="Your name"/></label>
           <label><span className="lab">Email</span><input type="email" required placeholder="you@company.com"/></label>
           <label><span className="lab">I'm interested in</span>

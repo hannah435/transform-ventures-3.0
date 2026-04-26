@@ -58,55 +58,10 @@
     </header>
   </noscript>
 
-  <script defer src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script defer src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script defer src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script defer type="text/babel" src="../components/shared-dark.jsx?v=3"></script>
-  <script defer type="text/babel" src="../components/subpage-dark.jsx?v=3"></script>
-  <script type="text/babel">
-    const timeline = [
-      { y: "1994", e: "Marketwire Founded", d: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M." },
-      { y: "2013", e: "BitAngels & Transform Group", d: "Co-founded the first crypto angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether." },
-      { y: "2015", e: "Four Seasons of Bitcoin", d: "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving." },
-      { y: "2018", e: "CoinAgenda → Tokenize", d: "Created the leading conference series connecting mainstream investors with blockchain and crypto investments." },
-      { y: "2021", e: "Transform Ventures", d: "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management." },
-      { y: "2024", e: "Bitcoin Supercycle Fund", d: "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading." },
-    ];
-    function About(){
-      return (
-        <Subpage
-          eyebrow="About Transform Ventures"
-          title="Three decades of building at the edges of media and money."
-          intro="Transform Ventures is the venture platform of Michael Terpin — founder of Marketwire, BitAngels, and Tokenize — operating across five specialized divisions from San Juan, Puerto Rico."
-        >
-          <section className="d-section">
-            <div className="container">
-              <div className="about-split reveal-d">
-                <div className="intro-col">
-                  <div className="eyebrow-inline"><span className="d"/>Our Story</div>
-                  <h2>The communications powerhouse behind crypto.</h2>
-                </div>
-                <div className="timeline-d">
-                  {timeline.map((t, i) => (
-                    <div key={i} className="item">
-                      <div className="year">{t.y}</div>
-                      <div>
-                        <div className="title">{t.e}</div>
-                        <div className="desc">{t.d}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-          <Stats/>
-          <PartnersBar/>
-          <CTAStrip/>
-        </Subpage>
-      );
-    }
-    ReactDOM.createRoot(document.getElementById('root')).render(<About/>);
-  </script>
+  <script defer src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+  <script defer src="../dist/components/shared-dark.js?v=4"></script>
+  <script defer src="../dist/components/subpage-dark.js?v=4"></script>
+  <script defer src="../dist/pages-src/about.js?v=4"></script>
 </body>
 </html>
