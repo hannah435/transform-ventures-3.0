@@ -395,11 +395,30 @@ $("#reset-btn").addEventListener("click", async () => {
 });
 
 // ---------- page switching ----------
+function setChrome(mode) {
+  const isMsg = mode === "messages";
+  $("#save-btn").style.display = isMsg ? "none" : "";
+  $("#reset-btn").style.display = isMsg ? "none" : "";
+  document.querySelector(".section-nav").style.display = isMsg ? "none" : "";
+  // With the nav hidden, force a single-column grid so the editor fills the width
+  // (otherwise it auto-places into the empty 220px nav column).
+  document.querySelector(".layout").style.gridTemplateColumns = isMsg ? "1fr" : "";
+  if (isMsg) { $("#dirty").classList.add("hidden"); $("#saved").classList.add("hidden"); }
+}
+
 async function loadPage(page) {
   PAGE = page;
-  [schema, content] = await Promise.all([api("/api/schema/" + PAGE), api("/api/content/" + PAGE)]);
-  $("#view-site").href = PAGE_URL(PAGE);
-  $("#page-select").value = PAGE;
+  $("#page-select").value = page;
+  if (page === "__messages__") {
+    setChrome("messages");
+    $("#view-site").href = "/pages/contact.html";
+    await renderMessages();
+    markClean();
+    return;
+  }
+  setChrome("content");
+  [schema, content] = await Promise.all([api("/api/schema/" + page), api("/api/content/" + page)]);
+  $("#view-site").href = PAGE_URL(page);
   render();
   markClean();
 }
@@ -413,6 +432,63 @@ $("#page-select").addEventListener("change", async (e) => {
   await loadPage(next);
 });
 
+// ---------- messages inbox ----------
+async function refreshUnreadBadge() {
+  try {
+    const { count } = await api("/api/messages/unread-count");
+    const opt = $("#page-select").querySelector('option[value="__messages__"]');
+    if (opt) opt.textContent = "\u{1F4EC} Messages" + (count ? ` (${count})` : "");
+  } catch {}
+}
+
+async function renderMessages() {
+  const editor = $("#editor");
+  editor.innerHTML = "";
+  const wrap = el("div", { class: "section" });
+  const refresh = el("button", { class: "btn-ghost btn-tiny", type: "button" }, "Refresh");
+  refresh.addEventListener("click", () => { renderMessages(); refreshUnreadBadge(); });
+  wrap.append(el("div", { class: "msg-head" }, el("h2", {}, "Messages"), refresh));
+
+  let msgs;
+  try { msgs = await api("/api/messages"); }
+  catch (err) { wrap.append(el("div", { class: "empty-state" }, err.message)); editor.append(wrap); return; }
+
+  if (!msgs.length) {
+    wrap.append(el("div", { class: "empty-state" }, "No messages yet. Contact-form submissions will appear here."));
+    editor.append(wrap);
+    return;
+  }
+
+  msgs.forEach((m) => {
+    const card = el("div", { class: "msg-card" + (m.read ? "" : " unread") });
+    const dateStr = (() => { try { return new Date(m.created_at).toLocaleString(); } catch { return m.created_at; } })();
+    const reply = el("a", { class: "btn-ghost btn-tiny", href: "mailto:" + m.email + "?subject=" + encodeURIComponent("Re: your message to Transform Ventures") }, "Reply");
+    const readBtn = el("button", { class: "btn-ghost btn-tiny", type: "button" }, m.read ? "Mark unread" : "Mark read");
+    readBtn.addEventListener("click", async () => {
+      await api("/api/messages/" + m.id + "/read", { method: "POST", body: JSON.stringify({ read: !m.read }) }).catch(() => {});
+      renderMessages(); refreshUnreadBadge();
+    });
+    const del = el("button", { class: "btn-ghost btn-danger btn-tiny", type: "button" }, "Delete");
+    del.addEventListener("click", async () => {
+      if (!confirm("Delete this message?")) return;
+      await api("/api/messages/" + m.id, { method: "DELETE" }).catch(() => {});
+      renderMessages(); refreshUnreadBadge();
+    });
+    card.append(
+      el("div", { class: "msg-top" },
+        el("div", { class: "msg-from" },
+          el("span", { class: "msg-name" }, m.name || "(no name)"),
+          el("a", { class: "msg-email", href: "mailto:" + m.email }, m.email)),
+        el("span", { class: "msg-date" }, dateStr)),
+      m.topic ? el("div", { class: "msg-topic" }, m.topic) : null,
+      el("div", { class: "msg-body" }, m.message),
+      el("div", { class: "msg-actions" }, reply, readBtn, del)
+    );
+    wrap.append(card);
+  });
+  editor.append(wrap);
+}
+
 // ---------- boot ----------
 async function boot() {
   $("#login").classList.add("hidden");
@@ -421,6 +497,8 @@ async function boot() {
   const sel = $("#page-select");
   sel.innerHTML = "";
   pages.forEach((p) => sel.append(el("option", { value: p.key }, p.label)));
+  sel.append(el("option", { value: "__messages__" }, "\u{1F4EC} Messages"));
+  refreshUnreadBadge();
   await loadPage("home");
 }
 

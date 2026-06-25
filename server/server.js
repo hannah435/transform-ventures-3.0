@@ -23,9 +23,42 @@ const SUBPAGES = [
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+app.set("trust proxy", true); // so req.ip reflects the client via x-forwarded-for on Vercel
 
 app.use(express.json({ limit: "2mb" }));
 app.use(cookieParser());
+
+// ---------- simple in-memory rate limiter (per process / cold start) ----------
+const rlBuckets = new Map();
+function rateLimit(key, max, windowMs) {
+  const now = Date.now();
+  const b = rlBuckets.get(key);
+  if (!b || now > b.resetAt) {
+    rlBuckets.set(key, { count: 1, resetAt: now + windowMs });
+    return true;
+  }
+  if (b.count >= max) return false;
+  b.count++;
+  return true;
+}
+
+// ---------- CSRF defense: reject cross-origin state-changing API requests ----------
+// (Session cookie is already SameSite=Lax; this is belt-and-suspenders.)
+function sameOrigin(req) {
+  const src = req.headers.origin || req.headers.referer;
+  if (!src) return true; // non-browser client (curl, server) — not a CSRF vector
+  try {
+    return new URL(src).host === req.headers.host;
+  } catch {
+    return false;
+  }
+}
+app.use("/api", (req, res, next) => {
+  if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method) && !sameOrigin(req)) {
+    return res.status(403).json({ error: "Cross-origin request blocked" });
+  }
+  next();
+});
 
 // One-time DB init + admin seed (runs once per process / cold start).
 let _ready;
@@ -61,6 +94,9 @@ async function requireAuth(req, res, next) {
 
 // ---------- auth routes ----------
 app.post("/api/login", async (req, res) => {
+  if (!rateLimit("login:" + req.ip, 10, 15 * 60 * 1000)) {
+    return res.status(429).json({ error: "Too many attempts. Please try again in a few minutes." });
+  }
   const { username, password } = req.body || {};
   if (!(await db.verifyUser(username, password))) {
     return res.status(401).json({ error: "Invalid username or password" });
@@ -85,6 +121,43 @@ app.get("/api/me", async (req, res) => {
   const username = await currentUser(req);
   if (!username) return res.status(401).json({ error: "Not authenticated" });
   res.json({ username });
+});
+
+// ---------- contact form (public) ----------
+app.post("/api/contact", async (req, res) => {
+  const { name, email, topic, message, website } = req.body || {};
+  // Honeypot: real users never fill "website"; bots do.
+  if (website) return res.json({ ok: true });
+  if (!rateLimit("contact:" + req.ip, 5, 60 * 60 * 1000)) {
+    return res.status(429).json({ error: "Too many messages. Please try again later." });
+  }
+  const clean = (s, max) => String(s == null ? "" : s).trim().slice(0, max);
+  const n = clean(name, 120), e = clean(email, 200), m = clean(message, 5000), t = clean(topic, 120);
+  if (!n || !e || !m) return res.status(400).json({ error: "Name, email, and message are required." });
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) return res.status(400).json({ error: "Please enter a valid email address." });
+  try {
+    await db.addMessage({ name: n, email: e, topic: t, message: m });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error("[contact]", err);
+    res.status(500).json({ error: "Could not send your message. Please try again." });
+  }
+});
+
+// ---------- admin messages ----------
+app.get("/api/messages", requireAuth, async (req, res) => {
+  res.json(await db.listMessages());
+});
+app.get("/api/messages/unread-count", requireAuth, async (req, res) => {
+  res.json({ count: await db.unreadMessageCount() });
+});
+app.post("/api/messages/:id/read", requireAuth, async (req, res) => {
+  await db.setMessageRead(req.params.id, req.body && req.body.read === false ? false : true);
+  res.json({ ok: true });
+});
+app.delete("/api/messages/:id", requireAuth, async (req, res) => {
+  await db.deleteMessage(req.params.id);
+  res.json({ ok: true });
 });
 
 // ---------- content API ----------

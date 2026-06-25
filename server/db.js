@@ -26,9 +26,39 @@ async function initDb() {
          token TEXT PRIMARY KEY, username TEXT NOT NULL, created_at TEXT NOT NULL )`,
       `CREATE TABLE IF NOT EXISTS media (
          filename TEXT PRIMARY KEY, original TEXT, url TEXT, created_at TEXT NOT NULL )`,
+      `CREATE TABLE IF NOT EXISTS messages (
+         id TEXT PRIMARY KEY, name TEXT, email TEXT, topic TEXT, message TEXT,
+         read INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL )`,
     ],
     "write"
   );
+}
+
+// ---- messages (contact form) ----
+async function addMessage({ name, email, topic, message }) {
+  const id = crypto.randomBytes(12).toString("hex");
+  await client.execute({
+    sql: "INSERT INTO messages (id, name, email, topic, message, read, created_at) VALUES (?, ?, ?, ?, ?, 0, ?)",
+    args: [id, name, email, topic || "", message, nowISO()],
+  });
+  return id;
+}
+
+async function listMessages() {
+  return (await client.execute("SELECT * FROM messages ORDER BY created_at DESC")).rows;
+}
+
+async function setMessageRead(id, read) {
+  await client.execute({ sql: "UPDATE messages SET read = ? WHERE id = ?", args: [read ? 1 : 0, id] });
+}
+
+async function deleteMessage(id) {
+  await client.execute({ sql: "DELETE FROM messages WHERE id = ?", args: [id] });
+}
+
+async function unreadMessageCount() {
+  const r = one(await client.execute("SELECT COUNT(*) AS n FROM messages WHERE read = 0"));
+  return Number(r ? r.n : 0);
 }
 
 // ---- content ----
@@ -130,4 +160,9 @@ module.exports = {
   deleteSession,
   recordMedia,
   listMedia,
+  addMessage,
+  listMessages,
+  setMessageRead,
+  deleteMessage,
+  unreadMessageCount,
 };

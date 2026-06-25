@@ -70,6 +70,33 @@ const Stats = () => (
 
 const Contact = () => {
   const info = tvSec('info');
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [error, setError] = useState('');
+  const submit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const data = {
+      name: fd.get('name'),
+      email: fd.get('email'),
+      topic: fd.get('topic'),
+      message: fd.get('message'),
+      website: fd.get('website'), // honeypot
+    };
+    setStatus('sending'); setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Something went wrong. Please try again.');
+      setStatus('sent');
+    } catch (err) {
+      setError(err.message);
+      setStatus('error');
+    }
+  };
   return (
   <section className="d-section">
     <div className="container">
@@ -93,23 +120,18 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <form className="form-d" onSubmit={(e) => {
-          // TODO: wire up to a real backend — Formspree, Web3Forms, or a Cloudflare Worker.
-          // Static hosting (Cloudflare Pages / GitHub Pages) cannot accept POSTs, so we currently
-          // open the user's mail client as a graceful fallback.
-          e.preventDefault();
-          const form = e.currentTarget;
-          const [name, email, topic, message] = Array.from(form.elements).filter(el => el.name !== '' || el.tagName !== 'BUTTON');
-          const subject = encodeURIComponent(`Transform Ventures inquiry${topic && topic.value ? ` — ${topic.value}` : ''}`);
-          const body = encodeURIComponent(
-            `Name: ${name.value}\nEmail: ${email.value}\nInterested in: ${topic.value || '(unspecified)'}\n\n${message.value}`
-          );
-          window.location.href = `mailto:info@transformventures.io?subject=${subject}&body=${body}`;
-        }}>
-          <label><span className="lab">Name</span><input required placeholder="Your name"/></label>
-          <label><span className="lab">Email</span><input type="email" required placeholder="you@company.com"/></label>
+        {status === 'sent' ? (
+          <div className="form-d form-success">
+            <div className="fs-check"><Icon name="send" size={22}/></div>
+            <h3>Message sent.</h3>
+            <p>Thanks for reaching out — we'll get back to you soon.</p>
+          </div>
+        ) : (
+        <form className="form-d" onSubmit={submit}>
+          <label><span className="lab">Name</span><input name="name" required placeholder="Your name"/></label>
+          <label><span className="lab">Email</span><input name="email" type="email" required placeholder="you@company.com"/></label>
           <label><span className="lab">I'm interested in</span>
-            <select defaultValue="">
+            <select name="topic" defaultValue="">
               <option value="" disabled>Select a topic…</option>
               <option>Investment inquiry</option>
               <option>Advisory / consulting</option>
@@ -118,9 +140,14 @@ const Contact = () => {
               <option>Other</option>
             </select>
           </label>
-          <label><span className="lab">Message</span><textarea required placeholder="Tell us about your project…"/></label>
-          <button type="submit" className="btn-lime">Send message →</button>
+          <label><span className="lab">Message</span><textarea name="message" required placeholder="Tell us about your project…"/></label>
+          <input type="text" name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" style={{position:'absolute',left:'-9999px',width:1,height:1,opacity:0}}/>
+          {status === 'error' && <div className="form-error">{error}</div>}
+          <button type="submit" className="btn-lime" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send message →'}
+          </button>
         </form>
+        )}
       </div>
     </div>
   </section>

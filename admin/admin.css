@@ -302,3 +302,24 @@ kbd {
   .list-item-head .li-actions { width: 100%; justify-content: flex-end; }
   .icon-btn { width: 34px; height: 34px; }
 }
+
+/* ---------- messages inbox ---------- */
+.msg-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.msg-card {
+  border: 1px solid var(--border); border-left: 3px solid var(--border);
+  border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; background: var(--panel);
+}
+.msg-card.unread { border-left-color: var(--lime); background: var(--panel-2); }
+.msg-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.msg-from { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.msg-name { font-weight: 600; font-size: 15px; color: var(--text); }
+.msg-email { color: var(--purple); font-size: 13px; text-decoration: none; }
+.msg-email:hover { text-decoration: underline; }
+.msg-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.msg-topic {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; color: var(--lime);
+  border: 1px solid rgba(195,245,59,.3); border-radius: 999px; padding: 2px 10px;
+}
+.msg-body { margin-top: 12px; font-size: 14px; color: var(--text); line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.msg-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }

@@ -139,6 +139,36 @@ const Stats = () => /*#__PURE__*/React.createElement("section", {
 }, "Specialized Divisions")))));
 const Contact = () => {
   const info = tvSec('info');
+  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
+  const [error, setError] = useState('');
+  const submit = async e => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const data = {
+      name: fd.get('name'),
+      email: fd.get('email'),
+      topic: fd.get('topic'),
+      message: fd.get('message'),
+      website: fd.get('website') // honeypot
+    };
+    setStatus('sending');
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Something went wrong. Please try again.');
+      setStatus('sent');
+    } catch (err) {
+      setError(err.message);
+      setStatus('error');
+    }
+  };
   return /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -186,33 +216,33 @@ const Contact = () => {
     className: "l"
   }, "Interests"), /*#__PURE__*/React.createElement("div", {
     className: "v"
-  }, info.interests || "Investments · Advisory · Events · Partnerships"))))), /*#__PURE__*/React.createElement("form", {
+  }, info.interests || "Investments · Advisory · Events · Partnerships"))))), status === 'sent' ? /*#__PURE__*/React.createElement("div", {
+    className: "form-d form-success"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fs-check"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "send",
+    size: 22
+  })), /*#__PURE__*/React.createElement("h3", null, "Message sent."), /*#__PURE__*/React.createElement("p", null, "Thanks for reaching out \u2014 we'll get back to you soon.")) : /*#__PURE__*/React.createElement("form", {
     className: "form-d",
-    onSubmit: e => {
-      // TODO: wire up to a real backend — Formspree, Web3Forms, or a Cloudflare Worker.
-      // Static hosting (Cloudflare Pages / GitHub Pages) cannot accept POSTs, so we currently
-      // open the user's mail client as a graceful fallback.
-      e.preventDefault();
-      const form = e.currentTarget;
-      const [name, email, topic, message] = Array.from(form.elements).filter(el => el.name !== '' || el.tagName !== 'BUTTON');
-      const subject = encodeURIComponent(`Transform Ventures inquiry${topic && topic.value ? ` — ${topic.value}` : ''}`);
-      const body = encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\nInterested in: ${topic.value || '(unspecified)'}\n\n${message.value}`);
-      window.location.href = `mailto:info@transformventures.io?subject=${subject}&body=${body}`;
-    }
+    onSubmit: submit
   }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
     className: "lab"
   }, "Name"), /*#__PURE__*/React.createElement("input", {
+    name: "name",
     required: true,
     placeholder: "Your name"
   })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
     className: "lab"
   }, "Email"), /*#__PURE__*/React.createElement("input", {
+    name: "email",
     type: "email",
     required: true,
     placeholder: "you@company.com"
   })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
     className: "lab"
   }, "I'm interested in"), /*#__PURE__*/React.createElement("select", {
+    name: "topic",
     defaultValue: ""
   }, /*#__PURE__*/React.createElement("option", {
     value: "",
@@ -220,12 +250,29 @@ const Contact = () => {
   }, "Select a topic\u2026"), /*#__PURE__*/React.createElement("option", null, "Investment inquiry"), /*#__PURE__*/React.createElement("option", null, "Advisory / consulting"), /*#__PURE__*/React.createElement("option", null, "Event partnership"), /*#__PURE__*/React.createElement("option", null, "Press / media"), /*#__PURE__*/React.createElement("option", null, "Other"))), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
     className: "lab"
   }, "Message"), /*#__PURE__*/React.createElement("textarea", {
+    name: "message",
     required: true,
     placeholder: "Tell us about your project\u2026"
-  })), /*#__PURE__*/React.createElement("button", {
+  })), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "website",
+    tabIndex: "-1",
+    autoComplete: "off",
+    "aria-hidden": "true",
+    style: {
+      position: 'absolute',
+      left: '-9999px',
+      width: 1,
+      height: 1,
+      opacity: 0
+    }
+  }), status === 'error' && /*#__PURE__*/React.createElement("div", {
+    className: "form-error"
+  }, error), /*#__PURE__*/React.createElement("button", {
     type: "submit",
-    className: "btn-lime"
-  }, "Send message \u2192")))));
+    className: "btn-lime",
+    disabled: status === 'sending'
+  }, status === 'sending' ? 'Sending…' : 'Send message →')))));
 };
 const Leader = () => {
   const l = tvSec('leader');
