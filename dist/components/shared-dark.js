@@ -142,6 +142,18 @@ const inPages = typeof window !== 'undefined' && window.location.pathname.includ
 const P = inPages ? '' : 'pages/';
 const HOME = inPages ? '../index.html' : 'index.html';
 const ASSET = inPages ? '../assets/' : 'assets/';
+
+// ---- Editable content for the current page (injected from the database; falls back to JSX defaults) ----
+const TV_PAGE = typeof window !== 'undefined' && window.__TV_PAGE__ || '';
+const TV_DATA = typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__[TV_PAGE] || {};
+const tvSec = k => TV_DATA[k] && typeof TV_DATA[k] === 'object' && !Array.isArray(TV_DATA[k]) ? TV_DATA[k] : {};
+const tvList = (k, fb) => Array.isArray(TV_DATA[k]) && TV_DATA[k].length ? TV_DATA[k] : fb;
+const tvVal = (k, fb) => {
+  const v = TV_DATA[k];
+  return v === undefined || v === null || v === '' ? fb : v;
+};
+// Resolve an image path relative to the current page (subpages live one level deeper).
+const tvImg = src => !src || /^(https?:|\/|\.\.\/)/.test(src) ? src : (inPages ? '../' : '') + src;
 const DIVISION_MENU = [{
   name: "Transform Group",
   sub: "Communications & PR",

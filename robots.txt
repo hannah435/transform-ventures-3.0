@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Application surfaces — never index
+Disallow: /admin
+Disallow: /api/
+
 Sitemap: https://www.transformventures.io/sitemap.xml

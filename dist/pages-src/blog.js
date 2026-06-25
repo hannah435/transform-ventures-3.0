@@ -1,4 +1,4 @@
-const POSTS = [{
+const POSTS_DEFAULT = [{
   id: "four-seasons",
   tag: "Bitcoin Cycles",
   date: "April 2026",
@@ -28,6 +28,7 @@ const POSTS = [{
   body: ["The Supercycle Fund takes a different approach — 100% bitcoin with tactical positioning across the cycle. By focusing exclusively on bitcoin, the fund eliminates the noise of altcoin selection and concentrates on what matters most: timing the macro cycle correctly and executing with precision.", "Bitcoin's dominance as the macro asset, combined with its predictable halving schedule, makes it the ideal vehicle for a cycle-driven strategy. No other cryptocurrency has the same depth of liquidity, institutional adoption, regulatory clarity, and network security. Bitcoin is the only crypto asset that has been classified as a commodity by major regulators, making it the most accessible for institutional capital.", "Unlike altcoins which can go to zero, bitcoin has survived every cycle and emerged stronger. Through multiple 80%+ drawdowns, exchange hacks, regulatory crackdowns, and media death spirals, bitcoin's network has continued to grow. Each cycle brings higher lows and higher highs, reinforcing its position as the foundational layer of the crypto ecosystem.", "For institutional investors seeking crypto exposure with managed risk, a bitcoin-only approach offers the best risk-adjusted returns. The combination of cycle-based positioning, algorithmic execution, and singular asset focus creates a strategy that is both simple to understand and powerful in execution. The Supercycle Fund is built on the conviction that doing one thing exceptionally well beats doing many things adequately."]
 }];
 function BlogPage() {
+  const POSTS = tvList('posts', POSTS_DEFAULT);
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Blog & Insights",
     title: "Analysis from the Godfather of Crypto.",

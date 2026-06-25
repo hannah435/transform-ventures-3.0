@@ -1,9 +1,11 @@
-const UPCOMING = [
+const UPCOMING_DEFAULT = [
       { date: "Sep 2026", city: "Las Vegas", name: "Tokenize Las Vegas", tag: "Flagship Conference", bg: "linear-gradient(135deg, #6D4AFF, #3A1F9E)" },
       { date: "Jun 2026", city: "San Juan, PR", name: "BitAngels Summer Summit", tag: "Angel Network", bg: "linear-gradient(135deg, #F7931A, #B25E00)" },
       { date: "Ongoing", city: "By invitation", name: "Tiger Mansion Dinners", tag: "Invite Only", bg: "linear-gradient(135deg, #0FB5A5, #0A6B63)" },
     ];
     function EventsPage(){
+      const upcoming = tvList('upcoming', UPCOMING_DEFAULT);
+      const head = tvSec('upcomingHead');
       return (
         <Subpage
           eyebrow="Transform Events"
@@ -13,12 +15,12 @@ const UPCOMING = [
           <section className="d-section">
             <div className="container">
               <div className="sec-head reveal-d" style={{textAlign:'left', marginBottom: 40}}>
-                <div className="eyebrow-inline"><span className="d"/>Upcoming</div>
-                <h2 style={{textAlign:'left'}}>On the calendar.</h2>
+                <div className="eyebrow-inline"><span className="d"/>{head.eyebrow || "Upcoming"}</div>
+                <h2 style={{textAlign:'left'}}>{head.title || "On the calendar."}</h2>
               </div>
               <div className="events-list-d">
-                {UPCOMING.map((e, i) => (
-                  <div key={e.name} className={`event-row-d reveal-d d${(i%3)+1}`}>
+                {upcoming.map((e, i) => (
+                  <div key={i} className={`event-row-d reveal-d d${(i%3)+1}`}>
                     <div className="swatch" style={{background: e.bg}}/>
                     <div>
                       <div className="date">{e.date}</div>

@@ -5,6 +5,11 @@ const {
   useEffect,
   useMemo
 } = React;
+
+// ---- Editable content (injected from the database; falls back to defaults below) ----
+const TV = typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home || {};
+const sec = k => TV[k] || {};
+const LOGO = sec('site').logo || "assets/transform-ventures-white.png";
 const Stars = () => {
   const stars = useMemo(() => Array.from({
     length: 80
@@ -246,7 +251,7 @@ const Nav = () => {
     href: "index.html",
     className: "brand"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/transform-ventures-white.png",
+    src: LOGO,
     alt: "Transform Ventures"
   })), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "pages/about.html"
@@ -315,62 +320,65 @@ const Nav = () => {
     className: "mm-cta"
   }, "Contact \u2192"))));
 };
-const Hero = () => /*#__PURE__*/React.createElement("section", {
-  className: "d-hero"
-}, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
-  className: "grad"
-}, "Where crypto builds", /*#__PURE__*/React.createElement("br", null), "with conviction.")), /*#__PURE__*/React.createElement("p", {
-  className: "lead"
-}, "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin \u2014 the \"Godfather of Crypto.\""), /*#__PURE__*/React.createElement("div", {
-  className: "ctas"
-}, /*#__PURE__*/React.createElement("a", {
-  className: "btn-lime",
-  href: "pages/divisions.html"
-}, "Explore divisions \u2192"), /*#__PURE__*/React.createElement("a", {
-  className: "btn-outline",
-  href: "pages/contact.html"
-}, "Get in touch")), /*#__PURE__*/React.createElement("div", {
-  className: "hero-socials",
-  "aria-label": "Social links"
-}, /*#__PURE__*/React.createElement("a", {
-  href: "#",
-  "aria-label": "Twitter / X",
-  target: "_blank",
-  rel: "noopener"
-}, /*#__PURE__*/React.createElement("svg", {
-  width: "16",
-  height: "16",
-  viewBox: "0 0 24 24",
-  fill: "currentColor"
-}, /*#__PURE__*/React.createElement("path", {
-  d: "M18.244 2H21.5l-7.5 8.57L23 22h-6.938l-5.43-7.08L4.5 22H1.244l8.04-9.192L1 2h7.063l4.92 6.518L18.244 2zm-1.22 18h1.833L7.104 4H5.16l11.864 16z"
-}))), /*#__PURE__*/React.createElement("a", {
-  href: "#",
-  "aria-label": "LinkedIn",
-  target: "_blank",
-  rel: "noopener"
-}, /*#__PURE__*/React.createElement("svg", {
-  width: "16",
-  height: "16",
-  viewBox: "0 0 24 24",
-  fill: "currentColor"
-}, /*#__PURE__*/React.createElement("path", {
-  d: "M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.037-1.85-3.037-1.852 0-2.136 1.445-2.136 2.94v5.666H9.353V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.37-1.85 3.6 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.063 2.063 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-}))), /*#__PURE__*/React.createElement("a", {
-  href: "#",
-  "aria-label": "YouTube",
-  target: "_blank",
-  rel: "noopener"
-}, /*#__PURE__*/React.createElement("svg", {
-  width: "16",
-  height: "16",
-  viewBox: "0 0 24 24",
-  fill: "currentColor"
-}, /*#__PURE__*/React.createElement("path", {
-  d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-})))), /*#__PURE__*/React.createElement("div", {
-  className: "d-hero-globe"
-}, /*#__PURE__*/React.createElement(Globe, null)));
+const Hero = () => {
+  const h = sec('hero');
+  return /*#__PURE__*/React.createElement("section", {
+    className: "d-hero"
+  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
+    className: "grad"
+  }, h.titleLine1 || "Where crypto builds", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "with conviction.")), /*#__PURE__*/React.createElement("p", {
+    className: "lead"
+  }, h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
+    className: "ctas"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn-lime",
+    href: h.cta1Href || "pages/divisions.html"
+  }, h.cta1Text || "Explore divisions →"), /*#__PURE__*/React.createElement("a", {
+    className: "btn-outline",
+    href: h.cta2Href || "pages/contact.html"
+  }, h.cta2Text || "Get in touch")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-socials",
+    "aria-label": "Social links"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: h.twitter || "#",
+    "aria-label": "Twitter / X",
+    target: "_blank",
+    rel: "noopener"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M18.244 2H21.5l-7.5 8.57L23 22h-6.938l-5.43-7.08L4.5 22H1.244l8.04-9.192L1 2h7.063l4.92 6.518L18.244 2zm-1.22 18h1.833L7.104 4H5.16l11.864 16z"
+  }))), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    "aria-label": "LinkedIn",
+    target: "_blank",
+    rel: "noopener"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.037-1.85-3.037-1.852 0-2.136 1.445-2.136 2.94v5.666H9.353V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.37-1.85 3.6 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.063 2.063 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+  }))), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    "aria-label": "YouTube",
+    target: "_blank",
+    rel: "noopener"
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "currentColor"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "d-hero-globe"
+  }, /*#__PURE__*/React.createElement(Globe, null)));
+};
 const Globe = () => {
   const canvasRef = React.useRef(null);
   useEffect(() => {
@@ -472,7 +480,7 @@ const Globe = () => {
     className: "globe-canvas"
   });
 };
-const DIVISIONS = [{
+const DIVISIONS_DEFAULT = [{
   name: "Transform Group",
   tag: "Communications & PR",
   desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
@@ -498,111 +506,121 @@ const DIVISIONS = [{
   desc: "The first liquid bitcoin-only hedge fund using the \"Four Seasons of Bitcoin\" cycle model and algorithmic trading.",
   kpi: "100% BTC · Algo"
 }];
-const Divisions = () => /*#__PURE__*/React.createElement("section", {
-  id: "divisions",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "sec-head reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "eyebrow-inline"
-}, /*#__PURE__*/React.createElement("span", {
-  style: {
-    width: 5,
-    height: 5,
-    borderRadius: '50%',
-    background: 'var(--lime)'
-  }
-}), "Our ecosystem"), /*#__PURE__*/React.createElement("h2", null, "Five divisions. One vision."), /*#__PURE__*/React.createElement("p", {
-  className: "sub"
-}, "Transform Ventures operates across five specialized divisions \u2014 from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
-  className: "divisions-row"
-}, DIVISIONS.slice(0, 3).map((d, i) => /*#__PURE__*/React.createElement("div", {
-  key: d.name,
-  className: `dark-card reveal-d d${i + 1}`,
-  onMouseMove: e => {
-    const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
-    e.currentTarget.style.setProperty('--my', `${(e.clientY - r.top) / r.height * 100}%`);
-  }
-}, /*#__PURE__*/React.createElement("h3", null, d.name), /*#__PURE__*/React.createElement("div", {
-  className: "tag"
-}, d.tag), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
-  className: "kpi"
-}, d.kpi)))), /*#__PURE__*/React.createElement("div", {
-  className: "divisions-row divisions-row-2up"
-}, DIVISIONS.slice(3).map((d, i) => /*#__PURE__*/React.createElement("div", {
-  key: d.name,
-  className: `dark-card reveal-d d${i + 1}`,
-  onMouseMove: e => {
-    const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
-    e.currentTarget.style.setProperty('--my', `${(e.clientY - r.top) / r.height * 100}%`);
-  }
-}, /*#__PURE__*/React.createElement("h3", null, d.name), /*#__PURE__*/React.createElement("div", {
-  className: "tag"
-}, d.tag), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
-  className: "kpi"
-}, d.kpi))))));
-const Feature = () => /*#__PURE__*/React.createElement("section", {
-  id: "feature",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "feature-split reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "visual"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "morph"
-})), /*#__PURE__*/React.createElement("div", {
-  className: "copy"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "tag-row"
-}, /*#__PURE__*/React.createElement("span", null, "Advisory"), /*#__PURE__*/React.createElement("span", null, "Strategy")), /*#__PURE__*/React.createElement("h3", null, "Every crypto venture finds its path."), /*#__PURE__*/React.createElement("p", null, "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations \u2014 helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
-  className: "actions"
-}, /*#__PURE__*/React.createElement("a", {
-  className: "btn-lime",
-  href: "pages/contact.html"
-}, "Start a conversation \u2192"), /*#__PURE__*/React.createElement("a", {
-  className: "btn-outline",
-  href: "pages/divisions.html"
-}, "Learn more"))))));
-const StatBand = () => /*#__PURE__*/React.createElement("section", {
-  className: "stat-band d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "cap"
-}, "Portfolio & track record"), /*#__PURE__*/React.createElement("div", {
-  className: "bignum"
-}, "$200M"), /*#__PURE__*/React.createElement("p", {
-  className: "cap-desc"
-}, "Marketwire exit to NASDAQ \u2014 the foundation that seeded 12+ years of crypto ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
-  className: "sub-stats"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "reveal-d d1"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "100+"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "ICO-era token launches")), /*#__PURE__*/React.createElement("div", {
-  className: "reveal-d d2"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "2013"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Launched first-ever token sale")))));
-const EVENTS = [{
+const DIVISIONS = Array.isArray(TV.divisions) && TV.divisions.length ? TV.divisions : DIVISIONS_DEFAULT;
+const Divisions = () => {
+  const head = sec('divisionsHead');
+  return /*#__PURE__*/React.createElement("section", {
+    id: "divisions",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: '50%',
+      background: 'var(--lime)'
+    }
+  }), head.eyebrow || "Our ecosystem"), /*#__PURE__*/React.createElement("h2", null, head.title || "Five divisions. One vision."), /*#__PURE__*/React.createElement("p", {
+    className: "sub"
+  }, head.sub || "Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
+    className: "divisions-row"
+  }, DIVISIONS.slice(0, 3).map((d, i) => /*#__PURE__*/React.createElement("div", {
+    key: d.name,
+    className: `dark-card reveal-d d${i + 1}`,
+    onMouseMove: e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
+      e.currentTarget.style.setProperty('--my', `${(e.clientY - r.top) / r.height * 100}%`);
+    }
+  }, /*#__PURE__*/React.createElement("h3", null, d.name), /*#__PURE__*/React.createElement("div", {
+    className: "tag"
+  }, d.tag), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
+    className: "kpi"
+  }, d.kpi)))), /*#__PURE__*/React.createElement("div", {
+    className: "divisions-row divisions-row-2up"
+  }, DIVISIONS.slice(3).map((d, i) => /*#__PURE__*/React.createElement("div", {
+    key: d.name,
+    className: `dark-card reveal-d d${i + 1}`,
+    onMouseMove: e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
+      e.currentTarget.style.setProperty('--my', `${(e.clientY - r.top) / r.height * 100}%`);
+    }
+  }, /*#__PURE__*/React.createElement("h3", null, d.name), /*#__PURE__*/React.createElement("div", {
+    className: "tag"
+  }, d.tag), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
+    className: "kpi"
+  }, d.kpi))))));
+};
+const Feature = () => {
+  const f = sec('feature');
+  return /*#__PURE__*/React.createElement("section", {
+    id: "feature",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "feature-split reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "visual"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "morph"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "copy"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tag-row"
+  }, /*#__PURE__*/React.createElement("span", null, f.tag1 || "Advisory"), /*#__PURE__*/React.createElement("span", null, f.tag2 || "Strategy")), /*#__PURE__*/React.createElement("h3", null, f.title || "Every crypto venture finds its path."), /*#__PURE__*/React.createElement("p", null, f.desc || "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, f.bullet1 || "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, f.bullet2 || "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, f.bullet3 || "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
+    className: "actions"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn-lime",
+    href: f.cta1Href || "pages/contact.html"
+  }, f.cta1Text || "Start a conversation →"), /*#__PURE__*/React.createElement("a", {
+    className: "btn-outline",
+    href: f.cta2Href || "pages/divisions.html"
+  }, f.cta2Text || "Learn more"))))));
+};
+const StatBand = () => {
+  const s = sec('statBand');
+  return /*#__PURE__*/React.createElement("section", {
+    className: "stat-band d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cap"
+  }, s.cap || "Portfolio & track record"), /*#__PURE__*/React.createElement("div", {
+    className: "bignum"
+  }, s.bignum || "$200M"), /*#__PURE__*/React.createElement("p", {
+    className: "cap-desc"
+  }, s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
+    className: "sub-stats"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "reveal-d d1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, s.sub1n || "100+"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, s.sub1l || "ICO-era token launches")), /*#__PURE__*/React.createElement("div", {
+    className: "reveal-d d2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, s.sub2n || "2013"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, s.sub2l || "Launched first-ever token sale")))));
+};
+const EVENTS_DEFAULT = [{
   name: "Tokenize",
   tag: "Global Conference",
   desc: "Industry leaders, investors, and innovators exploring the future of tokenization.",
@@ -621,270 +639,290 @@ const EVENTS = [{
   img: "assets/tigermansion-event.jpg",
   url: "https://www.tigermansionlv.com/"
 }];
-const Events = () => /*#__PURE__*/React.createElement("section", {
-  id: "events",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "sec-head reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "eyebrow-inline"
-}, /*#__PURE__*/React.createElement("span", {
-  style: {
-    width: 5,
-    height: 5,
-    borderRadius: '50%',
-    background: 'var(--lime)'
-  }
-}), "Transform Events"), /*#__PURE__*/React.createElement("h2", null, "Where the industry connects."), /*#__PURE__*/React.createElement("p", {
-  className: "sub"
-}, "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders.")), /*#__PURE__*/React.createElement("div", {
-  className: "events-grid-d"
-}, EVENTS.map((e, i) => /*#__PURE__*/React.createElement("a", {
-  href: e.url,
-  target: "_blank",
-  rel: "noopener",
-  key: e.name,
-  className: `event-card-d reveal-d d${i + 1}`
-}, /*#__PURE__*/React.createElement("div", {
-  className: "thumb"
-}, /*#__PURE__*/React.createElement("img", {
-  src: e.img,
-  alt: e.name,
-  loading: "lazy",
-  decoding: "async"
-})), /*#__PURE__*/React.createElement("div", {
-  className: "meta"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "t"
-}, e.tag), /*#__PURE__*/React.createElement("h3", null, e.name), /*#__PURE__*/React.createElement("p", null, e.desc))))), /*#__PURE__*/React.createElement("div", {
-  className: "reveal-d",
-  style: {
-    textAlign: 'center',
-    marginTop: 32
-  }
-}, /*#__PURE__*/React.createElement("a", {
-  href: "pages/events.html",
-  className: "btn-outline"
-}, "All events \u2192"))));
-const Fund = () => /*#__PURE__*/React.createElement("section", {
-  id: "fund",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "sec-head reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "eyebrow-inline"
-}, /*#__PURE__*/React.createElement("span", {
-  style: {
-    width: 5,
-    height: 5,
-    borderRadius: '50%',
-    background: 'var(--lime)'
-  }
-}), "Investment Fund"), /*#__PURE__*/React.createElement("h2", null, "Bitcoin Supercycle Fund."), /*#__PURE__*/React.createElement("p", {
-  className: "sub"
-}, "The first liquid bitcoin-only hedge fund combining the \"Four Seasons of Bitcoin\" cycle model with algorithmic trading.")), /*#__PURE__*/React.createElement("div", {
-  className: "fund-banner reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "book"
-}, /*#__PURE__*/React.createElement("img", {
-  src: "assets/bitcoin-supercycle-book.jpg",
-  alt: "Bitcoin Supercycle book",
-  loading: "lazy",
-  decoding: "async"
-})), /*#__PURE__*/React.createElement("div", {
-  className: "copy"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "tag-orange"
-}, "Amazon Best Seller \xB7 2024"), /*#__PURE__*/React.createElement("h3", null, "Bitcoin Supercycle"), /*#__PURE__*/React.createElement("p", null, "How the crypto calendar can make you rich \u2014 by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."), /*#__PURE__*/React.createElement("div", {
-  className: "kpis"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "k"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "100%"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Bitcoin-Only")), /*#__PURE__*/React.createElement("div", {
-  className: "k"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "Algo"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Algorithmic Trading")), /*#__PURE__*/React.createElement("div", {
-  className: "k"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "4 Seasons"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Cycle-driven"))), /*#__PURE__*/React.createElement("div", {
-  className: "actions"
-}, /*#__PURE__*/React.createElement("a", {
-  className: "btn-lime",
-  href: "pages/division-fund.html"
-}, "Learn more \u2192"), /*#__PURE__*/React.createElement("a", {
-  className: "btn-outline",
-  href: "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X",
-  target: "_blank",
-  rel: "noopener"
-}, "Buy on Amazon \u2197"))))));
-const Leader = () => /*#__PURE__*/React.createElement("section", {
-  id: "leadership",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "sec-head reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "eyebrow-inline"
-}, /*#__PURE__*/React.createElement("span", {
-  style: {
-    width: 5,
-    height: 5,
-    borderRadius: '50%',
-    background: 'var(--lime)'
-  }
-}), "Leadership"), /*#__PURE__*/React.createElement("h2", null, "Meet the founder."), /*#__PURE__*/React.createElement("p", {
-  className: "sub"
-}, "Three decades of building at the intersection of media, technology, and capital \u2014 from Marketwire to the Bitcoin Supercycle Fund.")), /*#__PURE__*/React.createElement("div", {
-  className: "leader-d reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "photo"
-}, /*#__PURE__*/React.createElement("img", {
-  src: "assets/michael-terpin.jpg",
-  alt: "Michael Terpin",
-  loading: "lazy",
-  decoding: "async"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "photo-caption"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "quote"
-}, "\"Godfather of Crypto\""), /*#__PURE__*/React.createElement("span", {
-  className: "source"
-}, "\u2014 CNBC"))), /*#__PURE__*/React.createElement("div", {
-  className: "info"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "role"
-}, "Founder & CEO \xB7 CIO, Bitcoin Supercycle Fund"), /*#__PURE__*/React.createElement("div", {
-  className: "name"
-}, "Michael Terpin"), /*#__PURE__*/React.createElement("p", {
-  style: {
-    marginTop: 20
-  }
-}, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin."), /*#__PURE__*/React.createElement("p", {
-  style: {
-    marginTop: 14
-  }
-}, "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire \u2014 sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
-  className: "leader-stats-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "stat"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "100+"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "ICO-era launches")), /*#__PURE__*/React.createElement("div", {
-  className: "stat"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "$200M"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Marketwire exit")), /*#__PURE__*/React.createElement("div", {
-  className: "stat"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "n"
-}, "2013"), /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "First crypto angel group"))), /*#__PURE__*/React.createElement("div", {
-  className: "tags"
-}, /*#__PURE__*/React.createElement("span", null, "Godfather of Crypto"), /*#__PURE__*/React.createElement("span", null, "BitAngels Co-Founder"), /*#__PURE__*/React.createElement("span", null, "Tokenize Creator"), /*#__PURE__*/React.createElement("span", null, "Author"), /*#__PURE__*/React.createElement("span", null, "Puerto Rico")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    marginTop: 28
-  }
-}, /*#__PURE__*/React.createElement("a", {
-  href: "pages/leadership.html",
-  className: "btn-outline"
-}, "Full bio \u2192"))))));
-const FinalCTA = () => /*#__PURE__*/React.createElement("section", {
-  id: "contact",
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "wavy-bg"
-}), /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "final-cta reveal-d"
-}, /*#__PURE__*/React.createElement("h2", null, "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, "Whether you're raising capital, launching a token, or need strategic guidance \u2014 let's connect."), /*#__PURE__*/React.createElement("div", {
-  className: "ctas"
-}, /*#__PURE__*/React.createElement("a", {
-  className: "btn-lime",
-  href: "pages/contact.html"
-}, "Start a conversation \u2192"), /*#__PURE__*/React.createElement("a", {
-  className: "btn-outline",
-  href: "pages/media.html"
-}, "Latest news & media")))));
-const Footer = () => /*#__PURE__*/React.createElement("footer", {
-  className: "d-footer"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "cols"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "brand-col"
-}, /*#__PURE__*/React.createElement("img", {
-  src: "assets/transform-ventures-white.png",
-  alt: "Transform Ventures",
-  loading: "lazy",
-  decoding: "async"
-}), /*#__PURE__*/React.createElement("p", null, "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
-  className: "col"
-}, /*#__PURE__*/React.createElement("h4", null, "Divisions"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/division-group.html"
-}, "Transform Group")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/division-events.html"
-}, "Transform Events")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/division-capital.html"
-}, "Transform Capital")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/division-strategies.html"
-}, "Transform Strategies")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/division-fund.html"
-}, "Supercycle Fund")))), /*#__PURE__*/React.createElement("div", {
-  className: "col"
-}, /*#__PURE__*/React.createElement("h4", null, "Events & News"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "https://tokenizeconference.com/",
-  target: "_blank",
-  rel: "noopener"
-}, "Tokenize")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "https://bitangels.network/",
-  target: "_blank",
-  rel: "noopener"
-}, "BitAngels")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "https://www.tigermansionlv.com/",
-  target: "_blank",
-  rel: "noopener"
-}, "Tiger Mansion")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/media.html"
-}, "News & Media")))), /*#__PURE__*/React.createElement("div", {
-  className: "col"
-}, /*#__PURE__*/React.createElement("h4", null, "Connect"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "pages/contact.html"
-}, "Contact")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "#"
-}, "Twitter / X")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "#"
-}, "LinkedIn")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "#"
-}, "Telegram"))))), /*#__PURE__*/React.createElement("div", {
-  className: "btm"
-}, /*#__PURE__*/React.createElement("span", null, "\xA9 2026 Transform Ventures. All rights reserved."), /*#__PURE__*/React.createElement("span", null, "San Juan, Puerto Rico"))));
+const EVENTS = Array.isArray(TV.events) && TV.events.length ? TV.events : EVENTS_DEFAULT;
+const Events = () => {
+  const head = sec('eventsHead');
+  return /*#__PURE__*/React.createElement("section", {
+    id: "events",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: '50%',
+      background: 'var(--lime)'
+    }
+  }), head.eyebrow || "Transform Events"), /*#__PURE__*/React.createElement("h2", null, head.title || "Where the industry connects."), /*#__PURE__*/React.createElement("p", {
+    className: "sub"
+  }, head.sub || "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders.")), /*#__PURE__*/React.createElement("div", {
+    className: "events-grid-d"
+  }, EVENTS.map((e, i) => /*#__PURE__*/React.createElement("a", {
+    href: e.url,
+    target: "_blank",
+    rel: "noopener",
+    key: e.name,
+    className: `event-card-d reveal-d d${i + 1}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "thumb"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: e.img,
+    alt: e.name,
+    loading: "lazy",
+    decoding: "async"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "meta"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "t"
+  }, e.tag), /*#__PURE__*/React.createElement("h3", null, e.name), /*#__PURE__*/React.createElement("p", null, e.desc))))), /*#__PURE__*/React.createElement("div", {
+    className: "reveal-d",
+    style: {
+      textAlign: 'center',
+      marginTop: 32
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "pages/events.html",
+    className: "btn-outline"
+  }, "All events \u2192"))));
+};
+const Fund = () => {
+  const f = sec('fund');
+  return /*#__PURE__*/React.createElement("section", {
+    id: "fund",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: '50%',
+      background: 'var(--lime)'
+    }
+  }), f.eyebrow || "Investment Fund"), /*#__PURE__*/React.createElement("h2", null, f.title || "Bitcoin Supercycle Fund."), /*#__PURE__*/React.createElement("p", {
+    className: "sub"
+  }, f.sub || 'The first liquid bitcoin-only hedge fund combining the "Four Seasons of Bitcoin" cycle model with algorithmic trading.')), /*#__PURE__*/React.createElement("div", {
+    className: "fund-banner reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "book"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: f.bookImg || "assets/bitcoin-supercycle-book.jpg",
+    alt: "Bitcoin Supercycle book",
+    loading: "lazy",
+    decoding: "async"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "copy"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "tag-orange"
+  }, f.badge || "Amazon Best Seller · 2024"), /*#__PURE__*/React.createElement("h3", null, f.bookTitle || "Bitcoin Supercycle"), /*#__PURE__*/React.createElement("p", null, f.bookDesc || "How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."), /*#__PURE__*/React.createElement("div", {
+    className: "kpis"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "k"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, f.kpi1n || "100%"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, f.kpi1l || "Bitcoin-Only")), /*#__PURE__*/React.createElement("div", {
+    className: "k"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, f.kpi2n || "Algo"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, f.kpi2l || "Algorithmic Trading")), /*#__PURE__*/React.createElement("div", {
+    className: "k"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, f.kpi3n || "4 Seasons"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, f.kpi3l || "Cycle-driven"))), /*#__PURE__*/React.createElement("div", {
+    className: "actions"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn-lime",
+    href: f.cta1Href || "pages/division-fund.html"
+  }, f.cta1Text || "Learn more →"), /*#__PURE__*/React.createElement("a", {
+    className: "btn-outline",
+    href: f.cta2Href || "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X",
+    target: "_blank",
+    rel: "noopener"
+  }, f.cta2Text || "Buy on Amazon ↗"))))));
+};
+const LEADER_TAGS_DEFAULT = ["Godfather of Crypto", "BitAngels Co-Founder", "Tokenize Creator", "Author", "Puerto Rico"];
+const Leader = () => {
+  const l = sec('leader');
+  const tags = Array.isArray(l.tags) && l.tags.length ? l.tags : LEADER_TAGS_DEFAULT;
+  return /*#__PURE__*/React.createElement("section", {
+    id: "leadership",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: '50%',
+      background: 'var(--lime)'
+    }
+  }), l.eyebrow || "Leadership"), /*#__PURE__*/React.createElement("h2", null, l.title || "Meet the founder."), /*#__PURE__*/React.createElement("p", {
+    className: "sub"
+  }, l.sub || "Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund.")), /*#__PURE__*/React.createElement("div", {
+    className: "leader-d reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "photo"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: l.photoImg || "assets/michael-terpin.jpg",
+    alt: "Michael Terpin",
+    loading: "lazy",
+    decoding: "async"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "photo-caption"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "quote"
+  }, l.quote || '"Godfather of Crypto"'), /*#__PURE__*/React.createElement("span", {
+    className: "source"
+  }, l.source || "— CNBC"))), /*#__PURE__*/React.createElement("div", {
+    className: "info"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "role"
+  }, l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"), /*#__PURE__*/React.createElement("div", {
+    className: "name"
+  }, l.name || "Michael Terpin"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 20
+    }
+  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 14
+    }
+  }, l.para2 || "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
+    className: "leader-stats-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, l.stat1n || "100+"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, l.stat1l || "ICO-era launches")), /*#__PURE__*/React.createElement("div", {
+    className: "stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, l.stat2n || "$200M"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, l.stat2l || "Marketwire exit")), /*#__PURE__*/React.createElement("div", {
+    className: "stat"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "n"
+  }, l.stat3n || "2013"), /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, l.stat3l || "First crypto angel group"))), /*#__PURE__*/React.createElement("div", {
+    className: "tags"
+  }, tags.map((t, i) => /*#__PURE__*/React.createElement("span", {
+    key: i
+  }, t))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 28
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: l.ctaHref || "pages/leadership.html",
+    className: "btn-outline"
+  }, l.ctaText || "Full bio →"))))));
+};
+const FinalCTA = () => {
+  const c = sec('finalCta');
+  return /*#__PURE__*/React.createElement("section", {
+    id: "contact",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "final-cta reveal-d"
+  }, /*#__PURE__*/React.createElement("h2", null, c.title || "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, c.desc || "Whether you're raising capital, launching a token, or need strategic guidance — let's connect."), /*#__PURE__*/React.createElement("div", {
+    className: "ctas"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn-lime",
+    href: c.cta1Href || "pages/contact.html"
+  }, c.cta1Text || "Start a conversation →"), /*#__PURE__*/React.createElement("a", {
+    className: "btn-outline",
+    href: c.cta2Href || "pages/media.html"
+  }, c.cta2Text || "Latest news & media")))));
+};
+const Footer = () => {
+  const ft = sec('footer');
+  return /*#__PURE__*/React.createElement("footer", {
+    className: "d-footer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cols"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "brand-col"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: LOGO,
+    alt: "Transform Ventures",
+    loading: "lazy",
+    decoding: "async"
+  }), /*#__PURE__*/React.createElement("p", null, ft.blurb || "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/React.createElement("h4", null, "Divisions"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/division-group.html"
+  }, "Transform Group")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/division-events.html"
+  }, "Transform Events")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/division-capital.html"
+  }, "Transform Capital")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/division-strategies.html"
+  }, "Transform Strategies")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/division-fund.html"
+  }, "Supercycle Fund")))), /*#__PURE__*/React.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/React.createElement("h4", null, "Events & News"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "https://tokenizeconference.com/",
+    target: "_blank",
+    rel: "noopener"
+  }, "Tokenize")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "https://bitangels.network/",
+    target: "_blank",
+    rel: "noopener"
+  }, "BitAngels")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "https://www.tigermansionlv.com/",
+    target: "_blank",
+    rel: "noopener"
+  }, "Tiger Mansion")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/media.html"
+  }, "News & Media")))), /*#__PURE__*/React.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/React.createElement("h4", null, "Connect"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "pages/contact.html"
+  }, "Contact")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Twitter / X")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "LinkedIn")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#"
+  }, "Telegram"))))), /*#__PURE__*/React.createElement("div", {
+    className: "btm"
+  }, /*#__PURE__*/React.createElement("span", null, ft.copyright || "© 2026 Transform Ventures. All rights reserved."), /*#__PURE__*/React.createElement("span", null, ft.location || "San Juan, Puerto Rico"))));
+};
 function App() {
   useEffect(() => {
     const io = new IntersectionObserver(entries => {

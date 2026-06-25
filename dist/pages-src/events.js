@@ -1,4 +1,4 @@
-const UPCOMING = [{
+const UPCOMING_DEFAULT = [{
   date: "Sep 2026",
   city: "Las Vegas",
   name: "Tokenize Las Vegas",
@@ -18,6 +18,8 @@ const UPCOMING = [{
   bg: "linear-gradient(135deg, #0FB5A5, #0A6B63)"
 }];
 function EventsPage() {
+  const upcoming = tvList('upcoming', UPCOMING_DEFAULT);
+  const head = tvSec('upcomingHead');
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Transform Events",
     title: "Where the industry connects.",
@@ -36,14 +38,14 @@ function EventsPage() {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), "Upcoming"), /*#__PURE__*/React.createElement("h2", {
+  }), head.eyebrow || "Upcoming"), /*#__PURE__*/React.createElement("h2", {
     style: {
       textAlign: 'left'
     }
-  }, "On the calendar.")), /*#__PURE__*/React.createElement("div", {
+  }, head.title || "On the calendar.")), /*#__PURE__*/React.createElement("div", {
     className: "events-list-d"
-  }, UPCOMING.map((e, i) => /*#__PURE__*/React.createElement("div", {
-    key: e.name,
+  }, upcoming.map((e, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
     className: `event-row-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "swatch",

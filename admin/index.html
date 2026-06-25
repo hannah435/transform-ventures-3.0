@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-dark>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Admin — Transform Ventures</title>
+  <link rel="icon" type="image/png" href="../assets/transform-ventures.png"/>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+  <!-- Login -->
+  <div id="login" class="login-wrap">
+    <form id="login-form" class="login-card">
+      <img src="../assets/transform-ventures-white.png" alt="Transform Ventures" class="login-logo"/>
+      <h1>Admin</h1>
+      <p class="muted">Sign in to edit the website.</p>
+      <label>Username<input type="text" id="u" autocomplete="username" required/></label>
+      <label>Password<input type="password" id="p" autocomplete="current-password" required/></label>
+      <button type="submit" class="btn-primary">Sign in</button>
+      <div id="login-err" class="err"></div>
+    </form>
+  </div>
+
+  <!-- Editor -->
+  <div id="app" class="app hidden">
+    <header class="topbar">
+      <div class="topbar-l">
+        <img src="../assets/transform-ventures-white.png" alt="" class="topbar-logo"/>
+        <span class="topbar-title">Content Editor</span>
+        <select id="page-select" class="page-select" title="Choose a page to edit"></select>
+      </div>
+      <div class="topbar-r">
+        <span id="dirty" class="dirty hidden">● Unsaved changes</span>
+        <span id="saved" class="saved hidden">✓ All changes saved</span>
+        <a id="view-site" href="/" target="_blank" class="btn-ghost">View site ↗</a>
+        <button id="reset-btn" class="btn-ghost">Reset to default</button>
+        <button id="save-btn" class="btn-primary" disabled>Save changes <kbd>⌘S</kbd></button>
+        <button id="logout-btn" class="btn-ghost">Log out</button>
+      </div>
+    </header>
+    <div class="layout">
+      <nav class="section-nav">
+        <div class="nav-search">
+          <input type="text" id="section-filter" placeholder="Filter sections…"/>
+        </div>
+        <div id="section-links"></div>
+      </nav>
+      <main id="editor" class="editor"></main>
+    </div>
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

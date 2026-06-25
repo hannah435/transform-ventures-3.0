@@ -1,4 +1,4 @@
-const POSTS = [
+const POSTS_DEFAULT = [
       {
         id: "four-seasons",
         tag: "Bitcoin Cycles",
@@ -56,6 +56,7 @@ const POSTS = [
     ];
 
     function BlogPage(){
+      const POSTS = tvList('posts', POSTS_DEFAULT);
       return (
         <Subpage
           eyebrow="Blog & Insights"

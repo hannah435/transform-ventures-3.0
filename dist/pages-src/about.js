@@ -1,29 +1,31 @@
-const timeline = [{
-  y: "1994",
-  e: "Marketwire Founded",
-  d: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M."
+const TIMELINE_DEFAULT = [{
+  year: "1994",
+  title: "Marketwire Founded",
+  desc: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M."
 }, {
-  y: "2013",
-  e: "BitAngels & Transform Group",
-  d: "Co-founded the first crypto angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether."
+  year: "2013",
+  title: "BitAngels & Transform Group",
+  desc: "Co-founded the first crypto angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether."
 }, {
-  y: "2015",
-  e: "Four Seasons of Bitcoin",
-  d: "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving."
+  year: "2015",
+  title: "Four Seasons of Bitcoin",
+  desc: "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving."
 }, {
-  y: "2018",
-  e: "CoinAgenda → Tokenize",
-  d: "Created the leading conference series connecting mainstream investors with blockchain and crypto investments."
+  year: "2018",
+  title: "CoinAgenda → Tokenize",
+  desc: "Created the leading conference series connecting mainstream investors with blockchain and crypto investments."
 }, {
-  y: "2021",
-  e: "Transform Ventures",
-  d: "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management."
+  year: "2021",
+  title: "Transform Ventures",
+  desc: "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management."
 }, {
-  y: "2024",
-  e: "Bitcoin Supercycle Fund",
-  d: "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading."
+  year: "2024",
+  title: "Bitcoin Supercycle Fund",
+  desc: "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading."
 }];
 function About() {
+  const timeline = tvList('timeline', TIMELINE_DEFAULT);
+  const story = tvSec('story');
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "About Transform Ventures",
     title: "Three decades of building at the edges of media and money.",
@@ -40,17 +42,17 @@ function About() {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), "Our Story"), /*#__PURE__*/React.createElement("h2", null, "The communications powerhouse behind crypto.")), /*#__PURE__*/React.createElement("div", {
+  }), story.eyebrow || "Our Story"), /*#__PURE__*/React.createElement("h2", null, story.heading || "The communications powerhouse behind crypto.")), /*#__PURE__*/React.createElement("div", {
     className: "timeline-d"
   }, timeline.map((t, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     className: "item"
   }, /*#__PURE__*/React.createElement("div", {
     className: "year"
-  }, t.y), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, t.year), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "title"
-  }, t.e), /*#__PURE__*/React.createElement("div", {
+  }, t.title), /*#__PURE__*/React.createElement("div", {
     className: "desc"
-  }, t.d)))))))), /*#__PURE__*/React.createElement(Stats, null), /*#__PURE__*/React.createElement(PartnersBar, null), /*#__PURE__*/React.createElement(CTAStrip, null));
+  }, t.desc)))))))), /*#__PURE__*/React.createElement(Stats, null), /*#__PURE__*/React.createElement(PartnersBar, null), /*#__PURE__*/React.createElement(CTAStrip, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(About, null));

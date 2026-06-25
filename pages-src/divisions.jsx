@@ -40,6 +40,14 @@ const CAPABILITIES = {
     };
 
     function DivisionsPage(){
+      const BLOCKS_DEFAULT = DIVISIONS.map(d => {
+        const c = CAPABILITIES[d.key] || [];
+        return { key: d.key, num: d.num, badge: d.badge, name: d.name, color: d.color, desc: d.desc,
+          cap1t: c[0]&&c[0].t, cap1d: c[0]&&c[0].d, cap2t: c[1]&&c[1].t, cap2d: c[1]&&c[1].d,
+          cap3t: c[2]&&c[2].t, cap3d: c[2]&&c[2].d, cap4t: c[3]&&c[3].t, cap4d: c[3]&&c[3].d };
+      });
+      const blocks = tvList('blocks', BLOCKS_DEFAULT);
+      const capsOf = (b) => [[b.cap1t,b.cap1d],[b.cap2t,b.cap2d],[b.cap3t,b.cap3d],[b.cap4t,b.cap4d]].filter(x => x[0]).map(x => ({ t: x[0], d: x[1] }));
       return (
         <Subpage
           eyebrow="Our Ecosystem"
@@ -48,8 +56,8 @@ const CAPABILITIES = {
         >
           <section className="d-section">
             <div className="container">
-              {DIVISIONS.map((d, i) => (
-                <div key={d.key} id={d.key} className="div-block-d reveal-d">
+              {blocks.map((d, i) => (
+                <div key={i} id={d.key} className="div-block-d reveal-d">
                   <div className="lead">
                     <div className="badge-d" style={{color: d.color}}>/ {d.num} — {d.badge}</div>
                     <h2>{d.name}</h2>
@@ -60,8 +68,8 @@ const CAPABILITIES = {
                     </div>
                   </div>
                   <div className="cap-grid">
-                    {CAPABILITIES[d.key].map(c => (
-                      <div key={c.t} className="cap">
+                    {capsOf(d).map((c, j) => (
+                      <div key={j} className="cap">
                         <div className="t">{c.t}</div>
                         <div className="d">{c.d}</div>
                       </div>

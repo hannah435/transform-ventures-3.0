@@ -2,6 +2,11 @@
 
 const { useState, useEffect, useMemo } = React;
 
+// ---- Editable content (injected from the database; falls back to defaults below) ----
+const TV = (typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home) || {};
+const sec = (k) => TV[k] || {};
+const LOGO = sec('site').logo || "assets/transform-ventures-white.png";
+
 const Stars = () => {
   const stars = useMemo(() => Array.from({length: 80}, (_, i) => ({
     id: i,
@@ -88,7 +93,7 @@ const Nav = () => {
     <>
       <nav className="d-nav">
         <a href="index.html" className="brand">
-          <img src="assets/transform-ventures-white.png" alt="Transform Ventures"/>
+          <img src={LOGO} alt="Transform Ventures"/>
         </a>
         <ul>
           <li><a href="pages/about.html">About</a></li>
@@ -137,19 +142,21 @@ const Nav = () => {
   );
 };
 
-const Hero = () => (
+const Hero = () => {
+  const h = sec('hero');
+  return (
   <section className="d-hero">
     <Stars/>
-    <h1><span className="grad">Where crypto builds<br/>with conviction.</span></h1>
+    <h1><span className="grad">{h.titleLine1 || "Where crypto builds"}<br/>{h.titleLine2 || "with conviction."}</span></h1>
     <p className="lead">
-      Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."
+      {h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
     </p>
     <div className="ctas">
-      <a className="btn-lime" href="pages/divisions.html">Explore divisions →</a>
-      <a className="btn-outline" href="pages/contact.html">Get in touch</a>
+      <a className="btn-lime" href={h.cta1Href || "pages/divisions.html"}>{h.cta1Text || "Explore divisions →"}</a>
+      <a className="btn-outline" href={h.cta2Href || "pages/contact.html"}>{h.cta2Text || "Get in touch"}</a>
     </div>
     <div className="hero-socials" aria-label="Social links">
-      <a href="#" aria-label="Twitter / X" target="_blank" rel="noopener">
+      <a href={h.twitter || "#"} aria-label="Twitter / X" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.938l-5.43-7.08L4.5 22H1.244l8.04-9.192L1 2h7.063l4.92 6.518L18.244 2zm-1.22 18h1.833L7.104 4H5.16l11.864 16z"/></svg>
       </a>
       <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener">
@@ -163,7 +170,8 @@ const Hero = () => (
       <Globe/>
     </div>
   </section>
-);
+  );
+};
 
 const Globe = () => {
   const canvasRef = React.useRef(null);
@@ -250,22 +258,25 @@ const Globe = () => {
   return <canvas ref={canvasRef} className="globe-canvas"/>;
 };
 
-const DIVISIONS = [
+const DIVISIONS_DEFAULT = [
   { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013" },
   { name: "Transform Events", tag: "Tokenize · BitAngels · Tiger Mansion", desc: "Premier blockchain events connecting founders and investors worldwide through curated gatherings.", kpi: "3 flagship events" },
   { name: "Transform Capital", tag: "Family Office", desc: "Strategic investments across the digital asset landscape with a long-term investment horizon.", kpi: "Multi-strategy" },
   { name: "Transform Strategies", tag: "Advisory & Consulting", desc: "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.", kpi: "Seed → Scale" },
   { name: "Bitcoin Supercycle Fund", tag: "BTC Investment Fund", desc: "The first liquid bitcoin-only hedge fund using the \"Four Seasons of Bitcoin\" cycle model and algorithmic trading.", kpi: "100% BTC · Algo" },
 ];
+const DIVISIONS = (Array.isArray(TV.divisions) && TV.divisions.length) ? TV.divisions : DIVISIONS_DEFAULT;
 
-const Divisions = () => (
+const Divisions = () => {
+  const head = sec('divisionsHead');
+  return (
   <section id="divisions" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
-        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Our ecosystem</div>
-        <h2>Five divisions. One vision.</h2>
-        <p className="sub">Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.</p>
+        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "Our ecosystem"}</div>
+        <h2>{head.title || "Five divisions. One vision."}</h2>
+        <p className="sub">{head.sub || "Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."}</p>
       </div>
       <div className="divisions-row">
         {DIVISIONS.slice(0, 3).map((d, i) => (
@@ -297,64 +308,74 @@ const Divisions = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Feature = () => (
+const Feature = () => {
+  const f = sec('feature');
+  return (
   <section id="feature" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="feature-split reveal-d">
         <div className="visual"><div className="morph"/></div>
         <div className="copy">
-          <div className="tag-row"><span>Advisory</span><span>Strategy</span></div>
-          <h3>Every crypto venture finds its path.</h3>
-          <p>Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale.</p>
+          <div className="tag-row"><span>{f.tag1 || "Advisory"}</span><span>{f.tag2 || "Strategy"}</span></div>
+          <h3>{f.title || "Every crypto venture finds its path."}</h3>
+          <p>{f.desc || "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."}</p>
           <ul>
-            <li>End-to-end advisory on token design, distribution, and launch</li>
-            <li>Strategic positioning and market-entry plans</li>
-            <li>Access to the full Transform Ventures network</li>
+            <li>{f.bullet1 || "End-to-end advisory on token design, distribution, and launch"}</li>
+            <li>{f.bullet2 || "Strategic positioning and market-entry plans"}</li>
+            <li>{f.bullet3 || "Access to the full Transform Ventures network"}</li>
           </ul>
           <div className="actions">
-            <a className="btn-lime" href="pages/contact.html">Start a conversation →</a>
-            <a className="btn-outline" href="pages/divisions.html">Learn more</a>
+            <a className="btn-lime" href={f.cta1Href || "pages/contact.html"}>{f.cta1Text || "Start a conversation →"}</a>
+            <a className="btn-outline" href={f.cta2Href || "pages/divisions.html"}>{f.cta2Text || "Learn more"}</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const StatBand = () => (
+const StatBand = () => {
+  const s = sec('statBand');
+  return (
   <section className="stat-band d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="reveal-d">
-        <div className="cap">Portfolio & track record</div>
-        <div className="bignum">$200M</div>
-        <p className="cap-desc">Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital.</p>
+        <div className="cap">{s.cap || "Portfolio & track record"}</div>
+        <div className="bignum">{s.bignum || "$200M"}</div>
+        <p className="cap-desc">{s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital."}</p>
       </div>
       <div className="sub-stats">
-        <div className="reveal-d d1"><div className="n">100+</div><div className="l">ICO-era token launches</div></div>
-        <div className="reveal-d d2"><div className="n">2013</div><div className="l">Launched first-ever token sale</div></div>
+        <div className="reveal-d d1"><div className="n">{s.sub1n || "100+"}</div><div className="l">{s.sub1l || "ICO-era token launches"}</div></div>
+        <div className="reveal-d d2"><div className="n">{s.sub2n || "2013"}</div><div className="l">{s.sub2l || "Launched first-ever token sale"}</div></div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const EVENTS = [
+const EVENTS_DEFAULT = [
   { name: "Tokenize", tag: "Global Conference", desc: "Industry leaders, investors, and innovators exploring the future of tokenization.", img: "assets/tokenize-vegas.jpg", url: "https://tokenizeconference.com/" },
   { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "The world's first angel investor network for digital currency startups.", img: "assets/bitangels-group.webp", url: "https://bitangels.network/" },
   { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
 ];
+const EVENTS = (Array.isArray(TV.events) && TV.events.length) ? TV.events : EVENTS_DEFAULT;
 
-const Events = () => (
+const Events = () => {
+  const head = sec('eventsHead');
+  return (
   <section id="events" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
-        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Transform Events</div>
-        <h2>Where the industry connects.</h2>
-        <p className="sub">Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders.</p>
+        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "Transform Events"}</div>
+        <h2>{head.title || "Where the industry connects."}</h2>
+        <p className="sub">{head.sub || "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders."}</p>
       </div>
       <div className="events-grid-d">
         {EVENTS.map((e, i) => (
@@ -373,104 +394,115 @@ const Events = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Fund = () => (
+const Fund = () => {
+  const f = sec('fund');
+  return (
   <section id="fund" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
-        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Investment Fund</div>
-        <h2>Bitcoin Supercycle Fund.</h2>
-        <p className="sub">The first liquid bitcoin-only hedge fund combining the "Four Seasons of Bitcoin" cycle model with algorithmic trading.</p>
+        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{f.eyebrow || "Investment Fund"}</div>
+        <h2>{f.title || "Bitcoin Supercycle Fund."}</h2>
+        <p className="sub">{f.sub || 'The first liquid bitcoin-only hedge fund combining the "Four Seasons of Bitcoin" cycle model with algorithmic trading.'}</p>
       </div>
       <div className="fund-banner reveal-d">
-        <div className="book"><img src="assets/bitcoin-supercycle-book.jpg" alt="Bitcoin Supercycle book" loading="lazy" decoding="async"/></div>
+        <div className="book"><img src={f.bookImg || "assets/bitcoin-supercycle-book.jpg"} alt="Bitcoin Supercycle book" loading="lazy" decoding="async"/></div>
         <div className="copy">
-          <span className="tag-orange">Amazon Best Seller · 2024</span>
-          <h3>Bitcoin Supercycle</h3>
-          <p>How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy.</p>
+          <span className="tag-orange">{f.badge || "Amazon Best Seller · 2024"}</span>
+          <h3>{f.bookTitle || "Bitcoin Supercycle"}</h3>
+          <p>{f.bookDesc || "How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."}</p>
           <div className="kpis">
-            <div className="k"><div className="n">100%</div><div className="l">Bitcoin-Only</div></div>
-            <div className="k"><div className="n">Algo</div><div className="l">Algorithmic Trading</div></div>
-            <div className="k"><div className="n">4 Seasons</div><div className="l">Cycle-driven</div></div>
+            <div className="k"><div className="n">{f.kpi1n || "100%"}</div><div className="l">{f.kpi1l || "Bitcoin-Only"}</div></div>
+            <div className="k"><div className="n">{f.kpi2n || "Algo"}</div><div className="l">{f.kpi2l || "Algorithmic Trading"}</div></div>
+            <div className="k"><div className="n">{f.kpi3n || "4 Seasons"}</div><div className="l">{f.kpi3l || "Cycle-driven"}</div></div>
           </div>
           <div className="actions">
-            <a className="btn-lime" href="pages/division-fund.html">Learn more →</a>
-            <a className="btn-outline" href="https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X" target="_blank" rel="noopener">Buy on Amazon ↗</a>
+            <a className="btn-lime" href={f.cta1Href || "pages/division-fund.html"}>{f.cta1Text || "Learn more →"}</a>
+            <a className="btn-outline" href={f.cta2Href || "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X"} target="_blank" rel="noopener">{f.cta2Text || "Buy on Amazon ↗"}</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Leader = () => (
+const LEADER_TAGS_DEFAULT = ["Godfather of Crypto", "BitAngels Co-Founder", "Tokenize Creator", "Author", "Puerto Rico"];
+
+const Leader = () => {
+  const l = sec('leader');
+  const tags = (Array.isArray(l.tags) && l.tags.length) ? l.tags : LEADER_TAGS_DEFAULT;
+  return (
   <section id="leadership" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="sec-head reveal-d">
-        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>Leadership</div>
-        <h2>Meet the founder.</h2>
-        <p className="sub">Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund.</p>
+        <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{l.eyebrow || "Leadership"}</div>
+        <h2>{l.title || "Meet the founder."}</h2>
+        <p className="sub">{l.sub || "Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund."}</p>
       </div>
       <div className="leader-d reveal-d">
         <div className="photo">
-          <img src="assets/michael-terpin.jpg" alt="Michael Terpin" loading="lazy" decoding="async"/>
+          <img src={l.photoImg || "assets/michael-terpin.jpg"} alt="Michael Terpin" loading="lazy" decoding="async"/>
           <div className="photo-caption">
-            <span className="quote">"Godfather of Crypto"</span>
-            <span className="source">— CNBC</span>
+            <span className="quote">{l.quote || '"Godfather of Crypto"'}</span>
+            <span className="source">{l.source || "— CNBC"}</span>
           </div>
         </div>
         <div className="info">
-          <div className="role">Founder & CEO · CIO, Bitcoin Supercycle Fund</div>
-          <div className="name">Michael Terpin</div>
-          <p style={{marginTop: 20}}>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</p>
-          <p style={{marginTop: 14}}>Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M.</p>
+          <div className="role">{l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"}</div>
+          <div className="name">{l.name || "Michael Terpin"}</div>
+          <p style={{marginTop: 20}}>{l.para1 || <>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</>}</p>
+          <p style={{marginTop: 14}}>{l.para2 || "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."}</p>
           <div className="leader-stats-d">
-            <div className="stat"><div className="n">100+</div><div className="l">ICO-era launches</div></div>
-            <div className="stat"><div className="n">$200M</div><div className="l">Marketwire exit</div></div>
-            <div className="stat"><div className="n">2013</div><div className="l">First crypto angel group</div></div>
+            <div className="stat"><div className="n">{l.stat1n || "100+"}</div><div className="l">{l.stat1l || "ICO-era launches"}</div></div>
+            <div className="stat"><div className="n">{l.stat2n || "$200M"}</div><div className="l">{l.stat2l || "Marketwire exit"}</div></div>
+            <div className="stat"><div className="n">{l.stat3n || "2013"}</div><div className="l">{l.stat3l || "First crypto angel group"}</div></div>
           </div>
           <div className="tags">
-            <span>Godfather of Crypto</span>
-            <span>BitAngels Co-Founder</span>
-            <span>Tokenize Creator</span>
-            <span>Author</span>
-            <span>Puerto Rico</span>
+            {tags.map((t, i) => <span key={i}>{t}</span>)}
           </div>
           <div style={{marginTop: 28}}>
-            <a href="pages/leadership.html" className="btn-outline">Full bio →</a>
+            <a href={l.ctaHref || "pages/leadership.html"} className="btn-outline">{l.ctaText || "Full bio →"}</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const FinalCTA = () => (
+const FinalCTA = () => {
+  const c = sec('finalCta');
+  return (
   <section id="contact" className="d-section">
     <div className="wavy-bg"/>
     <div className="container">
       <div className="final-cta reveal-d">
-        <h2>Ready to transform your blockchain venture?</h2>
-        <p>Whether you're raising capital, launching a token, or need strategic guidance — let's connect.</p>
+        <h2>{c.title || "Ready to transform your blockchain venture?"}</h2>
+        <p>{c.desc || "Whether you're raising capital, launching a token, or need strategic guidance — let's connect."}</p>
         <div className="ctas">
-          <a className="btn-lime" href="pages/contact.html">Start a conversation →</a>
-          <a className="btn-outline" href="pages/media.html">Latest news & media</a>
+          <a className="btn-lime" href={c.cta1Href || "pages/contact.html"}>{c.cta1Text || "Start a conversation →"}</a>
+          <a className="btn-outline" href={c.cta2Href || "pages/media.html"}>{c.cta2Text || "Latest news & media"}</a>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Footer = () => (
+const Footer = () => {
+  const ft = sec('footer');
+  return (
   <footer className="d-footer">
     <div className="container">
       <div className="cols">
         <div className="brand-col">
-          <img src="assets/transform-ventures-white.png" alt="Transform Ventures" loading="lazy" decoding="async"/>
-          <p>Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.</p>
+          <img src={LOGO} alt="Transform Ventures" loading="lazy" decoding="async"/>
+          <p>{ft.blurb || "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential."}</p>
         </div>
         <div className="col">
           <h4>Divisions</h4>
@@ -502,12 +534,13 @@ const Footer = () => (
         </div>
       </div>
       <div className="btm">
-        <span>© 2026 Transform Ventures. All rights reserved.</span>
-        <span>San Juan, Puerto Rico</span>
+        <span>{ft.copyright || "© 2026 Transform Ventures. All rights reserved."}</span>
+        <span>{ft.location || "San Juan, Puerto Rico"}</span>
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 function App() {
   useEffect(() => {

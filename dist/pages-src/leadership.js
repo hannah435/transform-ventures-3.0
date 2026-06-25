@@ -1,14 +1,16 @@
-const press = [{
+const PRESS_DEFAULT = [{
   src: "CNBC",
-  q: "Called Michael Terpin the 'Godfather of Crypto' for his early advocacy and investment across the industry."
+  quote: "Called Michael Terpin the 'Godfather of Crypto' for his early advocacy and investment across the industry."
 }, {
   src: "Yahoo Finance",
-  q: "'Veteran investor predicts shocking bitcoin rally by 2033.' — Coverage of Terpin's Four Seasons model."
+  quote: "'Veteran investor predicts shocking bitcoin rally by 2033.' — Coverage of Terpin's Four Seasons model."
 }, {
   src: "Skyhorse Publishing",
-  q: "Author of 'Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich' — 2024 release."
+  quote: "Author of 'Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich' — 2024 release."
 }];
 function LeadershipPage() {
+  const press = tvList('press', PRESS_DEFAULT);
+  const head = tvSec('pressHead');
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Leadership",
     title: "Meet the founder.",
@@ -27,17 +29,17 @@ function LeadershipPage() {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), "Press coverage"), /*#__PURE__*/React.createElement("h2", {
+  }), head.eyebrow || "Press coverage"), /*#__PURE__*/React.createElement("h2", {
     style: {
       textAlign: 'left'
     }
-  }, "What the media says.")), /*#__PURE__*/React.createElement("div", {
+  }, head.title || "What the media says.")), /*#__PURE__*/React.createElement("div", {
     className: "press-grid-d"
   }, press.map((p, i) => /*#__PURE__*/React.createElement("div", {
-    key: p.src,
+    key: i,
     className: `press-card reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "src"
-  }, p.src), /*#__PURE__*/React.createElement("p", null, p.q)))))), /*#__PURE__*/React.createElement(CTAStrip, null));
+  }, p.src), /*#__PURE__*/React.createElement("p", null, p.quote)))))), /*#__PURE__*/React.createElement(CTAStrip, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(LeadershipPage, null));

@@ -9,3 +9,13 @@ uploads/
 # Build deps
 node_modules/
 package-lock.json
+
+# Backend runtime data (the live database — keep out of git)
+content.db
+content.db-journal
+content.db-wal
+content.db-shm
+
+# Vercel
+.vercel
+.env*

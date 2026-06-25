@@ -1,6 +1,10 @@
 // Dark subpage scaffolding: page hero, reusable section components, DivisionDetail
 
 function Subpage({ title, eyebrow, intro, children, back }) {
+  const h = tvSec('hero');
+  if (h.title) title = h.title;
+  if (h.eyebrow) eyebrow = h.eyebrow;
+  if (h.intro) intro = h.intro;
   const backHref = back || HOME;
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
@@ -64,26 +68,28 @@ const Stats = () => (
   </section>
 );
 
-const Contact = () => (
+const Contact = () => {
+  const info = tvSec('info');
+  return (
   <section className="d-section">
     <div className="container">
       <div className="contact-grid-d reveal-d">
         <div className="contact-intro-d">
           <div className="eyebrow-inline"><span className="d"/>Get in touch</div>
-          <h2>Let's build the future together.</h2>
-          <p>We'd love to hear about your project, partnership idea, or investment inquiry.</p>
+          <h2>{info.heading || "Let's build the future together."}</h2>
+          <p>{info.intro || "We'd love to hear about your project, partnership idea, or investment inquiry."}</p>
           <div className="contact-info-d">
             <div className="row">
               <div className="ic"><Icon name="pin" size={16}/></div>
-              <div><div className="l">Location</div><div className="v">San Juan, Puerto Rico</div></div>
+              <div><div className="l">Location</div><div className="v">{info.location || "San Juan, Puerto Rico"}</div></div>
             </div>
             <div className="row">
               <div className="ic"><Icon name="mail" size={16}/></div>
-              <div><div className="l">Email</div><div className="v">info@transformventures.io</div></div>
+              <div><div className="l">Email</div><div className="v">{info.email || "info@transformventures.io"}</div></div>
             </div>
             <div className="row">
               <div className="ic"><Icon name="spark" size={16}/></div>
-              <div><div className="l">Interests</div><div className="v">Investments · Advisory · Events · Partnerships</div></div>
+              <div><div className="l">Interests</div><div className="v">{info.interests || "Investments · Advisory · Events · Partnerships"}</div></div>
             </div>
           </div>
         </div>
@@ -118,36 +124,34 @@ const Contact = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
-const Leader = () => (
+const Leader = () => {
+  const l = tvSec('leader');
+  const tags = (Array.isArray(l.tags) && l.tags.length) ? l.tags : ["Godfather of Crypto","Transform Ventures","Transform Group","BitAngels Co-Founder","Tokenize Creator","Marketwire Founder","Author","Puerto Rico"];
+  return (
   <section className="d-section">
     <div className="container">
       <div className="leader-d reveal-d">
-        <div className="photo"><img src={`${ASSET}michael-terpin.jpg`} alt="Michael Terpin" loading="lazy" decoding="async"/></div>
+        <div className="photo"><img src={tvImg(l.photoImg) || `${ASSET}michael-terpin.jpg`} alt="Michael Terpin" loading="lazy" decoding="async"/></div>
         <div className="info">
-          <div className="role">Founder & CEO · CIO, Bitcoin Supercycle Fund</div>
-          <div className="name">Michael Terpin</div>
-          <p style={{marginTop: 20}}>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</p>
-          <p style={{marginTop: 14}}>Creator of CoinAgenda (now rebranded as <i>Tokenize</i>), the leading conference series connecting investors with crypto, and co-founder of BitAngels (2013), the first crypto angel group. Previously founded Marketwire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M.</p>
+          <div className="role">{l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"}</div>
+          <div className="name">{l.name || "Michael Terpin"}</div>
+          <p style={{marginTop: 20}}>{l.para1 || <>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</>}</p>
+          <p style={{marginTop: 14}}>{l.para2 || <>Creator of CoinAgenda (now rebranded as <i>Tokenize</i>), the leading conference series connecting investors with crypto, and co-founder of BitAngels (2013), the first crypto angel group. Previously founded Marketwire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M.</>}</p>
           <div className="tags">
-            <span>Godfather of Crypto</span>
-            <span>Transform Ventures</span>
-            <span>Transform Group</span>
-            <span>BitAngels Co-Founder</span>
-            <span>Tokenize Creator</span>
-            <span>Marketwire Founder</span>
-            <span>Author</span>
-            <span>Puerto Rico</span>
+            {tags.map((t, i) => <span key={i}>{t}</span>)}
           </div>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 const Media = () => {
-  const items = [
+  const items = tvList('items', [
     {
       src: "Kitco News", icon: "play", type: "youtube", ytid: "oQkCrnJ8wxk",
       title: "The Debt Trap: Why Gold Pumps First and Bitcoin Follows",
@@ -211,7 +215,7 @@ const Media = () => {
       cta: "Read on Medium",
       url: "https://medium.com/@michaelterpin/bitcoin-summers-sudden-end-3b77cd526608",
     },
-  ];
+  ]);
   return (
     <section id="news" className="d-section">
       <div className="container">
@@ -295,22 +299,23 @@ const PartnersBar = () => (
 );
 
 const EventsList = () => {
-  const events = [
+  const head = tvSec('brandsHead');
+  const events = tvList('brands', [
     { name: "Tokenize", tag: "Global Conference", desc: "A premier blockchain conference bringing together industry leaders, investors, and innovators to explore the future of tokenization.", img: `${ASSET}tokenize-vegas.jpg`, url: "https://tokenizeconference.com/" },
     { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "Co-founded by Michael Terpin in 2013. The world's first angel investor network for digital currency startups.", img: `${ASSET}bitangels-group.webp`, url: "https://bitangels.network/" },
     { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders. Intimate, curated networking.", img: `${ASSET}tigermansion-event.jpg`, url: "https://www.tigermansionlv.com/" },
-  ];
+  ]);
   return (
     <section className="d-section">
       <div className="container">
         <div className="sec-head reveal-d">
-          <div className="eyebrow-inline"><span className="d"/>Event Brands</div>
-          <h2>Where the industry connects.</h2>
+          <div className="eyebrow-inline"><span className="d"/>{head.eyebrow || "Event Brands"}</div>
+          <h2>{head.title || "Where the industry connects."}</h2>
         </div>
         <div className="events-grid-d">
           {events.map((e, i) => (
             <a href={e.url} target="_blank" rel="noopener" key={e.name} className={`event-card-d reveal-d d${i+1}`}>
-              <div className="thumb"><img src={e.img} alt={e.name} loading="lazy" decoding="async"/></div>
+              <div className="thumb"><img src={tvImg(e.img)} alt={e.name} loading="lazy" decoding="async"/></div>
               <div className="meta">
                 <div className="t">{e.tag}</div>
                 <h3>{e.name}</h3>
@@ -402,7 +407,23 @@ const DIVISION_DATA = {
 };
 
 function DivisionDetail({ slug }) {
-  const d = DIVISION_DATA[slug];
+  const base = DIVISION_DATA[slug];
+  const h = tvSec('hero'), cap = tvSec('caps'), st = tvSec('stats'), bk = tvSec('book');
+  const d = base ? {
+    ...base,
+    tagline: h.title || base.tagline,
+    lead: h.intro || base.lead,
+    eyebrow: h.eyebrow || `/ ${base.num} — ${base.tag}`,
+    capabilities: cap.cap1t
+      ? [[cap.cap1t, cap.cap1d], [cap.cap2t, cap.cap2d], [cap.cap3t, cap.cap3d], [cap.cap4t, cap.cap4d]].filter(c => c[0]).map(c => ({ t: c[0], d: c[1] }))
+      : base.capabilities,
+    stats: st.stat1n
+      ? [[st.stat1n, st.stat1l], [st.stat2n, st.stat2l], [st.stat3n, st.stat3l], [st.stat4n, st.stat4l]].filter(s => s[0])
+      : base.stats,
+    book: bk.bookTitle
+      ? { img: tvImg(bk.bookImg), title: bk.bookTitle, tag: bk.bookTag, desc: bk.bookDesc, amazon: bk.bookAmazon }
+      : base.book,
+  } : null;
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -419,7 +440,7 @@ function DivisionDetail({ slug }) {
         <div className="hero-glow" aria-hidden="true"/>
         <div className="container">
           <a href={`${P}divisions.html`} className="back-link">← All divisions</a>
-          <div className="eyebrow-inline" style={{color: d.color}}><span className="d" style={{background: d.color}}/>/ {d.num} — {d.tag}</div>
+          <div className="eyebrow-inline" style={{color: d.color}}><span className="d" style={{background: d.color}}/>{d.eyebrow}</div>
           <h1><span className="grad">{d.tagline}</span></h1>
           <p className="lead">{d.lead}</p>
           <div className="ctas">

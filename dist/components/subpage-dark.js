@@ -7,6 +7,10 @@ function Subpage({
   children,
   back
 }) {
+  const h = tvSec('hero');
+  if (h.title) title = h.title;
+  if (h.eyebrow) eyebrow = h.eyebrow;
+  if (h.intro) intro = h.intro;
   const backHref = back || HOME;
   useEffect(() => {
     const io = new IntersectionObserver(entries => {
@@ -133,125 +137,134 @@ const Stats = () => /*#__PURE__*/React.createElement("section", {
 }, "5"), /*#__PURE__*/React.createElement("div", {
   className: "l"
 }, "Specialized Divisions")))));
-const Contact = () => /*#__PURE__*/React.createElement("section", {
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "contact-grid-d reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "contact-intro-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "eyebrow-inline"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "d"
-}), "Get in touch"), /*#__PURE__*/React.createElement("h2", null, "Let's build the future together."), /*#__PURE__*/React.createElement("p", null, "We'd love to hear about your project, partnership idea, or investment inquiry."), /*#__PURE__*/React.createElement("div", {
-  className: "contact-info-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "row"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "ic"
-}, /*#__PURE__*/React.createElement(Icon, {
-  name: "pin",
-  size: 16
-})), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Location"), /*#__PURE__*/React.createElement("div", {
-  className: "v"
-}, "San Juan, Puerto Rico"))), /*#__PURE__*/React.createElement("div", {
-  className: "row"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "ic"
-}, /*#__PURE__*/React.createElement(Icon, {
-  name: "mail",
-  size: 16
-})), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Email"), /*#__PURE__*/React.createElement("div", {
-  className: "v"
-}, "info@transformventures.io"))), /*#__PURE__*/React.createElement("div", {
-  className: "row"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "ic"
-}, /*#__PURE__*/React.createElement(Icon, {
-  name: "spark",
-  size: 16
-})), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-  className: "l"
-}, "Interests"), /*#__PURE__*/React.createElement("div", {
-  className: "v"
-}, "Investments \xB7 Advisory \xB7 Events \xB7 Partnerships"))))), /*#__PURE__*/React.createElement("form", {
-  className: "form-d",
-  onSubmit: e => {
-    // TODO: wire up to a real backend — Formspree, Web3Forms, or a Cloudflare Worker.
-    // Static hosting (Cloudflare Pages / GitHub Pages) cannot accept POSTs, so we currently
-    // open the user's mail client as a graceful fallback.
-    e.preventDefault();
-    const form = e.currentTarget;
-    const [name, email, topic, message] = Array.from(form.elements).filter(el => el.name !== '' || el.tagName !== 'BUTTON');
-    const subject = encodeURIComponent(`Transform Ventures inquiry${topic && topic.value ? ` — ${topic.value}` : ''}`);
-    const body = encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\nInterested in: ${topic.value || '(unspecified)'}\n\n${message.value}`);
-    window.location.href = `mailto:info@transformventures.io?subject=${subject}&body=${body}`;
-  }
-}, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
-  className: "lab"
-}, "Name"), /*#__PURE__*/React.createElement("input", {
-  required: true,
-  placeholder: "Your name"
-})), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
-  className: "lab"
-}, "Email"), /*#__PURE__*/React.createElement("input", {
-  type: "email",
-  required: true,
-  placeholder: "you@company.com"
-})), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
-  className: "lab"
-}, "I'm interested in"), /*#__PURE__*/React.createElement("select", {
-  defaultValue: ""
-}, /*#__PURE__*/React.createElement("option", {
-  value: "",
-  disabled: true
-}, "Select a topic\u2026"), /*#__PURE__*/React.createElement("option", null, "Investment inquiry"), /*#__PURE__*/React.createElement("option", null, "Advisory / consulting"), /*#__PURE__*/React.createElement("option", null, "Event partnership"), /*#__PURE__*/React.createElement("option", null, "Press / media"), /*#__PURE__*/React.createElement("option", null, "Other"))), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
-  className: "lab"
-}, "Message"), /*#__PURE__*/React.createElement("textarea", {
-  required: true,
-  placeholder: "Tell us about your project\u2026"
-})), /*#__PURE__*/React.createElement("button", {
-  type: "submit",
-  className: "btn-lime"
-}, "Send message \u2192")))));
-const Leader = () => /*#__PURE__*/React.createElement("section", {
-  className: "d-section"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "container"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "leader-d reveal-d"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "photo"
-}, /*#__PURE__*/React.createElement("img", {
-  src: `${ASSET}michael-terpin.jpg`,
-  alt: "Michael Terpin",
-  loading: "lazy",
-  decoding: "async"
-})), /*#__PURE__*/React.createElement("div", {
-  className: "info"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "role"
-}, "Founder & CEO \xB7 CIO, Bitcoin Supercycle Fund"), /*#__PURE__*/React.createElement("div", {
-  className: "name"
-}, "Michael Terpin"), /*#__PURE__*/React.createElement("p", {
-  style: {
-    marginTop: 20
-  }
-}, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin."), /*#__PURE__*/React.createElement("p", {
-  style: {
-    marginTop: 14
-  }
-}, "Creator of CoinAgenda (now rebranded as ", /*#__PURE__*/React.createElement("i", null, "Tokenize"), "), the leading conference series connecting investors with crypto, and co-founder of BitAngels (2013), the first crypto angel group. Previously founded Marketwire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
-  className: "tags"
-}, /*#__PURE__*/React.createElement("span", null, "Godfather of Crypto"), /*#__PURE__*/React.createElement("span", null, "Transform Ventures"), /*#__PURE__*/React.createElement("span", null, "Transform Group"), /*#__PURE__*/React.createElement("span", null, "BitAngels Co-Founder"), /*#__PURE__*/React.createElement("span", null, "Tokenize Creator"), /*#__PURE__*/React.createElement("span", null, "Marketwire Founder"), /*#__PURE__*/React.createElement("span", null, "Author"), /*#__PURE__*/React.createElement("span", null, "Puerto Rico"))))));
+const Contact = () => {
+  const info = tvSec('info');
+  return /*#__PURE__*/React.createElement("section", {
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "contact-grid-d reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "contact-intro-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "d"
+  }), "Get in touch"), /*#__PURE__*/React.createElement("h2", null, info.heading || "Let's build the future together."), /*#__PURE__*/React.createElement("p", null, info.intro || "We'd love to hear about your project, partnership idea, or investment inquiry."), /*#__PURE__*/React.createElement("div", {
+    className: "contact-info-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ic"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "pin",
+    size: 16
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, "Location"), /*#__PURE__*/React.createElement("div", {
+    className: "v"
+  }, info.location || "San Juan, Puerto Rico"))), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ic"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "mail",
+    size: 16
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, "Email"), /*#__PURE__*/React.createElement("div", {
+    className: "v"
+  }, info.email || "info@transformventures.io"))), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ic"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "spark",
+    size: 16
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "l"
+  }, "Interests"), /*#__PURE__*/React.createElement("div", {
+    className: "v"
+  }, info.interests || "Investments · Advisory · Events · Partnerships"))))), /*#__PURE__*/React.createElement("form", {
+    className: "form-d",
+    onSubmit: e => {
+      // TODO: wire up to a real backend — Formspree, Web3Forms, or a Cloudflare Worker.
+      // Static hosting (Cloudflare Pages / GitHub Pages) cannot accept POSTs, so we currently
+      // open the user's mail client as a graceful fallback.
+      e.preventDefault();
+      const form = e.currentTarget;
+      const [name, email, topic, message] = Array.from(form.elements).filter(el => el.name !== '' || el.tagName !== 'BUTTON');
+      const subject = encodeURIComponent(`Transform Ventures inquiry${topic && topic.value ? ` — ${topic.value}` : ''}`);
+      const body = encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\nInterested in: ${topic.value || '(unspecified)'}\n\n${message.value}`);
+      window.location.href = `mailto:info@transformventures.io?subject=${subject}&body=${body}`;
+    }
+  }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
+    className: "lab"
+  }, "Name"), /*#__PURE__*/React.createElement("input", {
+    required: true,
+    placeholder: "Your name"
+  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
+    className: "lab"
+  }, "Email"), /*#__PURE__*/React.createElement("input", {
+    type: "email",
+    required: true,
+    placeholder: "you@company.com"
+  })), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
+    className: "lab"
+  }, "I'm interested in"), /*#__PURE__*/React.createElement("select", {
+    defaultValue: ""
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "",
+    disabled: true
+  }, "Select a topic\u2026"), /*#__PURE__*/React.createElement("option", null, "Investment inquiry"), /*#__PURE__*/React.createElement("option", null, "Advisory / consulting"), /*#__PURE__*/React.createElement("option", null, "Event partnership"), /*#__PURE__*/React.createElement("option", null, "Press / media"), /*#__PURE__*/React.createElement("option", null, "Other"))), /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
+    className: "lab"
+  }, "Message"), /*#__PURE__*/React.createElement("textarea", {
+    required: true,
+    placeholder: "Tell us about your project\u2026"
+  })), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn-lime"
+  }, "Send message \u2192")))));
+};
+const Leader = () => {
+  const l = tvSec('leader');
+  const tags = Array.isArray(l.tags) && l.tags.length ? l.tags : ["Godfather of Crypto", "Transform Ventures", "Transform Group", "BitAngels Co-Founder", "Tokenize Creator", "Marketwire Founder", "Author", "Puerto Rico"];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "leader-d reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "photo"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: tvImg(l.photoImg) || `${ASSET}michael-terpin.jpg`,
+    alt: "Michael Terpin",
+    loading: "lazy",
+    decoding: "async"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "info"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "role"
+  }, l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"), /*#__PURE__*/React.createElement("div", {
+    className: "name"
+  }, l.name || "Michael Terpin"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 20
+    }
+  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 14
+    }
+  }, l.para2 || /*#__PURE__*/React.createElement(React.Fragment, null, "Creator of CoinAgenda (now rebranded as ", /*#__PURE__*/React.createElement("i", null, "Tokenize"), "), the leading conference series connecting investors with crypto, and co-founder of BitAngels (2013), the first crypto angel group. Previously founded Marketwire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M.")), /*#__PURE__*/React.createElement("div", {
+    className: "tags"
+  }, tags.map((t, i) => /*#__PURE__*/React.createElement("span", {
+    key: i
+  }, t)))))));
+};
 const Media = () => {
-  const items = [{
+  const items = tvList('items', [{
     src: "Kitco News",
     icon: "play",
     type: "youtube",
@@ -332,7 +345,7 @@ const Media = () => {
     desc: "Michael Terpin analyzes the unexpected shift in bitcoin's seasonal cycle, examining whether the \"summer\" phase ended early and what it means for investors positioning for the next move.",
     cta: "Read on Medium",
     url: "https://medium.com/@michaelterpin/bitcoin-summers-sudden-end-3b77cd526608"
-  }];
+  }]);
   return /*#__PURE__*/React.createElement("section", {
     id: "news",
     className: "d-section"
@@ -465,7 +478,8 @@ const PartnersBar = () => /*#__PURE__*/React.createElement("section", {
   className: "txt"
 }, "Neo")));
 const EventsList = () => {
-  const events = [{
+  const head = tvSec('brandsHead');
+  const events = tvList('brands', [{
     name: "Tokenize",
     tag: "Global Conference",
     desc: "A premier blockchain conference bringing together industry leaders, investors, and innovators to explore the future of tokenization.",
@@ -483,7 +497,7 @@ const EventsList = () => {
     desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders. Intimate, curated networking.",
     img: `${ASSET}tigermansion-event.jpg`,
     url: "https://www.tigermansionlv.com/"
-  }];
+  }]);
   return /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -494,7 +508,7 @@ const EventsList = () => {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), "Event Brands"), /*#__PURE__*/React.createElement("h2", null, "Where the industry connects.")), /*#__PURE__*/React.createElement("div", {
+  }), head.eyebrow || "Event Brands"), /*#__PURE__*/React.createElement("h2", null, head.title || "Where the industry connects.")), /*#__PURE__*/React.createElement("div", {
     className: "events-grid-d"
   }, events.map((e, i) => /*#__PURE__*/React.createElement("a", {
     href: e.url,
@@ -505,7 +519,7 @@ const EventsList = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "thumb"
   }, /*#__PURE__*/React.createElement("img", {
-    src: e.img,
+    src: tvImg(e.img),
     alt: e.name,
     loading: "lazy",
     decoding: "async"
@@ -641,7 +655,29 @@ const DIVISION_DATA = {
 function DivisionDetail({
   slug
 }) {
-  const d = DIVISION_DATA[slug];
+  const base = DIVISION_DATA[slug];
+  const h = tvSec('hero'),
+    cap = tvSec('caps'),
+    st = tvSec('stats'),
+    bk = tvSec('book');
+  const d = base ? {
+    ...base,
+    tagline: h.title || base.tagline,
+    lead: h.intro || base.lead,
+    eyebrow: h.eyebrow || `/ ${base.num} — ${base.tag}`,
+    capabilities: cap.cap1t ? [[cap.cap1t, cap.cap1d], [cap.cap2t, cap.cap2d], [cap.cap3t, cap.cap3d], [cap.cap4t, cap.cap4d]].filter(c => c[0]).map(c => ({
+      t: c[0],
+      d: c[1]
+    })) : base.capabilities,
+    stats: st.stat1n ? [[st.stat1n, st.stat1l], [st.stat2n, st.stat2l], [st.stat3n, st.stat3l], [st.stat4n, st.stat4l]].filter(s => s[0]) : base.stats,
+    book: bk.bookTitle ? {
+      img: tvImg(bk.bookImg),
+      title: bk.bookTitle,
+      tag: bk.bookTag,
+      desc: bk.bookDesc,
+      amazon: bk.bookAmazon
+    } : base.book
+  } : null;
   useEffect(() => {
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -677,7 +713,7 @@ function DivisionDetail({
     style: {
       background: d.color
     }
-  }), "/ ", d.num, " \u2014 ", d.tag), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
+  }), d.eyebrow), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
     className: "grad"
   }, d.tagline)), /*#__PURE__*/React.createElement("p", {
     className: "lead"

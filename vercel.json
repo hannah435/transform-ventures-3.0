@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "index.html",
+          "robots.txt",
+          "sitemap.xml",
+          "dist/**",
+          "assets/**",
+          "styles/**",
+          "pages/**",
+          "admin/**"
+        ]
+      }
+    }
+  ],
+  "routes": [{ "src": "/.*", "dest": "/api/index.js" }]
+}
