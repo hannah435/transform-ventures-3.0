@@ -10,6 +10,7 @@
           "index.html",
           "robots.txt",
           "sitemap.xml",
+          "llms.txt",
           "dist/**",
           "assets/**",
           "styles/**",
