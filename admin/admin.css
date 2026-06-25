@@ -248,14 +248,57 @@ kbd {
 }
 
 @media (max-width: 720px) {
-  .layout { grid-template-columns: 1fr; }
+  html, body { overflow-x: hidden; }
+
+  /* ---- top bar: two tidy rows, nothing overflows ---- */
+  .topbar { padding: 10px 14px; gap: 10px; }
+  .topbar-l { width: 100%; gap: 8px; }
+  .topbar-title { display: none; }
+  .page-select { flex: 1; min-width: 0; }
+  .topbar-r { width: 100%; gap: 6px; justify-content: stretch; }
+  .topbar-r .btn-ghost, .topbar-r .btn-primary {
+    padding: 9px 12px; font-size: 13px; flex: 1 1 auto; text-align: center; white-space: nowrap;
+  }
+  .btn-primary kbd { display: none; }
+  .dirty, .saved { width: 100%; text-align: center; order: -1; }
+
+  /* ---- section nav: horizontal scrolling chip strip ---- */
+  .app { overflow-x: hidden; }
+  .layout { grid-template-columns: 1fr; min-width: 0; max-width: 100%; }
+  /* grid items default to min-width:auto, which let the no-wrap chip strip blow
+     the column width out to its content. Force them to shrink to the column. */
+  .section-nav, .editor { min-width: 0; max-width: 100%; }
   .section-nav {
     position: static; border-right: none; border-bottom: 1px solid var(--border);
-    display: block; max-height: none;
+    padding: 10px 12px; max-height: none; overflow: hidden;
   }
-  #section-links { display: flex; flex-wrap: wrap; gap: 4px; }
-  .section-nav a { padding: 7px 10px; font-size: 13px; }
-  .editor { padding: 20px 18px 120px; }
-  .topbar-r .btn-ghost, .topbar-r .btn-primary { padding: 8px 12px; font-size: 13px; }
-  .list-item-head .li-title { max-width: 130px; }
+  .nav-search { padding: 0 0 8px; }
+  #section-links {
+    display: flex; flex-wrap: nowrap; gap: 6px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2px;
+  }
+  #section-links::-webkit-scrollbar { height: 0; }
+  .section-nav a {
+    flex: 0 0 auto; white-space: nowrap;
+    padding: 7px 12px; font-size: 13px;
+    border: 1px solid var(--border); border-radius: 999px;
+  }
+
+  /* ---- editor + fields: never exceed the viewport ---- */
+  .editor { padding: 18px 14px 120px; min-width: 0; }
+  .section { margin-bottom: 32px; }
+  .section > h2 { font-size: 18px; }
+  .img-field { gap: 12px; }
+  .img-controls { min-width: 0; }
+  .img-preview { width: 72px; height: 72px; }
+
+  /* ---- list items: toolbar + per-item controls wrap cleanly ---- */
+  .list-toolbar { padding: 10px; gap: 8px; }
+  .list-toolbar .tb-search { flex: 1 1 100%; }
+  .list-item { padding: 14px 14px 4px; }
+  .list-item-head { flex-wrap: wrap; gap: 8px; }
+  .list-item-head .li-left { flex: 1 1 100%; min-width: 0; }
+  .list-item-head .li-title { max-width: none; }
+  .list-item-head .li-actions { width: 100%; justify-content: flex-end; }
+  .icon-btn { width: 34px; height: 34px; }
 }
