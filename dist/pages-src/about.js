@@ -26,6 +26,9 @@ const TIMELINE_DEFAULT = [{
 function About() {
   const timeline = tvList('timeline', TIMELINE_DEFAULT);
   const story = tvSec('story');
+  const team = tvList('team', []);
+  const teamHead = tvSec('teamHead');
+  const initials = n => (n || '?').trim().split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "About Transform Ventures",
     title: "Three decades of building at the edges of media and money.",
@@ -53,6 +56,50 @@ function About() {
     className: "title"
   }, t.title), /*#__PURE__*/React.createElement("div", {
     className: "desc"
-  }, t.desc)))))))), /*#__PURE__*/React.createElement(Stats, null), /*#__PURE__*/React.createElement(PartnersBar, null), /*#__PURE__*/React.createElement(CTAStrip, null));
+  }, t.desc)))))))), team.length > 0 && /*#__PURE__*/React.createElement("section", {
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "d"
+  }), teamHead.eyebrow || "Our Team"), /*#__PURE__*/React.createElement("h2", null, teamHead.title || "The people behind Transform.")), /*#__PURE__*/React.createElement("div", {
+    className: "team-grid-d"
+  }, team.map((m, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    className: `team-card-d reveal-d d${i % 3 + 1}`
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "team-photo"
+  }, m.photoImg ? /*#__PURE__*/React.createElement("img", {
+    src: tvImg(m.photoImg),
+    alt: m.name,
+    loading: "lazy",
+    decoding: "async"
+  }) : /*#__PURE__*/React.createElement("span", {
+    className: "team-initials"
+  }, initials(m.name))), /*#__PURE__*/React.createElement("h3", null, m.name), /*#__PURE__*/React.createElement("div", {
+    className: "role"
+  }, m.role), m.bio && /*#__PURE__*/React.createElement("p", null, m.bio), (m.linkedin && m.linkedin !== '#' || m.x && m.x !== '#') && /*#__PURE__*/React.createElement("div", {
+    className: "team-socials"
+  }, m.linkedin && m.linkedin !== '#' && /*#__PURE__*/React.createElement("a", {
+    href: m.linkedin,
+    target: "_blank",
+    rel: "noopener",
+    "aria-label": "LinkedIn"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "linkedin",
+    size: 16
+  })), m.x && m.x !== '#' && /*#__PURE__*/React.createElement("a", {
+    href: m.x,
+    target: "_blank",
+    rel: "noopener",
+    "aria-label": "X / Twitter"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "x",
+    size: 16
+  })))))))), /*#__PURE__*/React.createElement(Stats, null), /*#__PURE__*/React.createElement(PartnersBar, null), /*#__PURE__*/React.createElement(CTAStrip, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(About, null));

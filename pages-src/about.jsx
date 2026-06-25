@@ -9,6 +9,9 @@ const TIMELINE_DEFAULT = [
     function About(){
       const timeline = tvList('timeline', TIMELINE_DEFAULT);
       const story = tvSec('story');
+      const team = tvList('team', []);
+      const teamHead = tvSec('teamHead');
+      const initials = (n) => (n || '?').trim().split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
       return (
         <Subpage
           eyebrow="About Transform Ventures"
@@ -36,6 +39,36 @@ const TIMELINE_DEFAULT = [
               </div>
             </div>
           </section>
+          {team.length > 0 && (
+            <section className="d-section">
+              <div className="container">
+                <div className="sec-head reveal-d">
+                  <div className="eyebrow-inline"><span className="d"/>{teamHead.eyebrow || "Our Team"}</div>
+                  <h2>{teamHead.title || "The people behind Transform."}</h2>
+                </div>
+                <div className="team-grid-d">
+                  {team.map((m, i) => (
+                    <div key={i} className={`team-card-d reveal-d d${(i%3)+1}`}>
+                      <div className="team-photo">
+                        {m.photoImg
+                          ? <img src={tvImg(m.photoImg)} alt={m.name} loading="lazy" decoding="async"/>
+                          : <span className="team-initials">{initials(m.name)}</span>}
+                      </div>
+                      <h3>{m.name}</h3>
+                      <div className="role">{m.role}</div>
+                      {m.bio && <p>{m.bio}</p>}
+                      {((m.linkedin && m.linkedin !== '#') || (m.x && m.x !== '#')) && (
+                        <div className="team-socials">
+                          {m.linkedin && m.linkedin !== '#' && <a href={m.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><Icon name="linkedin" size={16}/></a>}
+                          {m.x && m.x !== '#' && <a href={m.x} target="_blank" rel="noopener" aria-label="X / Twitter"><Icon name="x" size={16}/></a>}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
           <Stats/>
           <PartnersBar/>
           <CTAStrip/>

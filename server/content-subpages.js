@@ -80,6 +80,12 @@ const DEFAULTS = {
       { year: "2021", title: "Transform Ventures", desc: "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management." },
       { year: "2024", title: "Bitcoin Supercycle Fund", desc: "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading." },
     ],
+    teamHead: { eyebrow: "Our Team", title: "The people behind Transform." },
+    team: [
+      { name: "Team Member", role: "Position / Title", bio: "Add a short bio for this team member in the admin panel.", photoImg: "", linkedin: "#", x: "#" },
+      { name: "Team Member", role: "Position / Title", bio: "Add a short bio for this team member in the admin panel.", photoImg: "", linkedin: "#", x: "#" },
+      { name: "Team Member", role: "Position / Title", bio: "Add a short bio for this team member in the admin panel.", photoImg: "", linkedin: "#", x: "#" },
+    ],
   },
   divisions: {
     hero: { eyebrow: "Our Ecosystem", title: "Five divisions. One vision.", intro: "Transform Ventures operates across five specialized divisions — from pioneering crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund." },
@@ -162,6 +168,18 @@ const SCHEMA = {
       { key: "year", label: "Year", type: "text" },
       { key: "title", label: "Title", type: "text" },
       { key: "desc", label: "Description", type: "textarea" },
+    ]},
+    { key: "teamHead", label: "Team heading", fields: [
+      { key: "eyebrow", label: "Eyebrow", type: "text" },
+      { key: "title", label: "Title", type: "text" },
+    ]},
+    { key: "team", label: "Team members", type: "list", itemLabel: "name", fields: [
+      { key: "photoImg", label: "Photo", type: "image" },
+      { key: "name", label: "Name", type: "text" },
+      { key: "role", label: "Role", type: "text" },
+      { key: "bio", label: "Short bio", type: "textarea" },
+      { key: "linkedin", label: "LinkedIn URL", type: "url" },
+      { key: "x", label: "X / Twitter URL", type: "url" },
     ]},
   ]},
   divisions: { label: "Divisions", sections: [
