@@ -158,10 +158,12 @@ async function buildPageHTML(page, file, pathname) {
     ";window.__TV_CONTENT__=" +
     JSON.stringify({ [page]: data }).replace(/</g, "\\u003c") +
     ";</script>";
-  html = html.replace(/<body([^>]*)>/, `<body$1>\n  ${tag}`);
+  // Function replacers throughout: the replacement text contains user content with
+  // "$" sequences (e.g. "$1 Million") that String.replace would otherwise interpret.
+  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag);
 
   const ssr = renderPage(page, data, pathname);
-  if (ssr) html = html.replace(/<div id="root">\s*<\/div>/, '<div id="root">' + ssr + "</div>");
+  if (ssr) html = html.replace(/<div id="root">\s*<\/div>/, () => '<div id="root">' + ssr + "</div>");
   return html;
 }
 
@@ -173,6 +175,78 @@ app.get(["/", "/index.html"], async (req, res) => {
     console.error("[home] render error:", err.message);
     res.type("html").send(fs.readFileSync(path.join(ROOT, "index.html"), "utf8"));
   }
+});
+
+// Individual blog post pages: /pages/post.html?id=<slug> — full article + per-post SEO.
+const SITE = "https://www.transformventures.io";
+const escAttr = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+function toISODate(d) {
+  const t = Date.parse(d);
+  return Number.isNaN(t) ? "" : new Date(t).toISOString().slice(0, 10);
+}
+
+async function buildPostHTML(id) {
+  const blog = (await db.getContent("blog")) || {};
+  const posts = Array.isArray(blog.posts) ? blog.posts : [];
+  const post = posts.find((p) => p.id === id) || posts[0] || null;
+
+  let html = fs.readFileSync(path.join(ROOT, "pages", "post.html"), "utf8");
+  const title = post ? post.title : "Blog";
+  const desc = post ? (post.lede || "") : "Analysis from the Godfather of Crypto.";
+  const url = SITE + "/pages/post.html" + (post ? "?id=" + encodeURIComponent(post.id) : "");
+
+  const eT = escAttr(title), eD = escAttr(desc), eU = escAttr(url);
+  html = html.replace(/\{\{TITLE\}\}/g, () => eT).replace(/\{\{DESC\}\}/g, () => eD).replace(/\{\{URL\}\}/g, () => eU);
+
+  // JSON-LD (built server-side so values are safely escaped)
+  const ld = [
+    { "@context": "https://schema.org", "@type": "BlogPosting", headline: title, description: desc,
+      datePublished: post ? toISODate(post.date) : "", articleSection: post ? post.tag : "",
+      author: { "@type": "Person", name: "Michael Terpin" },
+      publisher: { "@type": "Organization", name: "Transform Ventures", logo: { "@type": "ImageObject", url: SITE + "/assets/transform-ventures.png" } },
+      url, mainEntityOfPage: url },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: SITE + "/pages/blog.html" },
+      { "@type": "ListItem", position: 3, name: title, item: url },
+    ] },
+  ];
+  const ldHtml = ld.map((o) => '<script type="application/ld+json">' + JSON.stringify(o).replace(/</g, "\\u003c") + "</script>").join("\n  ");
+  html = html.replace("<!--LD_JSON-->", () => ldHtml);
+
+  // inject content for the client (blog content under the "post" page key)
+  const tag = "<script>window.__TV_PAGE__='post';window.__TV_CONTENT__=" + JSON.stringify({ post: blog }).replace(/</g, "\\u003c") + ";</script>";
+  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag);
+
+  const ssr = renderPage("post", blog, "/pages/post.html", "?id=" + (post ? post.id : ""));
+  if (ssr) html = html.replace(/<div id="root">\s*<\/div>/, () => '<div id="root">' + ssr + "</div>");
+  return html;
+}
+
+app.get("/pages/post.html", async (req, res) => {
+  res.set("Cache-Control", "no-cache");
+  try {
+    res.type("html").send(await buildPostHTML(req.query.id));
+  } catch (err) {
+    console.error("[post] render error:", err.message);
+    res.type("html").send(fs.readFileSync(path.join(ROOT, "pages", "post.html"), "utf8"));
+  }
+});
+
+// Dynamic sitemap: base file + a URL per blog post (must precede express.static).
+app.get("/sitemap.xml", async (req, res) => {
+  let xml = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+  try {
+    const blog = (await db.getContent("blog")) || {};
+    const posts = Array.isArray(blog.posts) ? blog.posts : [];
+    const entries = posts
+      .map((p) => `  <url>\n    <loc>${SITE}/pages/post.html?id=${encodeURIComponent(p.id)}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`)
+      .join("\n");
+    if (entries) xml = xml.replace("</urlset>", entries + "\n</urlset>");
+  } catch (err) {
+    console.error("[sitemap]", err.message);
+  }
+  res.type("application/xml").send(xml);
 });
 
 // Server-render subpages at /pages/<name>.html (must precede express.static).

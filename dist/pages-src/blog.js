@@ -38,33 +38,19 @@ function BlogPage() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "blog-index-d"
-  }, POSTS.map(p => /*#__PURE__*/React.createElement("a", {
+    className: "blog-grid-d"
+  }, POSTS.map((p, i) => /*#__PURE__*/React.createElement("a", {
+    href: `${P}post.html?id=${p.id}`,
     key: p.id,
-    href: `#${p.id}`,
-    className: "blog-index-link"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "tag"
-  }, p.tag), /*#__PURE__*/React.createElement("span", {
-    className: "date"
-  }, p.date), /*#__PURE__*/React.createElement("span", {
-    className: "ttl"
-  }, p.title)))), /*#__PURE__*/React.createElement("div", {
-    className: "blog-articles-d"
-  }, POSTS.map((p, i) => /*#__PURE__*/React.createElement("article", {
-    id: p.id,
-    key: p.id,
-    className: `blog-article-d reveal-d d${i % 3 + 1}`
+    className: `blog-card-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "meta"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag"
   }, p.tag), /*#__PURE__*/React.createElement("span", {
     className: "date"
-  }, p.date)), /*#__PURE__*/React.createElement("h2", null, p.title), /*#__PURE__*/React.createElement("p", {
-    className: "lede"
-  }, p.lede), p.body.map((para, j) => /*#__PURE__*/React.createElement("p", {
-    key: j
-  }, para))))))), /*#__PURE__*/React.createElement(CTAStrip, null));
+  }, p.date)), /*#__PURE__*/React.createElement("h3", null, p.title), /*#__PURE__*/React.createElement("p", null, p.lede), /*#__PURE__*/React.createElement("div", {
+    className: "more"
+  }, "Read more \u2192")))))), /*#__PURE__*/React.createElement(CTAStrip, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(BlogPage, null));

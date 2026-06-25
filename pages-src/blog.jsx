@@ -65,26 +65,17 @@ const POSTS_DEFAULT = [
         >
           <section className="d-section">
             <div className="container">
-              <div className="blog-index-d">
-                {POSTS.map(p => (
-                  <a key={p.id} href={`#${p.id}`} className="blog-index-link">
-                    <span className="tag">{p.tag}</span>
-                    <span className="date">{p.date}</span>
-                    <span className="ttl">{p.title}</span>
-                  </a>
-                ))}
-              </div>
-              <div className="blog-articles-d">
+              <div className="blog-grid-d">
                 {POSTS.map((p, i) => (
-                  <article id={p.id} key={p.id} className={`blog-article-d reveal-d d${(i%3)+1}`}>
+                  <a href={`${P}post.html?id=${p.id}`} key={p.id} className={`blog-card-d reveal-d d${(i%3)+1}`}>
                     <div className="meta">
                       <span className="tag">{p.tag}</span>
                       <span className="date">{p.date}</span>
                     </div>
-                    <h2>{p.title}</h2>
-                    <p className="lede">{p.lede}</p>
-                    {p.body.map((para, j) => <p key={j}>{para}</p>)}
-                  </article>
+                    <h3>{p.title}</h3>
+                    <p>{p.lede}</p>
+                    <div className="more">Read more →</div>
+                  </a>
                 ))}
               </div>
             </div>

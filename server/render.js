@@ -22,9 +22,10 @@ function bundlesFor(page) {
   ];
 }
 
-// Render a page to an HTML string. `pathname` drives the bundles' "/pages/" detection.
+// Render a page to an HTML string. `pathname` drives the bundles' "/pages/" detection;
+// `search` (e.g. "?id=foo") is exposed to the page so it can render the right item.
 // Returns "" on any failure so the caller can fall back to the plain shell.
-function renderPage(page, content, pathname) {
+function renderPage(page, content, pathname, search) {
   try {
     const code = bundlesFor(page)
       .map((f) => fs.readFileSync(f, "utf8"))
@@ -38,6 +39,8 @@ function renderPage(page, content, pathname) {
       cancelAnimationFrame: noop,
       setTimeout,
       clearTimeout,
+      URLSearchParams,
+      URL,
       console,
     };
     // ReactDOM stub: capture the element passed to render() instead of mounting.
@@ -53,7 +56,7 @@ function renderPage(page, content, pathname) {
     sandbox.window = {
       __TV_CONTENT__: content ? { [page]: content } : undefined,
       __TV_PAGE__: page,
-      location: { pathname: pathname || "/" },
+      location: { pathname: pathname || "/", search: search || "" },
       addEventListener: noop,
       removeEventListener: noop,
       matchMedia: () => ({ matches: false, addEventListener: noop, removeEventListener: noop }),
