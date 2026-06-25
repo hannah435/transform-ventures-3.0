@@ -845,6 +845,54 @@ const Leader = () => {
     className: "btn-outline"
   }, l.ctaText || "Full bio →"))))));
 };
+const FAQ_DEFAULT = [{
+  q: "What is Transform Ventures?",
+  a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin."
+}];
+const FAQ = () => {
+  const head = sec('faqHead');
+  const faqs = Array.isArray(TV.faq) && TV.faq.length ? TV.faq : FAQ_DEFAULT;
+  return /*#__PURE__*/React.createElement("section", {
+    id: "faq",
+    className: "d-section"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "wavy-bg"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "sec-head reveal-d"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "eyebrow-inline"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: '50%',
+      background: 'var(--lime)'
+    }
+  }), head.eyebrow || "FAQ"), /*#__PURE__*/React.createElement("h2", null, head.title || "Frequently asked questions."), (head.sub || head.sub === undefined) && /*#__PURE__*/React.createElement("p", {
+    className: "sub"
+  }, head.sub || "Quick answers about Transform Ventures, Michael Terpin, and the Bitcoin Supercycle Fund.")), /*#__PURE__*/React.createElement("div", {
+    className: "faq-list reveal-d"
+  }, faqs.map((f, i) => /*#__PURE__*/React.createElement("details", {
+    key: i,
+    className: "faq-item"
+  }, /*#__PURE__*/React.createElement("summary", null, /*#__PURE__*/React.createElement("span", null, f.q), /*#__PURE__*/React.createElement("svg", {
+    className: "faq-chev",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 16 16"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M4 6l4 4 4-4",
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "faq-a"
+  }, f.a))))));
+};
 const FinalCTA = () => {
   const c = sec('finalCta');
   return /*#__PURE__*/React.createElement("section", {
@@ -938,6 +986,6 @@ function App() {
     });
     document.querySelectorAll('.reveal-d').forEach(el => io.observe(el));
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Divisions, null), /*#__PURE__*/React.createElement(Feature, null), /*#__PURE__*/React.createElement(StatBand, null), /*#__PURE__*/React.createElement(Events, null), /*#__PURE__*/React.createElement(Fund, null), /*#__PURE__*/React.createElement(Leader, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, null), /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Divisions, null), /*#__PURE__*/React.createElement(Feature, null), /*#__PURE__*/React.createElement(StatBand, null), /*#__PURE__*/React.createElement(Events, null), /*#__PURE__*/React.createElement(Fund, null), /*#__PURE__*/React.createElement(Leader, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(FinalCTA, null), /*#__PURE__*/React.createElement(Footer, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));

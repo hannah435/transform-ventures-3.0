@@ -475,6 +475,37 @@ const Leader = () => {
   );
 };
 
+const FAQ_DEFAULT = [
+  { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin." },
+];
+const FAQ = () => {
+  const head = sec('faqHead');
+  const faqs = (Array.isArray(TV.faq) && TV.faq.length) ? TV.faq : FAQ_DEFAULT;
+  return (
+    <section id="faq" className="d-section">
+      <div className="wavy-bg"/>
+      <div className="container">
+        <div className="sec-head reveal-d">
+          <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "FAQ"}</div>
+          <h2>{head.title || "Frequently asked questions."}</h2>
+          {(head.sub || head.sub === undefined) && <p className="sub">{head.sub || "Quick answers about Transform Ventures, Michael Terpin, and the Bitcoin Supercycle Fund."}</p>}
+        </div>
+        <div className="faq-list reveal-d">
+          {faqs.map((f, i) => (
+            <details key={i} className="faq-item">
+              <summary>
+                <span>{f.q}</span>
+                <svg className="faq-chev" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </summary>
+              <div className="faq-a">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const FinalCTA = () => {
   const c = sec('finalCta');
   return (
@@ -562,6 +593,7 @@ function App() {
       <Events/>
       <Fund/>
       <Leader/>
+      <FAQ/>
       <FinalCTA/>
       <Footer/>
     </>

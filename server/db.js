@@ -32,11 +32,30 @@ async function initDb() {
 }
 
 // ---- content ----
+// Merge saved content over the defaults so newly-added fields/sections always have a
+// value, even on rows saved before the field existed. Arrays are taken from `stored`
+// as-is (a saved list replaces the default list); objects merge key-by-key.
+function mergeDefaults(def, stored) {
+  if (stored === undefined) return def;
+  if (def === undefined || def === null) return stored;
+  if (Array.isArray(def) || Array.isArray(stored)) return stored;
+  if (typeof def === "object" && typeof stored === "object") {
+    const out = { ...def };
+    for (const k of Object.keys(stored)) out[k] = mergeDefaults(def[k], stored[k]);
+    return out;
+  }
+  return stored;
+}
+
 async function getContent(page) {
   const res = await client.execute({ sql: "SELECT data FROM content WHERE page = ?", args: [page] });
   const row = one(res);
-  if (row) return JSON.parse(row.data);
-  return DEFAULTS[page] || null;
+  const def = DEFAULTS[page] || null;
+  if (row) {
+    const stored = JSON.parse(row.data);
+    return def ? mergeDefaults(def, stored) : stored;
+  }
+  return def;
 }
 
 async function saveContent(page, data) {

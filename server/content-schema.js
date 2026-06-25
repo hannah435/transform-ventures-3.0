@@ -98,6 +98,19 @@ const DEFAULTS = {
       ctaText: "Full bio →",
       ctaHref: "pages/leadership.html",
     },
+    faqHead: {
+      eyebrow: "FAQ",
+      title: "Frequently asked questions.",
+      sub: "Quick answers about Transform Ventures, Michael Terpin, and the Bitcoin Supercycle Fund.",
+    },
+    faq: [
+      { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin — known as the \"Godfather of Crypto.\" It provides capital, resources, and strategic guidance to high-growth crypto projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico." },
+      { q: "Who is Michael Terpin?", a: "Michael Terpin is the founder and CEO of Transform Ventures and an early bitcoin investor known as the \"Godfather of Crypto\" (CNBC). He founded Transform Group (the original blockchain PR firm), co-founded BitAngels (the first crypto angel group, 2013), created the Tokenize conference, and authored Bitcoin Supercycle (2024). He previously founded Marketwire, sold to NASDAQ for $200M." },
+      { q: "What is the Bitcoin Supercycle Fund?", a: "The Bitcoin Supercycle Fund is the first liquid bitcoin-only hedge fund. It combines Michael Terpin's \"Four Seasons of Bitcoin\" cycle model with algorithmic trading and season-specific strategies, using institutional-grade infrastructure (Coinbase Prime custody, NAV Fund Services administration)." },
+      { q: "What are the five divisions of Transform Ventures?", a: "Transform Group (communications & PR), Transform Events (Tokenize, BitAngels, Tiger Mansion), Transform Capital (family office), Transform Strategies (advisory & consulting), and the Bitcoin Supercycle Fund (a bitcoin-only hedge fund)." },
+      { q: "Where is Transform Ventures located?", a: "Transform Ventures is headquartered in San Juan, Puerto Rico." },
+      { q: "How can I contact Transform Ventures?", a: "Email info@transformventures.io or use the contact page. Transform Ventures works with projects on investments, advisory, events, and partnerships." },
+    ],
     finalCta: {
       title: "Ready to transform your blockchain venture?",
       desc: "Whether you're raising capital, launching a token, or need strategic guidance — let's connect.",
@@ -218,6 +231,15 @@ const SCHEMA = {
         { key: "tags", label: "Tags (one per line)", type: "lines" },
         { key: "ctaText", label: "Button — text", type: "text" },
         { key: "ctaHref", label: "Button — link", type: "url" },
+      ]},
+      { key: "faqHead", label: "FAQ — heading", fields: [
+        { key: "eyebrow", label: "Eyebrow", type: "text" },
+        { key: "title", label: "Title", type: "text" },
+        { key: "sub", label: "Subtitle", type: "textarea" },
+      ]},
+      { key: "faq", label: "FAQ — questions", type: "list", itemLabel: "q", fields: [
+        { key: "q", label: "Question", type: "text" },
+        { key: "a", label: "Answer", type: "textarea" },
       ]},
       { key: "finalCta", label: "Final call-to-action", fields: [
         { key: "title", label: "Title", type: "text" },

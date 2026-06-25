@@ -162,6 +162,21 @@ async function buildPageHTML(page, file, pathname) {
   // "$" sequences (e.g. "$1 Million") that String.replace would otherwise interpret.
   html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag);
 
+  // FAQPage structured data, built from the editable home FAQ (AEO).
+  if (page === "home" && Array.isArray(data.faq) && data.faq.length) {
+    const faqLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: data.faq.filter((f) => f && f.q).map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a || "" },
+      })),
+    };
+    const faqScript = '<script type="application/ld+json">' + JSON.stringify(faqLd).replace(/</g, "\\u003c") + "</script>\n</head>";
+    html = html.replace("</head>", () => faqScript);
+  }
+
   const ssr = renderPage(page, data, pathname);
   if (ssr) html = html.replace(/<div id="root">\s*<\/div>/, () => '<div id="root">' + ssr + "</div>");
   return html;
