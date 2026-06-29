@@ -321,49 +321,40 @@ function renderObjectSection(section) {
   return wrap;
 }
 
-// ---------- render everything ----------
+// ---------- render a content page (sections + jump chips) ----------
 function render() {
-  const navLinks = $("#section-links");
+  const chips = $("#section-chips");
   const editor = $("#editor");
-  navLinks.innerHTML = "";
+  chips.innerHTML = "";
   editor.innerHTML = "";
 
   schema.sections.forEach((section) => {
-    const link = el("a", { href: "#sec-" + section.key, "data-key": section.key }, section.label);
-    link.addEventListener("click", (e) => {
+    const chip = el("a", { href: "#sec-" + section.key, "data-key": section.key, class: "sec-chip" }, section.label);
+    chip.addEventListener("click", (e) => {
       e.preventDefault();
       document.getElementById("sec-" + section.key).scrollIntoView({ behavior: "smooth", block: "start" });
     });
-    navLinks.append(link);
+    chips.append(chip);
     editor.append(section.type === "list" ? renderListSection(section) : renderObjectSection(section));
   });
 
   setupScrollSpy();
 }
 
-// scrollspy: highlight the nav link of the section in view
+// scrollspy: highlight the section chip currently in view
 function setupScrollSpy() {
   const links = {};
-  $("#section-links").querySelectorAll("a").forEach((a) => (links[a.dataset.key] = a));
+  $("#section-chips").querySelectorAll("a").forEach((a) => (links[a.dataset.key] = a));
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {
         Object.values(links).forEach((a) => a.classList.remove("active"));
-        const key = e.target.id.replace("sec-", "");
-        links[key]?.classList.add("active");
+        links[e.target.id.replace("sec-", "")]?.classList.add("active");
       }
     });
-  }, { rootMargin: "-10% 0px -75% 0px", threshold: 0 });
+  }, { rootMargin: "-12% 0px -75% 0px", threshold: 0 });
   document.querySelectorAll(".section").forEach((s) => io.observe(s));
 }
-
-// section filter box
-$("#section-filter").addEventListener("input", (e) => {
-  const q = e.target.value.toLowerCase();
-  $("#section-links").querySelectorAll("a").forEach((a) => {
-    a.style.display = a.textContent.toLowerCase().includes(q) ? "" : "none";
-  });
-});
 
 // ---------- save / reset ----------
 async function save() {
@@ -394,50 +385,106 @@ $("#reset-btn").addEventListener("click", async () => {
   }
 });
 
-// ---------- page switching ----------
-function setChrome(mode) {
-  const isMsg = mode === "messages";
-  $("#save-btn").style.display = isMsg ? "none" : "";
-  $("#reset-btn").style.display = isMsg ? "none" : "";
-  document.querySelector(".section-nav").style.display = isMsg ? "none" : "";
-  // With the nav hidden, force a single-column grid so the editor fills the width
-  // (otherwise it auto-places into the empty 220px nav column).
-  document.querySelector(".layout").style.gridTemplateColumns = isMsg ? "1fr" : "";
-  if (isMsg) { $("#dirty").classList.add("hidden"); $("#saved").classList.add("hidden"); }
+// ---------- navigation / routing (each page is its own URL: /admin/<key>) ----------
+let PAGES = [];
+const labelFor = (k) => (PAGES.find((p) => p.key === k) || {}).label || k;
+
+function viewFromPath() {
+  const m = location.pathname.replace(/\/+$/, "").match(/^\/admin(?:\/(.+))?$/i);
+  return m && m[1] ? decodeURIComponent(m[1]) : "dashboard";
 }
 
-async function loadPage(page) {
-  PAGE = page;
-  $("#page-select").value = page;
-  if (page === "__messages__") {
-    setChrome("messages");
-    $("#view-site").href = "/pages/contact.html";
-    await renderMessages();
+// Show/hide the page-editing actions (Save, Reset, View site) per view.
+function setActions(show, page) {
+  $("#save-btn").style.display = show ? "" : "none";
+  $("#reset-btn").style.display = show ? "" : "none";
+  $("#view-site").style.display = show ? "" : "none";
+  if (show && page) $("#view-site").href = PAGE_URL(page);
+  if (!show) { $("#dirty").classList.add("hidden"); $("#saved").classList.add("hidden"); }
+}
+
+function buildSidebar(active) {
+  const sb = $("#sidebar");
+  sb.innerHTML = "";
+  const link = (key, label, badge) => {
+    const a = el("a", { href: "/admin/" + (key === "dashboard" ? "" : key), class: "side-link" + (key === active ? " active" : "") },
+      el("span", {}, label));
+    if (badge) a.append(el("span", { class: "side-badge" }, String(badge)));
+    return a;
+  };
+  const group = (title, nodes) => {
+    if (title) sb.append(el("div", { class: "side-group" }, title));
+    nodes.forEach((n) => sb.append(n));
+  };
+  group(null, [link("dashboard", "▦ Dashboard")]);
+  group("Pages", PAGES.filter((p) => !p.key.startsWith("division-")).map((p) => link(p.key, p.label)));
+  group("Division pages", PAGES.filter((p) => p.key.startsWith("division-")).map((p) => link(p.key, p.label)));
+  group("Inbox", [link("messages", "\u{1F4EC} Messages", window.__unread || 0)]);
+}
+
+function renderDashboard() {
+  $("#page-title").textContent = "Dashboard";
+  setActions(false);
+  $("#section-chips").innerHTML = "";
+  const editor = $("#editor");
+  editor.innerHTML = "";
+  editor.append(el("div", { class: "dash-head" },
+    el("h1", {}, "Content Editor"),
+    el("p", {}, "Pick a page to edit, or check your messages.")));
+  const grid = el("div", { class: "dash-grid" });
+  PAGES.forEach((p) => grid.append(
+    el("a", { href: "/admin/" + p.key, class: "dash-card" },
+      el("div", { class: "dash-card-title" }, p.label),
+      el("div", { class: "dash-card-sub" }, "Edit content →"))));
+  grid.append(el("a", { href: "/admin/messages", class: "dash-card dash-card-msg" },
+    el("div", { class: "dash-card-title" }, "\u{1F4EC} Messages"),
+    el("div", { class: "dash-card-sub" }, window.__unread ? window.__unread + " unread" : "Inbox →")));
+  editor.append(grid);
+}
+
+async function route() {
+  const view = viewFromPath();
+  buildSidebar(view);
+  window.scrollTo(0, 0);
+
+  if (view === "dashboard") return renderDashboard();
+
+  if (view === "messages") {
+    $("#page-title").textContent = "Messages";
+    setActions(false);
+    $("#section-chips").innerHTML = "";
+    return renderMessages();
+  }
+
+  if (!PAGES.some((p) => p.key === view)) return renderDashboard();
+
+  PAGE = view;
+  $("#page-title").textContent = labelFor(view);
+  setActions(true, view);
+  try {
+    [schema, content] = await Promise.all([api("/api/schema/" + view), api("/api/content/" + view)]);
+    render();
     markClean();
-    return;
+  } catch (err) {
+    $("#section-chips").innerHTML = "";
+    $("#editor").innerHTML = "";
+    $("#editor").append(el("div", { class: "empty-state" }, err.message));
   }
-  setChrome("content");
-  [schema, content] = await Promise.all([api("/api/schema/" + page), api("/api/content/" + page)]);
-  $("#view-site").href = PAGE_URL(page);
-  render();
-  markClean();
 }
-
-$("#page-select").addEventListener("change", async (e) => {
-  const next = e.target.value;
-  if (dirty && !confirm("You have unsaved changes. Discard them and switch pages?")) {
-    e.target.value = PAGE;
-    return;
-  }
-  await loadPage(next);
-});
 
 // ---------- messages inbox ----------
 async function refreshUnreadBadge() {
   try {
     const { count } = await api("/api/messages/unread-count");
-    const opt = $("#page-select").querySelector('option[value="__messages__"]');
-    if (opt) opt.textContent = "\u{1F4EC} Messages" + (count ? ` (${count})` : "");
+    window.__unread = count;
+    const link = $("#sidebar a[href='/admin/messages']");
+    if (link) {
+      let badge = link.querySelector(".side-badge");
+      if (count) { if (!badge) { badge = el("span", { class: "side-badge" }); link.append(badge); } badge.textContent = String(count); }
+      else if (badge) badge.remove();
+    }
+    const card = $(".dash-card-msg .dash-card-sub");
+    if (card) card.textContent = count ? count + " unread" : "Inbox →";
   } catch {}
 }
 
@@ -493,13 +540,9 @@ async function renderMessages() {
 async function boot() {
   $("#login").classList.add("hidden");
   $("#app").classList.remove("hidden");
-  const pages = await api("/api/pages");
-  const sel = $("#page-select");
-  sel.innerHTML = "";
-  pages.forEach((p) => sel.append(el("option", { value: p.key }, p.label)));
-  sel.append(el("option", { value: "__messages__" }, "\u{1F4EC} Messages"));
-  refreshUnreadBadge();
-  await loadPage("home");
+  PAGES = await api("/api/pages");
+  try { window.__unread = (await api("/api/messages/unread-count")).count; } catch { window.__unread = 0; }
+  await route();
 }
 
 (async function init() {

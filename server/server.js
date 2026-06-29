@@ -216,6 +216,8 @@ app.get("/api/media", requireAuth, async (req, res) => {
 
 // ---------- admin panel ----------
 app.use("/admin", express.static(path.join(ROOT, "admin")));
+// SPA fallback: serve the admin shell for /admin and /admin/<page> URLs that aren't files.
+app.get(/^\/admin(\/.*)?$/, (req, res) => res.sendFile(path.join(ROOT, "admin", "index.html")));
 
 // ---------- public site: server-side rendered ----------
 // The home page is rendered to full HTML on the server (great for SEO + AEO, since
