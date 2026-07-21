@@ -322,45 +322,9 @@ const Nav = () => {
 };
 const Hero = () => {
   const h = sec('hero');
-  useEffect(() => {
-    const wrap = document.querySelector('.hero-logo-3d');
-    const img = wrap && wrap.querySelector('img');
-    if (!wrap || !img) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    wrap.style.zIndex = '0'; // behind the hero text/buttons (which are z-index 1), above the starfield
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const y = window.scrollY;
-      const vh = window.innerHeight || 800;
-      const t = Math.min(Math.max(y / vh, 0), 1); // 0 → 1 over one viewport of scroll
-      wrap.style.transform = 'translateY(' + y.toFixed(1) + 'px)'; // follow the scroll → stays pinned in view
-      img.style.setProperty('--logo-zoom', (1 + t * 1.6).toFixed(3)); // grows 1 → 2.6×
-      img.style.opacity = Math.max(0, 1 - t * 1.15).toFixed(3); // fades out as it zooms in
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    window.addEventListener('scroll', onScroll, {
-      passive: true
-    });
-    update();
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
   return /*#__PURE__*/React.createElement("section", {
     className: "d-hero"
-  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("div", {
-    className: "hero-logo-3d"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/transform-logo-3d.png",
-    alt: "Transform Ventures",
-    width: "148",
-    decoding: "async",
-    fetchpriority: "high"
-  })), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
     className: "grad"
   }, h.titleLine1 || "Where crypto builds", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "with conviction.")), /*#__PURE__*/React.createElement("p", {
     className: "lead"
@@ -411,9 +375,7 @@ const Hero = () => {
     fill: "currentColor"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "d-hero-globe"
-  }, /*#__PURE__*/React.createElement(Globe, null)));
+  })))));
 };
 const Globe = () => {
   const canvasRef = React.useRef(null);
