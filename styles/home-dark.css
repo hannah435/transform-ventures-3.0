@@ -1858,3 +1858,15 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .hero-logo-3d img { animation: none; }
 }
+
+/* Scroll-driven background brightness pulse (--bg-dim set by a small injected script) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  opacity: var(--bg-dim, 0.1);
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity .12s linear;
+}

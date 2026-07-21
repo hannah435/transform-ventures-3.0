@@ -21,6 +21,11 @@ const SUBPAGES = [
   "events", "leadership", "media", "blog", "contact",
 ];
 
+// Scroll-driven background brightness pulse — sets --bg-dim (0.1 bright → ~0.54 faded)
+// as a cosine of scroll position, so the bg fades and brightens as you scroll. Injected
+// on every server-rendered page.
+const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.1+0.22*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 app.set("trust proxy", true); // so req.ip reflects the client via x-forwarded-for on Vercel
@@ -235,7 +240,7 @@ async function buildPageHTML(page, file, pathname) {
     ";</script>";
   // Function replacers throughout: the replacement text contains user content with
   // "$" sequences (e.g. "$1 Million") that String.replace would otherwise interpret.
-  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag);
+  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag + "\n  " + BG_PULSE);
 
   // FAQPage structured data, built from the editable home FAQ (AEO).
   if (page === "home" && Array.isArray(data.faq) && data.faq.length) {
@@ -306,7 +311,7 @@ async function buildPostHTML(id) {
 
   // inject content for the client (blog content under the "post" page key)
   const tag = "<script>window.__TV_PAGE__='post';window.__TV_CONTENT__=" + JSON.stringify({ post: blog }).replace(/</g, "\\u003c") + ";</script>";
-  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag);
+  html = html.replace(/<body[^>]*>/, (m) => m + "\n  " + tag + "\n  " + BG_PULSE);
 
   const ssr = renderPage("post", blog, "/pages/post.html", "?id=" + (post ? post.id : ""));
   if (ssr) html = html.replace(/<div id="root">\s*<\/div>/, () => '<div id="root">' + ssr + "</div>");
