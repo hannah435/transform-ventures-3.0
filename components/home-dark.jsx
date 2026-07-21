@@ -147,7 +147,7 @@ const Hero = () => {
   return (
   <section className="d-hero">
     <Stars/>
-    <h1><span className="grad">{h.titleLine1 || "Build with"}<br/>{h.titleLine2 || "conviction."}</span></h1>
+    <h1><span className="grad">{h.titleLine1 || "Build with"}<br/>{h.titleLine2 || "conviction"}</span></h1>
     <p className="lead">
       {h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
     </p>
