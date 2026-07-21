@@ -33,8 +33,9 @@ body {
 body {
   font-family: var(--font-sans);
   background:
-    radial-gradient(ellipse 1400px 800px at 50% -200px, rgba(109, 74, 255, 0.18), transparent 60%),
-    radial-gradient(ellipse 1000px 600px at 20% 40%, rgba(15, 181, 165, 0.08), transparent 60%),
+    radial-gradient(ellipse 1400px 800px at 50% -200px, rgba(109, 74, 255, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(5, 6, 8, 0.55) 0%, rgba(5, 6, 8, 0.8) 100%),
+    url("../assets/bg-site.webp") center center / cover no-repeat,
     var(--bg);
   background-attachment: fixed;
   min-height: 100vh;
@@ -688,7 +689,7 @@ p {
 }
 
 /* put hero text content above globe */
-.d-hero>*:not(.d-hero-globe):not(.d-hero-stars) {
+.d-hero>*:not(.d-hero-globe):not(.d-hero-stars):not(.hero-logo-3d) {
   position: relative;
   z-index: 1;
 }
@@ -1824,7 +1825,7 @@ p {
 /* Hero 3D crystal logo — levitating loop */
 .hero-logo-3d {
   position: relative;
-  z-index: 3;
+  z-index: 0;
   perspective: 1000px;
   margin-bottom: 6px;
   animation: logo-in .9s ease .15s both;

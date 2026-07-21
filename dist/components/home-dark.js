@@ -327,7 +327,7 @@ const Hero = () => {
     const img = wrap && wrap.querySelector('img');
     if (!wrap || !img) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    wrap.style.zIndex = '5';
+    wrap.style.zIndex = '0'; // behind the hero text/buttons (which are z-index 1), above the starfield
     let raf = 0;
     const update = () => {
       raf = 0;
