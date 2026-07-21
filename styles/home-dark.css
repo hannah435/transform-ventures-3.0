@@ -32,9 +32,11 @@ body {
 
 body {
   font-family: var(--font-sans);
+  /* Top layer = scroll-driven dim (alpha from --bg-dim); then glow, scrim, image, base. */
   background:
-    radial-gradient(ellipse 1400px 800px at 50% -200px, rgba(109, 74, 255, 0.14), transparent 60%),
-    linear-gradient(180deg, rgba(5, 6, 8, 0.55) 0%, rgba(5, 6, 8, 0.8) 100%),
+    linear-gradient(rgba(4, 5, 9, var(--bg-dim, 0)), rgba(4, 5, 9, var(--bg-dim, 0))),
+    radial-gradient(ellipse 1400px 800px at 50% -200px, rgba(109, 74, 255, 0.16), transparent 60%),
+    linear-gradient(180deg, rgba(5, 6, 8, 0.38) 0%, rgba(5, 6, 8, 0.64) 100%),
     url("../assets/bg-site.webp") center center / cover no-repeat,
     var(--bg);
   background-attachment: fixed;
@@ -1859,14 +1861,5 @@ p {
   .hero-logo-3d img { animation: none; }
 }
 
-/* Scroll-driven background brightness pulse (--bg-dim set by a small injected script) */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  opacity: var(--bg-dim, 0.1);
-  pointer-events: none;
-  z-index: -1;
-  transition: opacity .12s linear;
-}
+/* (Scroll-driven brightness pulse is applied as the top body-background layer above,
+   whose alpha comes from --bg-dim, set by a small injected script.) */

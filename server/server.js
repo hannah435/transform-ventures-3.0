@@ -24,7 +24,7 @@ const SUBPAGES = [
 // Scroll-driven background brightness pulse — sets --bg-dim (0.1 bright → ~0.54 faded)
 // as a cosine of scroll position, so the bg fades and brightens as you scroll. Injected
 // on every server-rendered page.
-const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.1+0.22*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
+const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.42*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
