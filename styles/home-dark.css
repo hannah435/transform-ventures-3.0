@@ -505,7 +505,7 @@ p {
 .d-hero {
   position: relative;
   min-height: 100vh;
-  padding: 160px 24px 0;
+  padding: 124px 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1819,4 +1819,38 @@ p {
 @media (max-width: 720px) {
   .faq-item summary { padding: 16px 18px; font-size: 15px; }
   .faq-a { padding: 0 18px 18px; font-size: 14px; }
+}
+
+/* Hero 3D crystal logo — levitating loop */
+.hero-logo-3d {
+  position: relative;
+  z-index: 2;
+  perspective: 1000px;
+  margin-bottom: 6px;
+  animation: fade-up .9s ease .15s both;
+}
+.hero-logo-3d img {
+  width: clamp(96px, 13vw, 148px);
+  height: auto;
+  display: block;
+  transform-style: preserve-3d;
+  animation: logo-levitate 7s ease-in-out infinite;
+  will-change: transform, filter;
+}
+@keyframes logo-levitate {
+  0% {
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg);
+    filter: drop-shadow(0 16px 24px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(109,74,255,.45));
+  }
+  50% {
+    transform: translateY(-16px) rotateY(14deg) rotateX(-4deg);
+    filter: drop-shadow(0 24px 32px rgba(0,0,0,.5)) drop-shadow(0 0 24px rgba(45,212,191,.5));
+  }
+  100% {
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg);
+    filter: drop-shadow(0 16px 24px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(109,74,255,.45));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-3d img { animation: none; }
 }

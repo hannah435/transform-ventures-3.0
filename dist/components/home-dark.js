@@ -324,7 +324,15 @@ const Hero = () => {
   const h = sec('hero');
   return /*#__PURE__*/React.createElement("section", {
     className: "d-hero"
-  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("div", {
+    className: "hero-logo-3d"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/transform-logo-3d.png",
+    alt: "Transform Ventures",
+    width: "148",
+    decoding: "async",
+    fetchpriority: "high"
+  })), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
     className: "grad"
   }, h.titleLine1 || "Where crypto builds", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "with conviction.")), /*#__PURE__*/React.createElement("p", {
     className: "lead"

@@ -147,6 +147,9 @@ const Hero = () => {
   return (
   <section className="d-hero">
     <Stars/>
+    <div className="hero-logo-3d">
+      <img src="assets/transform-logo-3d.png" alt="Transform Ventures" width="148" decoding="async" fetchpriority="high"/>
+    </div>
     <h1><span className="grad">{h.titleLine1 || "Where crypto builds"}<br/>{h.titleLine2 || "with conviction."}</span></h1>
     <p className="lead">
       {h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
