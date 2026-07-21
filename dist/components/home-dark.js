@@ -326,7 +326,7 @@ const Hero = () => {
     className: "d-hero"
   }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
     className: "grad"
-  }, h.titleLine1 || "Builds with", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "conviction.")), /*#__PURE__*/React.createElement("p", {
+  }, h.titleLine1 || "Build with", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "conviction.")), /*#__PURE__*/React.createElement("p", {
     className: "lead"
   }, h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
     className: "ctas"
