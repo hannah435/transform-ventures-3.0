@@ -1824,30 +1824,33 @@ p {
 /* Hero 3D crystal logo — levitating loop */
 .hero-logo-3d {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   perspective: 1000px;
   margin-bottom: 6px;
-  animation: fade-up .9s ease .15s both;
+  animation: logo-in .9s ease .15s both;
+  will-change: transform;
 }
+@keyframes logo-in { from { opacity: 0; } to { opacity: 1; } }
 .hero-logo-3d img {
   width: clamp(96px, 13vw, 148px);
   height: auto;
   display: block;
+  transform-origin: center top;
   transform-style: preserve-3d;
   animation: logo-levitate 7s ease-in-out infinite;
-  will-change: transform, filter;
+  will-change: transform, filter, opacity;
 }
 @keyframes logo-levitate {
   0% {
-    transform: translateY(0) rotateY(-14deg) rotateX(5deg);
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg) scale(var(--logo-zoom, 1));
     filter: drop-shadow(0 16px 24px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(109,74,255,.45));
   }
   50% {
-    transform: translateY(-16px) rotateY(14deg) rotateX(-4deg);
+    transform: translateY(-16px) rotateY(14deg) rotateX(-4deg) scale(var(--logo-zoom, 1));
     filter: drop-shadow(0 24px 32px rgba(0,0,0,.5)) drop-shadow(0 0 24px rgba(45,212,191,.5));
   }
   100% {
-    transform: translateY(0) rotateY(-14deg) rotateX(5deg);
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg) scale(var(--logo-zoom, 1));
     filter: drop-shadow(0 16px 24px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(109,74,255,.45));
   }
 }

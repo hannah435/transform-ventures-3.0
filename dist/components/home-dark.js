@@ -322,6 +322,34 @@ const Nav = () => {
 };
 const Hero = () => {
   const h = sec('hero');
+  useEffect(() => {
+    const wrap = document.querySelector('.hero-logo-3d');
+    const img = wrap && wrap.querySelector('img');
+    if (!wrap || !img) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    wrap.style.zIndex = '5';
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const vh = window.innerHeight || 800;
+      const t = Math.min(Math.max(y / vh, 0), 1); // 0 → 1 over one viewport of scroll
+      wrap.style.transform = 'translateY(' + y.toFixed(1) + 'px)'; // follow the scroll → stays pinned in view
+      img.style.setProperty('--logo-zoom', (1 + t * 1.6).toFixed(3)); // grows 1 → 2.6×
+      img.style.opacity = Math.max(0, 1 - t * 1.15).toFixed(3); // fades out as it zooms in
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, {
+      passive: true
+    });
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
   return /*#__PURE__*/React.createElement("section", {
     className: "d-hero"
   }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("div", {
