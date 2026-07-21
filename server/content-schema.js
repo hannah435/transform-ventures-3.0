@@ -9,8 +9,8 @@ const DEFAULTS = {
       logo: "assets/transform-ventures-white.png",
     },
     hero: {
-      titleLine1: "Where crypto builds",
-      titleLine2: "with conviction.",
+      titleLine1: "Builds with",
+      titleLine2: "conviction.",
       lead: 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."',
       cta1Text: "Explore divisions →",
       cta1Href: "pages/divisions.html",
