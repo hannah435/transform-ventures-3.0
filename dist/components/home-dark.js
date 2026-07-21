@@ -352,7 +352,7 @@ const Hero = () => {
   }, /*#__PURE__*/React.createElement("path", {
     d: "M18.244 2H21.5l-7.5 8.57L23 22h-6.938l-5.43-7.08L4.5 22H1.244l8.04-9.192L1 2h7.063l4.92 6.518L18.244 2zm-1.22 18h1.833L7.104 4H5.16l11.864 16z"
   }))), /*#__PURE__*/React.createElement("a", {
-    href: "#",
+    href: h.linkedin || "#",
     "aria-label": "LinkedIn",
     target: "_blank",
     rel: "noopener"
@@ -364,7 +364,7 @@ const Hero = () => {
   }, /*#__PURE__*/React.createElement("path", {
     d: "M20.447 20.452h-3.554v-5.569c0-1.328-.025-3.037-1.85-3.037-1.852 0-2.136 1.445-2.136 2.94v5.666H9.353V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.37-1.85 3.6 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.063 2.063 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
   }))), /*#__PURE__*/React.createElement("a", {
-    href: "#",
+    href: h.youtube || "#",
     "aria-label": "YouTube",
     target: "_blank",
     rel: "noopener"
@@ -962,7 +962,9 @@ const Footer = () => {
   }, "Contact")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#"
   }, "Twitter / X")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#"
+    href: "https://www.linkedin.com/company/transform-ventures/",
+    target: "_blank",
+    rel: "noopener"
   }, "LinkedIn")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#"
   }, "Telegram"))))), /*#__PURE__*/React.createElement("div", {

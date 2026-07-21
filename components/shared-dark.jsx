@@ -176,7 +176,7 @@ const Footer = () => (
           <h4>Connect</h4>
           <ul>
             <li><a href="#">Twitter / X</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/company/transform-ventures/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="#">Telegram</a></li>
             <li><a href="#">YouTube</a></li>
           </ul>

@@ -17,7 +17,7 @@ const DEFAULTS = {
       cta2Text: "Get in touch",
       cta2Href: "pages/contact.html",
       twitter: "#",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/company/transform-ventures/",
       youtube: "#",
     },
     divisionsHead: {

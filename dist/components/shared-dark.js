@@ -380,7 +380,9 @@ const Footer = () => /*#__PURE__*/React.createElement("footer", {
 }, /*#__PURE__*/React.createElement("h4", null, "Connect"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
   href: "#"
 }, "Twitter / X")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-  href: "#"
+  href: "https://www.linkedin.com/company/transform-ventures/",
+  target: "_blank",
+  rel: "noopener"
 }, "LinkedIn")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
   href: "#"
 }, "Telegram")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
