@@ -10,7 +10,7 @@ const PRESS_DEFAULT = [
         <Subpage
           eyebrow="Leadership"
           title="Meet the founder."
-          intro="One of the most recognized figures in blockchain and cryptocurrency — early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
+          intro="One of the most recognized figures in blockchain and digital asset — early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
         >
           <Leader/>
           <section className="d-section">

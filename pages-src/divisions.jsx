@@ -1,14 +1,14 @@
 const CAPABILITIES = {
       group: [
         { t: "First-ever token sale", d: "Launched the first token sale in blockchain history — Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX." },
-        { t: "Crypto media leadership", d: "Regular placements in every leading crypto publication — CoinDesk, Cointelegraph, Decrypt — plus top industry podcasts and YouTube channels." },
+        { t: "Digital Asset media leadership", d: "Regular placements in every leading digital asset publication — CoinDesk, Cointelegraph, Decrypt — plus top industry podcasts and YouTube channels." },
         { t: "Tier-1 mainstream coverage", d: "Client stories placed in AP, BBC, Bloomberg, CNBC, Forbes, The New York Times, Reuters, TechCrunch, Wall Street Journal, and WIRED." },
-        { t: "Global office network", d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto — the most extensive footprint in crypto PR." },
+        { t: "Global office network", d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto — the most extensive footprint in digital asset PR." },
       ],
       events: [
         { t: "Tokenize conference", d: "A premier blockchain conference exploring the future of tokenization. Global edition." },
-        { t: "BitAngels network", d: "World's first crypto angel investor network. Active since 2013." },
-        { t: "Tiger Mansion", d: "Invite-only executive gathering for top-tier crypto investors and founders." },
+        { t: "BitAngels network", d: "World's first digital asset angel investor network. Active since 2013." },
+        { t: "Tiger Mansion", d: "Invite-only executive gathering for top-tier digital asset investors and founders." },
         { t: "CoinAgenda legacy", d: "Predecessor conference series connecting mainstream investors with blockchain deals." },
       ],
       capital: [
@@ -52,7 +52,7 @@ const CAPABILITIES = {
         <Subpage
           eyebrow="Our Ecosystem"
           title="Five divisions. One vision."
-          intro="Transform Ventures operates across five specialized divisions — from pioneering crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
+          intro="Transform Ventures operates across five specialized divisions — from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
         >
           <section className="d-section">
             <div className="container">

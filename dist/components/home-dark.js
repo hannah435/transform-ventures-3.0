@@ -328,7 +328,7 @@ const Hero = () => {
     className: "grad"
   }, h.titleLine1 || "Build with", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "conviction")), /*#__PURE__*/React.createElement("p", {
     className: "lead"
-  }, h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
+  }, h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
@@ -527,7 +527,7 @@ const Divisions = () => {
     }
   }), head.eyebrow || "Our ecosystem"), /*#__PURE__*/React.createElement("h2", null, head.title || "Five divisions. One vision."), /*#__PURE__*/React.createElement("p", {
     className: "sub"
-  }, head.sub || "Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
+  }, head.sub || "Transform Ventures operates across five specialized divisions — from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
     className: "divisions-row"
   }, DIVISIONS.slice(0, 3).map((d, i) => /*#__PURE__*/React.createElement("div", {
     key: d.name,
@@ -579,7 +579,7 @@ const Feature = () => {
     className: "copy"
   }, /*#__PURE__*/React.createElement("div", {
     className: "tag-row"
-  }, /*#__PURE__*/React.createElement("span", null, f.tag1 || "Advisory"), /*#__PURE__*/React.createElement("span", null, f.tag2 || "Strategy")), /*#__PURE__*/React.createElement("h3", null, f.title || "Every crypto venture finds its path."), /*#__PURE__*/React.createElement("p", null, f.desc || "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, f.bullet1 || "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, f.bullet2 || "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, f.bullet3 || "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, f.tag1 || "Advisory"), /*#__PURE__*/React.createElement("span", null, f.tag2 || "Strategy")), /*#__PURE__*/React.createElement("h3", null, f.title || "Every digital asset venture finds its path."), /*#__PURE__*/React.createElement("p", null, f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, f.bullet1 || "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, f.bullet2 || "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, f.bullet3 || "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
     className: "actions"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
@@ -605,7 +605,7 @@ const StatBand = () => {
     className: "bignum"
   }, s.bignum || "$200M"), /*#__PURE__*/React.createElement("p", {
     className: "cap-desc"
-  }, s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
+  }, s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of digital asset ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
     className: "sub-stats"
   }, /*#__PURE__*/React.createElement("div", {
     className: "reveal-d d1"
@@ -636,7 +636,7 @@ const EVENTS_DEFAULT = [{
 }, {
   name: "Tiger Mansion",
   tag: "Invite Only",
-  desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders.",
+  desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.",
   img: "assets/tigermansion-event.jpg",
   url: "https://www.tigermansionlv.com/"
 }];
@@ -663,7 +663,7 @@ const Events = () => {
     }
   }), head.eyebrow || "Transform Events"), /*#__PURE__*/React.createElement("h2", null, head.title || "Where the industry connects."), /*#__PURE__*/React.createElement("p", {
     className: "sub"
-  }, head.sub || "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders.")), /*#__PURE__*/React.createElement("div", {
+  }, head.sub || "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders.")), /*#__PURE__*/React.createElement("div", {
     className: "events-grid-d"
   }, EVENTS.map((e, i) => /*#__PURE__*/React.createElement("a", {
     href: e.url,
@@ -813,7 +813,7 @@ const Leader = () => {
     style: {
       marginTop: 14
     }
-  }, l.para2 || "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
+  }, l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
     className: "leader-stats-d"
   }, /*#__PURE__*/React.createElement("div", {
     className: "stat"
@@ -833,7 +833,7 @@ const Leader = () => {
     className: "n"
   }, l.stat3n || "2013"), /*#__PURE__*/React.createElement("div", {
     className: "l"
-  }, l.stat3l || "First crypto angel group"))), /*#__PURE__*/React.createElement("div", {
+  }, l.stat3l || "First digital asset angel group"))), /*#__PURE__*/React.createElement("div", {
     className: "tags"
   }, tags.map((t, i) => /*#__PURE__*/React.createElement("span", {
     key: i
@@ -848,7 +848,7 @@ const Leader = () => {
 };
 const FAQ_DEFAULT = [{
   q: "What is Transform Ventures?",
-  a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin."
+  a: "Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin."
 }];
 const FAQ = () => {
   const head = sec('faqHead');
@@ -930,7 +930,7 @@ const Footer = () => {
     alt: "Transform Ventures",
     loading: "lazy",
     decoding: "async"
-  }), /*#__PURE__*/React.createElement("p", null, ft.blurb || "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("p", null, ft.blurb || "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
     className: "col"
   }, /*#__PURE__*/React.createElement("h4", null, "Divisions"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "pages/division-group.html"

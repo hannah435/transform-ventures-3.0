@@ -151,7 +151,7 @@ const Footer = () => (
       <div className="cols">
         <div className="brand-col">
           <img src={`${ASSET}transform-ventures-white.png`} alt="Transform Ventures" loading="lazy" decoding="async"/>
-          <p>Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.</p>
+          <p>Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.</p>
         </div>
         <div className="col">
           <h4>Divisions</h4>

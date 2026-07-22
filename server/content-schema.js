@@ -11,7 +11,7 @@ const DEFAULTS = {
     hero: {
       titleLine1: "Build with",
       titleLine2: "conviction",
-      lead: 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."',
+      lead: 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."',
       cta1Text: "Explore divisions →",
       cta1Href: "pages/divisions.html",
       cta2Text: "Get in touch",
@@ -23,7 +23,7 @@ const DEFAULTS = {
     divisionsHead: {
       eyebrow: "Our ecosystem",
       title: "Five divisions. One vision.",
-      sub: "Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.",
+      sub: "Transform Ventures operates across five specialized divisions — from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.",
     },
     divisions: [
       { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013" },
@@ -35,8 +35,8 @@ const DEFAULTS = {
     feature: {
       tag1: "Advisory",
       tag2: "Strategy",
-      title: "Every crypto venture finds its path.",
-      desc: "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale.",
+      title: "Every digital asset venture finds its path.",
+      desc: "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale.",
       bullet1: "End-to-end advisory on token design, distribution, and launch",
       bullet2: "Strategic positioning and market-entry plans",
       bullet3: "Access to the full Transform Ventures network",
@@ -48,7 +48,7 @@ const DEFAULTS = {
     statBand: {
       cap: "Portfolio & track record",
       bignum: "$200M",
-      capDesc: "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital.",
+      capDesc: "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of digital asset ventures, clients, and capital.",
       sub1n: "100+",
       sub1l: "ICO-era token launches",
       sub2n: "2013",
@@ -57,12 +57,12 @@ const DEFAULTS = {
     eventsHead: {
       eyebrow: "Transform Events",
       title: "Where the industry connects.",
-      sub: "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders.",
+      sub: "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders.",
     },
     events: [
       { name: "Tokenize", tag: "Global Conference", desc: "Industry leaders, investors, and innovators exploring the future of tokenization.", img: "assets/tokenize-vegas.jpg", url: "https://tokenizeconference.com/" },
       { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "The world's first angel investor network for digital currency startups.", img: "assets/bitangels-group.webp", url: "https://bitangels.network/" },
-      { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
+      { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
     ],
     fund: {
       eyebrow: "Investment Fund",
@@ -90,10 +90,10 @@ const DEFAULTS = {
       role: "Founder & CEO · CIO, Bitcoin Supercycle Fund",
       name: "Michael Terpin",
       para1: 'Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of Bitcoin Supercycle (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.',
-      para2: "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M.",
+      para2: "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M.",
       stat1n: "100+", stat1l: "ICO-era launches",
       stat2n: "$200M", stat2l: "Marketwire exit",
-      stat3n: "2013", stat3l: "First crypto angel group",
+      stat3n: "2013", stat3l: "First digital asset angel group",
       tags: ["Godfather of Crypto", "BitAngels Co-Founder", "Tokenize Creator", "Author", "Puerto Rico"],
       ctaText: "Full bio →",
       ctaHref: "pages/leadership.html",
@@ -104,8 +104,8 @@ const DEFAULTS = {
       sub: "Quick answers about Transform Ventures, Michael Terpin, and the Bitcoin Supercycle Fund.",
     },
     faq: [
-      { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin — known as the \"Godfather of Crypto.\" It provides capital, resources, and strategic guidance to high-growth crypto projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico." },
-      { q: "Who is Michael Terpin?", a: "Michael Terpin is the founder and CEO of Transform Ventures and an early bitcoin investor known as the \"Godfather of Crypto\" (CNBC). He founded Transform Group (the original blockchain PR firm), co-founded BitAngels (the first crypto angel group, 2013), created the Tokenize conference, and authored Bitcoin Supercycle (2024). He previously founded Marketwire, sold to NASDAQ for $200M." },
+      { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin — known as the \"Godfather of Crypto.\" It provides capital, resources, and strategic guidance to high-growth digital asset projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico." },
+      { q: "Who is Michael Terpin?", a: "Michael Terpin is the founder and CEO of Transform Ventures and an early bitcoin investor known as the \"Godfather of Crypto\" (CNBC). He founded Transform Group (the original blockchain PR firm), co-founded BitAngels (the first digital asset angel group, 2013), created the Tokenize conference, and authored Bitcoin Supercycle (2024). He previously founded Marketwire, sold to NASDAQ for $200M." },
       { q: "What is the Bitcoin Supercycle Fund?", a: "The Bitcoin Supercycle Fund is the first liquid bitcoin-only hedge fund. It combines Michael Terpin's \"Four Seasons of Bitcoin\" cycle model with algorithmic trading and season-specific strategies, using institutional-grade infrastructure (Coinbase Prime custody, NAV Fund Services administration)." },
       { q: "What are the five divisions of Transform Ventures?", a: "Transform Group (communications & PR), Transform Events (Tokenize, BitAngels, Tiger Mansion), Transform Capital (family office), Transform Strategies (advisory & consulting), and the Bitcoin Supercycle Fund (a bitcoin-only hedge fund)." },
       { q: "Where is Transform Ventures located?", a: "Transform Ventures is headquartered in San Juan, Puerto Rico." },
@@ -120,7 +120,7 @@ const DEFAULTS = {
       cta2Href: "pages/media.html",
     },
     footer: {
-      blurb: "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.",
+      blurb: "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.",
       copyright: "© 2026 Transform Ventures. All rights reserved.",
       location: "San Juan, Puerto Rico",
     },

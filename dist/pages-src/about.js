@@ -5,7 +5,7 @@ const TIMELINE_DEFAULT = [{
 }, {
   year: "2013",
   title: "BitAngels & Transform Group",
-  desc: "Co-founded the first crypto angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether."
+  desc: "Co-founded the first digital asset angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether."
 }, {
   year: "2015",
   title: "Four Seasons of Bitcoin",
@@ -13,7 +13,7 @@ const TIMELINE_DEFAULT = [{
 }, {
   year: "2018",
   title: "CoinAgenda → Tokenize",
-  desc: "Created the leading conference series connecting mainstream investors with blockchain and crypto investments."
+  desc: "Created the leading conference series connecting mainstream investors with blockchain and digital asset investments."
 }, {
   year: "2021",
   title: "Transform Ventures",
@@ -45,7 +45,7 @@ function About() {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), story.eyebrow || "Our Story"), /*#__PURE__*/React.createElement("h2", null, story.heading || "The communications powerhouse behind crypto.")), /*#__PURE__*/React.createElement("div", {
+  }), story.eyebrow || "Our Story"), /*#__PURE__*/React.createElement("h2", null, story.heading || "The communications powerhouse behind digital asset.")), /*#__PURE__*/React.createElement("div", {
     className: "timeline-d"
   }, timeline.map((t, i) => /*#__PURE__*/React.createElement("div", {
     key: i,

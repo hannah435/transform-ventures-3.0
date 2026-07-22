@@ -10,7 +10,7 @@ const UPCOMING_DEFAULT = [
         <Subpage
           eyebrow="Transform Events"
           title="Where the industry connects."
-          intro="Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders for deal-making and knowledge sharing."
+          intro="Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders for deal-making and knowledge sharing."
         >
           <section className="d-section">
             <div className="container">

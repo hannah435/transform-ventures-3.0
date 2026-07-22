@@ -149,7 +149,7 @@ const Hero = () => {
     <Stars/>
     <h1><span className="grad">{h.titleLine1 || "Build with"}<br/>{h.titleLine2 || "conviction"}</span></h1>
     <p className="lead">
-      {h.lead || 'Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
+      {h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
     </p>
     <div className="ctas">
       <a className="btn-lime" href={h.cta1Href || "pages/divisions.html"}>{h.cta1Text || "Explore divisions →"}</a>
@@ -273,7 +273,7 @@ const Divisions = () => {
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "Our ecosystem"}</div>
         <h2>{head.title || "Five divisions. One vision."}</h2>
-        <p className="sub">{head.sub || "Transform Ventures operates across five specialized divisions — from crypto PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."}</p>
+        <p className="sub">{head.sub || "Transform Ventures operates across five specialized divisions — from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."}</p>
       </div>
       <div className="divisions-row">
         {DIVISIONS.slice(0, 3).map((d, i) => (
@@ -318,8 +318,8 @@ const Feature = () => {
         <div className="visual"><img src="assets/transform-logo-3d.png" alt="Transform Ventures" className="feature-3d" decoding="async"/></div>
         <div className="copy">
           <div className="tag-row"><span>{f.tag1 || "Advisory"}</span><span>{f.tag2 || "Strategy"}</span></div>
-          <h3>{f.title || "Every crypto venture finds its path."}</h3>
-          <p>{f.desc || "Decades of combined experience in token launch strategy, crypto go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."}</p>
+          <h3>{f.title || "Every digital asset venture finds its path."}</h3>
+          <p>{f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."}</p>
           <ul>
             <li>{f.bullet1 || "End-to-end advisory on token design, distribution, and launch"}</li>
             <li>{f.bullet2 || "Strategic positioning and market-entry plans"}</li>
@@ -345,7 +345,7 @@ const StatBand = () => {
       <div className="reveal-d">
         <div className="cap">{s.cap || "Portfolio & track record"}</div>
         <div className="bignum">{s.bignum || "$200M"}</div>
-        <p className="cap-desc">{s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of crypto ventures, clients, and capital."}</p>
+        <p className="cap-desc">{s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of digital asset ventures, clients, and capital."}</p>
       </div>
       <div className="sub-stats">
         <div className="reveal-d d1"><div className="n">{s.sub1n || "100+"}</div><div className="l">{s.sub1l || "ICO-era token launches"}</div></div>
@@ -359,7 +359,7 @@ const StatBand = () => {
 const EVENTS_DEFAULT = [
   { name: "Tokenize", tag: "Global Conference", desc: "Industry leaders, investors, and innovators exploring the future of tokenization.", img: "assets/tokenize-vegas.jpg", url: "https://tokenizeconference.com/" },
   { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "The world's first angel investor network for digital currency startups.", img: "assets/bitangels-group.webp", url: "https://bitangels.network/" },
-  { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier crypto investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
+  { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
 ];
 const EVENTS = (Array.isArray(TV.events) && TV.events.length) ? TV.events : EVENTS_DEFAULT;
 
@@ -372,7 +372,7 @@ const Events = () => {
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "Transform Events"}</div>
         <h2>{head.title || "Where the industry connects."}</h2>
-        <p className="sub">{head.sub || "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders."}</p>
+        <p className="sub">{head.sub || "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders."}</p>
       </div>
       <div className="events-grid-d">
         {EVENTS.map((e, i) => (
@@ -453,11 +453,11 @@ const Leader = () => {
           <div className="role">{l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"}</div>
           <div className="name">{l.name || "Michael Terpin"}</div>
           <p style={{marginTop: 20}}>{l.para1 || <>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</>}</p>
-          <p style={{marginTop: 14}}>{l.para2 || "Co-founder of BitAngels (2013), the first crypto angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."}</p>
+          <p style={{marginTop: 14}}>{l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."}</p>
           <div className="leader-stats-d">
             <div className="stat"><div className="n">{l.stat1n || "100+"}</div><div className="l">{l.stat1l || "ICO-era launches"}</div></div>
             <div className="stat"><div className="n">{l.stat2n || "$200M"}</div><div className="l">{l.stat2l || "Marketwire exit"}</div></div>
-            <div className="stat"><div className="n">{l.stat3n || "2013"}</div><div className="l">{l.stat3l || "First crypto angel group"}</div></div>
+            <div className="stat"><div className="n">{l.stat3n || "2013"}</div><div className="l">{l.stat3l || "First digital asset angel group"}</div></div>
           </div>
           <div className="tags">
             {tags.map((t, i) => <span key={i}>{t}</span>)}
@@ -473,7 +473,7 @@ const Leader = () => {
 };
 
 const FAQ_DEFAULT = [
-  { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and cryptocurrency venture platform of Michael Terpin." },
+  { q: "What is Transform Ventures?", a: "Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin." },
 ];
 const FAQ = () => {
   const head = sec('faqHead');
@@ -530,7 +530,7 @@ const Footer = () => {
       <div className="cols">
         <div className="brand-col">
           <img src={LOGO} alt="Transform Ventures" loading="lazy" decoding="async"/>
-          <p>{ft.blurb || "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential."}</p>
+          <p>{ft.blurb || "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential."}</p>
         </div>
         <div className="col">
           <h4>Divisions</h4>

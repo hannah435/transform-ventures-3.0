@@ -14,7 +14,7 @@ function LeadershipPage() {
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Leadership",
     title: "Meet the founder.",
-    intro: "One of the most recognized figures in blockchain and cryptocurrency \u2014 early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
+    intro: "One of the most recognized figures in blockchain and digital asset \u2014 early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
   }, /*#__PURE__*/React.createElement(Leader, null), /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {

@@ -23,7 +23,7 @@ function EventsPage() {
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Transform Events",
     title: "Where the industry connects.",
-    intro: "Flagship blockchain conferences and crypto networking events bringing together industry leaders, angel investors, and founders for deal-making and knowledge sharing."
+    intro: "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders for deal-making and knowledge sharing."
   }, /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {

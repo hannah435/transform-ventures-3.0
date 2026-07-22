@@ -353,7 +353,7 @@ const Footer = () => /*#__PURE__*/React.createElement("footer", {
   alt: "Transform Ventures",
   loading: "lazy",
   decoding: "async"
-}), /*#__PURE__*/React.createElement("p", null, "Capital, resources, and strategic guidance for blockchain and cryptocurrency projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
+}), /*#__PURE__*/React.createElement("p", null, "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
   className: "col"
 }, /*#__PURE__*/React.createElement("h4", null, "Divisions"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
   href: `${P}division-group.html`

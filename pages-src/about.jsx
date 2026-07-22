@@ -1,8 +1,8 @@
 const TIMELINE_DEFAULT = [
       { year: "1994", title: "Marketwire Founded", desc: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M." },
-      { year: "2013", title: "BitAngels & Transform Group", desc: "Co-founded the first crypto angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether." },
+      { year: "2013", title: "BitAngels & Transform Group", desc: "Co-founded the first digital asset angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether." },
       { year: "2015", title: "Four Seasons of Bitcoin", desc: "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving." },
-      { year: "2018", title: "CoinAgenda → Tokenize", desc: "Created the leading conference series connecting mainstream investors with blockchain and crypto investments." },
+      { year: "2018", title: "CoinAgenda → Tokenize", desc: "Created the leading conference series connecting mainstream investors with blockchain and digital asset investments." },
       { year: "2021", title: "Transform Ventures", desc: "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management." },
       { year: "2024", title: "Bitcoin Supercycle Fund", desc: "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading." },
     ];
@@ -23,7 +23,7 @@ const TIMELINE_DEFAULT = [
               <div className="about-split reveal-d">
                 <div className="intro-col">
                   <div className="eyebrow-inline"><span className="d"/>{story.eyebrow || "Our Story"}</div>
-                  <h2>{story.heading || "The communications powerhouse behind crypto."}</h2>
+                  <h2>{story.heading || "The communications powerhouse behind digital asset."}</h2>
                 </div>
                 <div className="timeline-d">
                   {timeline.map((t, i) => (
