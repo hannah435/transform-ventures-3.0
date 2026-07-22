@@ -570,8 +570,11 @@ const Feature = () => {
     className: "feature-split reveal-d"
   }, /*#__PURE__*/React.createElement("div", {
     className: "visual"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "morph"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/transform-logo-3d.png",
+    alt: "Transform Ventures",
+    className: "feature-3d",
+    decoding: "async"
   })), /*#__PURE__*/React.createElement("div", {
     className: "copy"
   }, /*#__PURE__*/React.createElement("div", {

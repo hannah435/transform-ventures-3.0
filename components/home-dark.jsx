@@ -315,7 +315,7 @@ const Feature = () => {
     <div className="wavy-bg"/>
     <div className="container">
       <div className="feature-split reveal-d">
-        <div className="visual"><div className="morph"/></div>
+        <div className="visual"><img src="assets/transform-logo-3d.png" alt="Transform Ventures" className="feature-3d" decoding="async"/></div>
         <div className="copy">
           <div className="tag-row"><span>{f.tag1 || "Advisory"}</span><span>{f.tag2 || "Strategy"}</span></div>
           <h3>{f.title || "Every crypto venture finds its path."}</h3>

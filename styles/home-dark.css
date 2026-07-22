@@ -973,25 +973,22 @@ p {
   aspect-ratio: 1/1;
   border-radius: 20px;
   background:
-    radial-gradient(circle at 30% 30%, rgba(15, 181, 165, 0.5), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(109, 74, 255, 0.5), transparent 50%),
+    radial-gradient(circle at 30% 30%, rgba(15, 181, 165, 0.32), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(109, 74, 255, 0.34), transparent 55%),
     linear-gradient(135deg, #0b1028, #14091f);
   display: grid;
   place-items: center;
   position: relative;
   overflow: hidden;
+  perspective: 800px;
 }
 
-.feature-split .visual .morph {
-  width: 60%;
-  aspect-ratio: 1/1;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(170, 200, 255, 1) 0%, rgba(90, 130, 210, 0.8) 20%, rgba(50, 70, 140, 0.6) 40%, transparent 70%),
-    conic-gradient(from 0deg, var(--teal), var(--purple), var(--teal));
-  border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
-  animation: morph 12s ease-in-out infinite, rotate 20s linear infinite;
-  filter: blur(0.5px);
-  box-shadow: 0 0 80px rgba(109, 74, 255, 0.4), inset 0 0 60px rgba(0, 0, 0, 0.4);
+.feature-split .visual .feature-3d {
+  width: 74%;
+  height: auto;
+  transform-style: preserve-3d;
+  animation: logo-levitate 7s ease-in-out infinite;
+  will-change: transform, filter;
 }
 
 @keyframes morph {
@@ -1858,7 +1855,7 @@ p {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-logo-3d img { animation: none; }
+  .hero-logo-3d img, .feature-split .visual .feature-3d { animation: none; }
 }
 
 /* (Scroll-driven brightness pulse is applied as the top body-background layer above,
