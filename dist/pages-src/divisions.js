@@ -1,16 +1,16 @@
 const CAPABILITIES = {
   group: [{
     t: "First-ever token sale",
-    d: "Launched the first token sale in blockchain history — Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX."
+    d: "Launched the first token sale in blockchain history, Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX."
   }, {
     t: "Digital Asset media leadership",
-    d: "Regular placements in every leading digital asset publication — CoinDesk, Cointelegraph, Decrypt — plus top industry podcasts and YouTube channels."
+    d: "Regular placements in every leading digital asset publication, CoinDesk, Cointelegraph, Decrypt, plus top industry podcasts and YouTube channels."
   }, {
     t: "Tier-1 mainstream coverage",
     d: "Client stories placed in AP, BBC, Bloomberg, CNBC, Forbes, The New York Times, Reuters, TechCrunch, Wall Street Journal, and WIRED."
   }, {
     t: "Global office network",
-    d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto — the most extensive footprint in digital asset PR."
+    d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto, the most extensive footprint in digital asset PR."
   }],
   events: [{
     t: "Tokenize conference",
@@ -56,10 +56,10 @@ const CAPABILITIES = {
     d: "Cycle model mapping BTC to predictable halving-driven phases: spring, summer, fall, winter."
   }, {
     t: "Algorithmic trading",
-    d: "Season-specific strategies executed algorithmically — sell near cycle peaks, buy near bottoms."
+    d: "Season-specific strategies executed algorithmically, sell near cycle peaks, buy near bottoms."
   }, {
     t: "Bitcoin-only mandate",
-    d: "100% concentrated in bitcoin — no altcoins, no distractions."
+    d: "100% concentrated in bitcoin, no altcoins, no distractions."
   }, {
     t: "Institutional rails",
     d: "Coinbase Prime custody. NAV Fund Services administration. Regulated structure."
@@ -100,7 +100,7 @@ function DivisionsPage() {
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Our Ecosystem",
     title: "Five divisions. One vision.",
-    intro: "Transform Ventures operates across five specialized divisions \u2014 from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
+    intro: "Transform Ventures operates across five specialized divisions, from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
   }, /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -116,7 +116,7 @@ function DivisionsPage() {
     style: {
       color: d.color
     }
-  }, "/ ", d.num, " \u2014 ", d.badge), /*#__PURE__*/React.createElement("h2", null, d.name), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
+  }, "/ ", d.num, ", ", d.badge), /*#__PURE__*/React.createElement("h2", null, d.name), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
     className: "n-swatch",
     style: {
       background: d.color

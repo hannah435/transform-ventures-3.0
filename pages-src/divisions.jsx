@@ -1,9 +1,9 @@
 const CAPABILITIES = {
       group: [
-        { t: "First-ever token sale", d: "Launched the first token sale in blockchain history — Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX." },
-        { t: "Digital Asset media leadership", d: "Regular placements in every leading digital asset publication — CoinDesk, Cointelegraph, Decrypt — plus top industry podcasts and YouTube channels." },
+        { t: "First-ever token sale", d: "Launched the first token sale in blockchain history, Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX." },
+        { t: "Digital Asset media leadership", d: "Regular placements in every leading digital asset publication, CoinDesk, Cointelegraph, Decrypt, plus top industry podcasts and YouTube channels." },
         { t: "Tier-1 mainstream coverage", d: "Client stories placed in AP, BBC, Bloomberg, CNBC, Forbes, The New York Times, Reuters, TechCrunch, Wall Street Journal, and WIRED." },
-        { t: "Global office network", d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto — the most extensive footprint in digital asset PR." },
+        { t: "Global office network", d: "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto, the most extensive footprint in digital asset PR." },
       ],
       events: [
         { t: "Tokenize conference", d: "A premier blockchain conference exploring the future of tokenization. Global edition." },
@@ -25,8 +25,8 @@ const CAPABILITIES = {
       ],
       fund: [
         { t: "Four Seasons of Bitcoin", d: "Cycle model mapping BTC to predictable halving-driven phases: spring, summer, fall, winter." },
-        { t: "Algorithmic trading", d: "Season-specific strategies executed algorithmically — sell near cycle peaks, buy near bottoms." },
-        { t: "Bitcoin-only mandate", d: "100% concentrated in bitcoin — no altcoins, no distractions." },
+        { t: "Algorithmic trading", d: "Season-specific strategies executed algorithmically, sell near cycle peaks, buy near bottoms." },
+        { t: "Bitcoin-only mandate", d: "100% concentrated in bitcoin, no altcoins, no distractions." },
         { t: "Institutional rails", d: "Coinbase Prime custody. NAV Fund Services administration. Regulated structure." },
       ],
     };
@@ -52,14 +52,14 @@ const CAPABILITIES = {
         <Subpage
           eyebrow="Our Ecosystem"
           title="Five divisions. One vision."
-          intro="Transform Ventures operates across five specialized divisions — from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
+          intro="Transform Ventures operates across five specialized divisions, from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
         >
           <section className="d-section">
             <div className="container">
               {blocks.map((d, i) => (
                 <div key={i} id={d.key} className="div-block-d reveal-d">
                   <div className="lead">
-                    <div className="badge-d" style={{color: d.color}}>/ {d.num} — {d.badge}</div>
+                    <div className="badge-d" style={{color: d.color}}>/ {d.num}, {d.badge}</div>
                     <h2>{d.name}</h2>
                     <p>{d.desc}</p>
                     <div className="n-swatch" style={{background: d.color}}>{d.num}</div>

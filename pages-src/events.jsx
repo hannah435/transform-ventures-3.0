@@ -1,10 +1,4 @@
-const UPCOMING_DEFAULT = [
-      { date: "Sep 2026", city: "Las Vegas", name: "Tokenize Las Vegas", tag: "Flagship Conference", bg: "linear-gradient(135deg, #6D4AFF, #3A1F9E)" },
-      { date: "Jun 2026", city: "San Juan, PR", name: "BitAngels Summer Summit", tag: "Angel Network", bg: "linear-gradient(135deg, #F7931A, #B25E00)" },
-      { date: "Ongoing", city: "By invitation", name: "Tiger Mansion Dinners", tag: "Invite Only", bg: "linear-gradient(135deg, #0FB5A5, #0A6B63)" },
-    ];
     function EventsPage(){
-      const upcoming = tvList('upcoming', UPCOMING_DEFAULT);
       const head = tvSec('upcomingHead');
       return (
         <Subpage
@@ -18,25 +12,18 @@ const UPCOMING_DEFAULT = [
                 <div className="eyebrow-inline"><span className="d"/>{head.eyebrow || "Upcoming"}</div>
                 <h2 style={{textAlign:'left'}}>{head.title || "On the calendar."}</h2>
               </div>
-              <div className="events-list-d">
-                {upcoming.map((e, i) => (
-                  <div key={i} className={`event-row-d reveal-d d${(i%3)+1}`}>
-                    <div className="swatch" style={{background: e.bg}}/>
-                    <div>
-                      <div className="date">{e.date}</div>
-                      <div className="city">{e.city}</div>
-                    </div>
-                    <div>
-                      <div className="name">{e.name}</div>
-                      <div className="tag-line">{e.tag}</div>
-                    </div>
-                    <a href="#" className="btn-outline">Details →</a>
-                  </div>
-                ))}
+              <div className="luma-embed reveal-d">
+                <iframe
+                  src="https://luma.com/embed/calendar/cal-8JeX51iUBkNpJmP/events"
+                  title="Transform Ventures events calendar"
+                  frameBorder="0"
+                  allowFullScreen
+                  aria-hidden="false"
+                  tabIndex="0"
+                />
               </div>
             </div>
           </section>
-          <EventsList/>
           <CTAStrip/>
         </Subpage>
       );

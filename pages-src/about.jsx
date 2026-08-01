@@ -1,5 +1,5 @@
 const TIMELINE_DEFAULT = [
-      { year: "1994", title: "Marketwire Founded", desc: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M." },
+      { year: "1994", title: "Globe Newswire Founded", desc: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M." },
       { year: "2013", title: "BitAngels & Transform Group", desc: "Co-founded the first digital asset angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether." },
       { year: "2015", title: "Four Seasons of Bitcoin", desc: "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving." },
       { year: "2018", title: "CoinAgenda → Tokenize", desc: "Created the leading conference series connecting mainstream investors with blockchain and digital asset investments." },
@@ -16,7 +16,7 @@ const TIMELINE_DEFAULT = [
         <Subpage
           eyebrow="About Transform Ventures"
           title="Three decades of building at the edges of media and money."
-          intro="Transform Ventures is the venture platform of Michael Terpin — founder of Marketwire, BitAngels, and Tokenize — operating across five specialized divisions from San Juan, Puerto Rico."
+          intro="Transform Ventures is the venture platform of Michael Terpin, founder of Globe Newswire, BitAngels, and Tokenize, operating across five specialized divisions from San Juan, Puerto Rico."
         >
           <section className="d-section">
             <div className="container">

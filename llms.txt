@@ -1,11 +1,11 @@
 # Transform Ventures
 
-> Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin — known as the "Godfather of Crypto" (CNBC). It provides capital, resources, and strategic guidance to high-growth digital asset projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico.
+> Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin, known as the "Godfather of Crypto" (CNBC). It provides capital, resources, and strategic guidance to high-growth digital asset projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico.
 
-Founded on three decades of building at the intersection of media and money, Transform Ventures grew out of Marketwire (the first internet-based newswire, sold to NASDAQ for $200M), BitAngels (the first digital asset angel group, 2013), and Transform Group (the original blockchain PR firm, which powered the first-ever token sale — Mastercoin, 2013 — and 100+ ICO-era tokens including Ethereum, EOS, and Tether).
+Founded on three decades of building at the intersection of media and money, Transform Ventures grew out of Globe Newswire (the first internet-based newswire, sold to NASDAQ for $200M), BitAngels (the first digital asset angel group, 2013), and Transform Group (the original blockchain PR firm, which powered the first-ever token sale, Mastercoin, 2013, and 100+ ICO-era tokens including Ethereum, EOS, and Tether).
 
 ## Key facts
-- Founder & CEO: Michael Terpin — early bitcoin investor, author of "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich" (Skyhorse, 2024), creator of the "Four Seasons of Bitcoin" cycle model.
+- Founder & CEO: Michael Terpin, early bitcoin investor, author of "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich" (Skyhorse, 2024), creator of the "Four Seasons of Bitcoin" cycle model.
 - Headquarters: San Juan, Puerto Rico.
 - Five divisions: Transform Group (PR & communications), Transform Events (Tokenize, BitAngels, Tiger Mansion), Transform Capital (family office), Transform Strategies (advisory & consulting), Bitcoin Supercycle Fund (the first liquid bitcoin-only hedge fund).
 
@@ -17,10 +17,10 @@ Founded on three decades of building at the intersection of media and money, Tra
 - [Events](https://www.transformventures.io/pages/events.html): Tokenize, BitAngels, and Tiger Mansion events.
 - [News & Media](https://www.transformventures.io/pages/media.html): Interviews and press featuring Michael Terpin.
 - [Blog](https://www.transformventures.io/pages/blog.html): Analysis on bitcoin cycles, market outlook, and fund strategy.
-- [Contact](https://www.transformventures.io/pages/contact.html): Get in touch — investments, advisory, events, partnerships.
+- [Contact](https://www.transformventures.io/pages/contact.html): Get in touch, investments, advisory, events, partnerships.
 
 ## Divisions
-- [Transform Group](https://www.transformventures.io/pages/division-group.html): The original blockchain PR firm — communications and media.
+- [Transform Group](https://www.transformventures.io/pages/division-group.html): The original blockchain PR firm, communications and media.
 - [Transform Events](https://www.transformventures.io/pages/division-events.html): Tokenize conference, BitAngels network, Tiger Mansion.
 - [Transform Capital](https://www.transformventures.io/pages/division-capital.html): Michael Terpin's digital asset family office.
 - [Transform Strategies](https://www.transformventures.io/pages/division-strategies.html): Token launch and blockchain advisory.

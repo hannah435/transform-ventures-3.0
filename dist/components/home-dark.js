@@ -1,10 +1,49 @@
-// Transform Ventures — Dark variant landing page
+// Transform Ventures, Dark variant landing page
 
 const {
   useState,
   useEffect,
   useMemo
 } = React;
+
+// Mobile-only: auto-advance a horizontal scroll carousel every `interval` ms, pausing on user swipe.
+function useAutoCarousel(ref, interval = 4000) {
+  useEffect(() => {
+    const track = ref.current;
+    if (!track) return;
+    let idx = 0,
+      paused = false,
+      resumeT;
+    const scrollable = () => track.scrollWidth - track.clientWidth > 8;
+    const pause = () => {
+      paused = true;
+      clearTimeout(resumeT);
+      resumeT = setTimeout(() => {
+        paused = false;
+      }, 6000);
+    };
+    track.addEventListener('touchstart', pause, {
+      passive: true
+    });
+    track.addEventListener('pointerdown', pause);
+    const id = setInterval(() => {
+      if (paused || !scrollable()) return;
+      const cards = track.children;
+      if (!cards.length) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({
+        left: cards[idx].offsetLeft - cards[0].offsetLeft,
+        behavior: 'smooth'
+      });
+    }, interval);
+    return () => {
+      clearInterval(id);
+      clearTimeout(resumeT);
+      track.removeEventListener('touchstart', pause);
+      track.removeEventListener('pointerdown', pause);
+    };
+  }, [ref, interval]);
+}
 
 // ---- Editable content (injected from the database; falls back to defaults below) ----
 const TV = typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home || {};
@@ -324,11 +363,15 @@ const Hero = () => {
   const h = sec('hero');
   return /*#__PURE__*/React.createElement("section", {
     className: "d-hero"
-  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement(Stars, null), /*#__PURE__*/React.createElement("div", {
+    className: "hero-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-copy"
+  }, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
     className: "grad"
   }, h.titleLine1 || "Build with", /*#__PURE__*/React.createElement("br", null), h.titleLine2 || "conviction")), /*#__PURE__*/React.createElement("p", {
     className: "lead"
-  }, h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
+  }, h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin, the "Godfather of Crypto."'), /*#__PURE__*/React.createElement("div", {
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
@@ -375,7 +418,18 @@ const Hero = () => {
     fill: "currentColor"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-  })))));
+  }))))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-visual",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "hero-logo-3d",
+    src: h.heroLogo || "assets/transform-logo-3d.png",
+    alt: "Transform Ventures crystal logo",
+    width: "460",
+    height: "460",
+    decoding: "async",
+    fetchpriority: "high"
+  }))));
 };
 const Globe = () => {
   const canvasRef = React.useRef(null);
@@ -456,7 +510,7 @@ const Globe = () => {
         const alpha = Math.min(1, 0.3 + depth * 0.7 + lit * 0.9);
         const size = 1.2 + depth * 1.2;
 
-        // purple dot grid — brighter accent on the lit equator band
+        // purple dot grid, brighter accent on the lit equator band
         const isAccent = lit > 0.85 && Math.abs(d.lat) < 0.3;
         const color = isAccent ? `rgba(232,222,255,${alpha})` : `rgba(190,170,255,${alpha})`;
         ctx.fillStyle = color;
@@ -481,7 +535,7 @@ const Globe = () => {
 const DIVISIONS_DEFAULT = [{
   name: "Transform Group",
   tag: "Communications & PR",
-  desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
+  desc: "The original blockchain PR firm, launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
   kpi: "100+ ICO launches · Since 2013"
 }, {
   name: "Transform Events",
@@ -507,6 +561,43 @@ const DIVISIONS_DEFAULT = [{
 const DIVISIONS = Array.isArray(TV.divisions) && TV.divisions.length ? TV.divisions : DIVISIONS_DEFAULT;
 const Divisions = () => {
   const head = sec('divisionsHead');
+  const trackRef = React.useRef(null);
+  // Mobile-only: auto-advance the horizontal carousel every 4s, pausing on user swipe.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let idx = 0,
+      paused = false,
+      resumeT;
+    const scrollable = () => track.scrollWidth - track.clientWidth > 8;
+    const pause = () => {
+      paused = true;
+      clearTimeout(resumeT);
+      resumeT = setTimeout(() => {
+        paused = false;
+      }, 6000);
+    };
+    track.addEventListener('touchstart', pause, {
+      passive: true
+    });
+    track.addEventListener('pointerdown', pause);
+    const id = setInterval(() => {
+      if (paused || !scrollable()) return;
+      const cards = track.children;
+      if (!cards.length) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({
+        left: cards[idx].offsetLeft - cards[0].offsetLeft,
+        behavior: 'smooth'
+      });
+    }, 4000);
+    return () => {
+      clearInterval(id);
+      clearTimeout(resumeT);
+      track.removeEventListener('touchstart', pause);
+      track.removeEventListener('pointerdown', pause);
+    };
+  }, []);
   return /*#__PURE__*/React.createElement("section", {
     id: "divisions",
     className: "d-section"
@@ -527,25 +618,12 @@ const Divisions = () => {
     }
   }), head.eyebrow || "Our ecosystem"), /*#__PURE__*/React.createElement("h2", null, head.title || "Five divisions. One vision."), /*#__PURE__*/React.createElement("p", {
     className: "sub"
-  }, head.sub || "Transform Ventures operates across five specialized divisions — from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
-    className: "divisions-row"
-  }, DIVISIONS.slice(0, 3).map((d, i) => /*#__PURE__*/React.createElement("div", {
+  }, head.sub || "Transform Ventures operates across five specialized divisions, from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund.")), /*#__PURE__*/React.createElement("div", {
+    className: "divisions-track",
+    ref: trackRef
+  }, DIVISIONS.map((d, i) => /*#__PURE__*/React.createElement("div", {
     key: d.name,
-    className: `dark-card reveal-d d${i + 1}`,
-    onMouseMove: e => {
-      const r = e.currentTarget.getBoundingClientRect();
-      e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
-      e.currentTarget.style.setProperty('--my', `${(e.clientY - r.top) / r.height * 100}%`);
-    }
-  }, /*#__PURE__*/React.createElement("h3", null, d.name), /*#__PURE__*/React.createElement("div", {
-    className: "tag"
-  }, d.tag), /*#__PURE__*/React.createElement("p", null, d.desc), /*#__PURE__*/React.createElement("div", {
-    className: "kpi"
-  }, d.kpi)))), /*#__PURE__*/React.createElement("div", {
-    className: "divisions-row divisions-row-2up"
-  }, DIVISIONS.slice(3).map((d, i) => /*#__PURE__*/React.createElement("div", {
-    key: d.name,
-    className: `dark-card reveal-d d${i + 1}`,
+    className: `dark-card reveal-d d${i % 3 + 1}`,
     onMouseMove: e => {
       const r = e.currentTarget.getBoundingClientRect();
       e.currentTarget.style.setProperty('--mx', `${(e.clientX - r.left) / r.width * 100}%`);
@@ -579,7 +657,7 @@ const Feature = () => {
     className: "copy"
   }, /*#__PURE__*/React.createElement("div", {
     className: "tag-row"
-  }, /*#__PURE__*/React.createElement("span", null, f.tag1 || "Advisory"), /*#__PURE__*/React.createElement("span", null, f.tag2 || "Strategy")), /*#__PURE__*/React.createElement("h3", null, f.title || "Every digital asset venture finds its path."), /*#__PURE__*/React.createElement("p", null, f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, f.bullet1 || "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, f.bullet2 || "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, f.bullet3 || "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, f.tag1 || "Advisory"), /*#__PURE__*/React.createElement("span", null, f.tag2 || "Strategy")), /*#__PURE__*/React.createElement("h3", null, f.title || "Every digital asset venture finds its path."), /*#__PURE__*/React.createElement("p", null, f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations, helping blockchain ventures succeed from seed to scale."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, f.bullet1 || "End-to-end advisory on token design, distribution, and launch"), /*#__PURE__*/React.createElement("li", null, f.bullet2 || "Strategic positioning and market-entry plans"), /*#__PURE__*/React.createElement("li", null, f.bullet3 || "Access to the full Transform Ventures network")), /*#__PURE__*/React.createElement("div", {
     className: "actions"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
@@ -605,7 +683,7 @@ const StatBand = () => {
     className: "bignum"
   }, s.bignum || "$200M"), /*#__PURE__*/React.createElement("p", {
     className: "cap-desc"
-  }, s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of digital asset ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
+  }, s.capDesc || "Globe Newswire exit to NASDAQ, the foundation that seeded 12+ years of digital asset ventures, clients, and capital.")), /*#__PURE__*/React.createElement("div", {
     className: "sub-stats"
   }, /*#__PURE__*/React.createElement("div", {
     className: "reveal-d d1"
@@ -643,6 +721,8 @@ const EVENTS_DEFAULT = [{
 const EVENTS = Array.isArray(TV.events) && TV.events.length ? TV.events : EVENTS_DEFAULT;
 const Events = () => {
   const head = sec('eventsHead');
+  const eventsRef = React.useRef(null);
+  useAutoCarousel(eventsRef);
   return /*#__PURE__*/React.createElement("section", {
     id: "events",
     className: "d-section"
@@ -664,7 +744,8 @@ const Events = () => {
   }), head.eyebrow || "Transform Events"), /*#__PURE__*/React.createElement("h2", null, head.title || "Where the industry connects."), /*#__PURE__*/React.createElement("p", {
     className: "sub"
   }, head.sub || "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders.")), /*#__PURE__*/React.createElement("div", {
-    className: "events-grid-d"
+    className: "events-grid-d",
+    ref: eventsRef
   }, EVENTS.map((e, i) => /*#__PURE__*/React.createElement("a", {
     href: e.url,
     target: "_blank",
@@ -728,7 +809,7 @@ const Fund = () => {
     className: "copy"
   }, /*#__PURE__*/React.createElement("span", {
     className: "tag-orange"
-  }, f.badge || "Amazon Best Seller · 2024"), /*#__PURE__*/React.createElement("h3", null, f.bookTitle || "Bitcoin Supercycle"), /*#__PURE__*/React.createElement("p", null, f.bookDesc || "How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."), /*#__PURE__*/React.createElement("div", {
+  }, f.badge || "Amazon Best Seller · 2024"), /*#__PURE__*/React.createElement("h3", null, f.bookTitle || "Bitcoin Supercycle"), /*#__PURE__*/React.createElement("p", null, f.bookDesc || "How the crypto calendar can make you rich, by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."), /*#__PURE__*/React.createElement("div", {
     className: "kpis"
   }, /*#__PURE__*/React.createElement("div", {
     className: "k"
@@ -784,7 +865,7 @@ const Leader = () => {
     }
   }), l.eyebrow || "Leadership"), /*#__PURE__*/React.createElement("h2", null, l.title || "Meet the founder."), /*#__PURE__*/React.createElement("p", {
     className: "sub"
-  }, l.sub || "Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund.")), /*#__PURE__*/React.createElement("div", {
+  }, l.sub || "Three decades of building at the intersection of media, technology, and capital, from Globe Newswire to the Bitcoin Supercycle Fund.")), /*#__PURE__*/React.createElement("div", {
     className: "leader-d reveal-d"
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo"
@@ -799,7 +880,7 @@ const Leader = () => {
     className: "quote"
   }, l.quote || '"Godfather of Crypto"'), /*#__PURE__*/React.createElement("span", {
     className: "source"
-  }, l.source || "— CNBC"))), /*#__PURE__*/React.createElement("div", {
+  }, l.source || "CNBC"))), /*#__PURE__*/React.createElement("div", {
     className: "info"
   }, /*#__PURE__*/React.createElement("div", {
     className: "role"
@@ -809,11 +890,11 @@ const Leader = () => {
     style: {
       marginTop: 20
     }
-  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
+  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur, known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 14
     }
-  }, l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
+  }, l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Globe Newswire, the first internet-based newswire, sold to NASDAQ for $200M."), /*#__PURE__*/React.createElement("div", {
     className: "leader-stats-d"
   }, /*#__PURE__*/React.createElement("div", {
     className: "stat"
@@ -827,7 +908,7 @@ const Leader = () => {
     className: "n"
   }, l.stat2n || "$200M"), /*#__PURE__*/React.createElement("div", {
     className: "l"
-  }, l.stat2l || "Marketwire exit")), /*#__PURE__*/React.createElement("div", {
+  }, l.stat2l || "Globe Newswire exit")), /*#__PURE__*/React.createElement("div", {
     className: "stat"
   }, /*#__PURE__*/React.createElement("div", {
     className: "n"
@@ -905,7 +986,7 @@ const FinalCTA = () => {
     className: "container"
   }, /*#__PURE__*/React.createElement("div", {
     className: "final-cta reveal-d"
-  }, /*#__PURE__*/React.createElement("h2", null, c.title || "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, c.desc || "Whether you're raising capital, launching a token, or need strategic guidance — let's connect."), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("h2", null, c.title || "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, c.desc || "Whether you're raising capital, launching a token, or need strategic guidance, let's connect."), /*#__PURE__*/React.createElement("div", {
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",

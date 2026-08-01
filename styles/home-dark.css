@@ -25,23 +25,34 @@
 }
 
 html,
+html { background: var(--bg); }
 body {
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
 }
 
 body {
   font-family: var(--font-sans);
-  /* Top layer = scroll-driven dim (alpha from --bg-dim); then glow, scrim, image, base. */
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fixed full-viewport background layer.
+   Uses a position:fixed pseudo-element instead of `background-attachment: fixed`,
+   which iOS Safari refuses to render (it would fall back to solid black).
+   Top layer = scroll-driven dim (alpha from --bg-dim); then glow, scrim, image, base. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     linear-gradient(rgba(4, 5, 9, var(--bg-dim, 0)), rgba(4, 5, 9, var(--bg-dim, 0))),
     radial-gradient(ellipse 1400px 800px at 50% -200px, rgba(109, 74, 255, 0.16), transparent 60%),
     linear-gradient(180deg, rgba(5, 6, 8, 0.38) 0%, rgba(5, 6, 8, 0.64) 100%),
     url("../assets/bg-site.webp") center center / cover no-repeat,
     var(--bg);
-  background-attachment: fixed;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
 
@@ -508,12 +519,97 @@ p {
 .d-hero {
   position: relative;
   min-height: 100vh;
-  padding: 160px 24px 0;
+  padding: 130px 24px 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   overflow: hidden;
+}
+
+/* Two-column hero: copy on the left, animated 3D crystal logo on the right */
+.hero-inner {
+  width: 100%;
+  max-width: 1260px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-copy {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.d-hero .hero-copy h1 { margin: 0; max-width: 560px; }
+.d-hero .hero-copy p.lead { margin: 22px 0 0; text-align: left; max-width: 520px; }
+.d-hero .hero-copy .ctas { margin-top: 34px; }
+.d-hero .hero-copy .hero-socials { margin-top: 46px; justify-content: flex-start; }
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  animation: fade-up 1s ease .5s both;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  background: radial-gradient(circle, rgba(150, 110, 255, 0.4), rgba(124, 77, 255, 0.16) 45%, transparent 68%);
+  filter: blur(55px);
+  z-index: -1;
+  animation: hero-glow 5.5s ease-in-out infinite;
+}
+
+.hero-logo-3d {
+  width: min(120%, 600px);
+  height: auto;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+  animation: hero-levitate 7s ease-in-out infinite;
+}
+
+/* Same motion as logo-levitate, but a light-purple glow only (no teal shift) */
+@keyframes hero-levitate {
+  0% {
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg) scale(var(--logo-zoom, 1));
+    filter: drop-shadow(0 16px 24px rgba(0, 0, 0, .5)) drop-shadow(0 0 18px rgba(178, 150, 255, .5));
+  }
+  50% {
+    transform: translateY(-16px) rotateY(14deg) rotateX(-4deg) scale(var(--logo-zoom, 1));
+    filter: drop-shadow(0 24px 34px rgba(0, 0, 0, .45)) drop-shadow(0 0 28px rgba(178, 150, 255, .62));
+  }
+  100% {
+    transform: translateY(0) rotateY(-14deg) rotateX(5deg) scale(var(--logo-zoom, 1));
+    filter: drop-shadow(0 16px 24px rgba(0, 0, 0, .5)) drop-shadow(0 0 18px rgba(178, 150, 255, .5));
+  }
+}
+
+@keyframes hero-glow {
+  0%, 100% { opacity: .5; transform: scale(.95); }
+  50%      { opacity: .95; transform: scale(1.1); }
+}
+
+@media (max-width: 860px) {
+  .d-hero { padding: 108px 22px 60px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    text-align: center;
+  }
+  .hero-visual { display: none; }
+  .d-hero .hero-copy { text-align: center; align-items: center; }
+  .d-hero .hero-copy h1 { max-width: none; }
+  .d-hero .hero-copy p.lead { margin-left: auto; margin-right: auto; text-align: center; }
+  .d-hero .hero-copy .hero-socials { justify-content: center; margin-top: 34px; }
 }
 
 .d-hero .chip {
@@ -867,19 +963,18 @@ p {
   }
 }
 
-.divisions-row {
+/* Single track: 3 on top, 2 centered below on desktop; horizontal carousel on mobile */
+.divisions-track {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.divisions-row-2up {
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 680px;
-  margin-top: 20px;
-}
+.divisions-track > .dark-card { grid-column: span 2; }
+.divisions-track > .dark-card:nth-child(4) { grid-column: 2 / span 2; }
+.divisions-track > .dark-card:nth-child(5) { grid-column: 4 / span 2; }
 
 .dark-card {
   position: relative;
@@ -1630,8 +1725,14 @@ p {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .divisions-row {
-    grid-template-columns: 1fr 1fr;
+  .divisions-track {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+  }
+  .divisions-track > .dark-card,
+  .divisions-track > .dark-card:nth-child(4),
+  .divisions-track > .dark-card:nth-child(5) {
+    grid-column: auto;
   }
 
   .feature-split {
@@ -1708,16 +1809,52 @@ p {
   }
 }
 
-@media (max-width: 560px) {
-  .divisions-row {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  /* Horizontal swipeable carousel (auto-advances every 4s via JS) */
+  .divisions-track {
+    display: flex;
+    grid-template-columns: none;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 14px;
+    padding: 4px 16px 16px;
+    scrollbar-width: none;
+  }
+  .divisions-track::-webkit-scrollbar { display: none; }
+  .divisions-track > .dark-card,
+  .divisions-track > .dark-card:nth-child(4),
+  .divisions-track > .dark-card:nth-child(5) {
+    grid-column: auto;
+    flex: 0 0 84%;
+    scroll-snap-align: start;
   }
 
+  /* Events cards: same swipeable auto-carousel */
   .events-grid-d {
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: none;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 14px;
+    padding: 4px 16px 16px;
+    scrollbar-width: none;
   }
+  .events-grid-d::-webkit-scrollbar { display: none; }
+  .events-grid-d > .event-card-d {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+}
 
-  .leader-d .photo { max-width: 100%; aspect-ratio: 5/6; }
+@media (max-width: 560px) {
+
+  .leader-d .photo { max-width: 230px; margin: 0 auto; aspect-ratio: 4/5; }
   .leader-d .info .leader-stats-d .stat .n { font-size: 20px; }
   .leader-d .info .tags { gap: 6px; }
   .leader-d .info .tags span { font-size: 10px; padding: 3px 9px; }
@@ -1735,8 +1872,10 @@ p {
   }
 
   .d-footer .cols {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 24px;
   }
+  .d-footer .brand-col { grid-column: 1 / -1; }
 
   .d-hero .ctas {
     flex-direction: column;
@@ -1777,6 +1916,10 @@ p {
     justify-content: center;
     white-space: nowrap;
   }
+
+  /* Feature section: slightly tighter logo on phones (type handled by global mobile scale) */
+  .feature-split .visual { aspect-ratio: 16/11; }
+  .feature-split .visual .feature-3d { width: 60%; }
 
   .stat-band .sub-stats {
     grid-template-columns: 1fr;
@@ -1821,25 +1964,6 @@ p {
   .faq-a { padding: 0 18px 18px; font-size: 14px; }
 }
 
-/* Hero 3D crystal logo — levitating loop */
-.hero-logo-3d {
-  position: relative;
-  z-index: 0;
-  perspective: 1000px;
-  margin-bottom: 6px;
-  animation: logo-in .9s ease .15s both;
-  will-change: transform;
-}
-@keyframes logo-in { from { opacity: 0; } to { opacity: 1; } }
-.hero-logo-3d img {
-  width: clamp(96px, 13vw, 148px);
-  height: auto;
-  display: block;
-  transform-origin: center top;
-  transform-style: preserve-3d;
-  animation: logo-levitate 7s ease-in-out infinite;
-  will-change: transform, filter, opacity;
-}
 @keyframes logo-levitate {
   0% {
     transform: translateY(0) rotateY(-14deg) rotateX(5deg) scale(var(--logo-zoom, 1));
@@ -1855,8 +1979,31 @@ p {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-logo-3d img, .feature-split .visual .feature-3d { animation: none; }
+  .feature-split .visual .feature-3d { animation: none; }
 }
 
 /* (Scroll-driven brightness pulse is applied as the top body-background layer above,
    whose alpha comes from --bg-dim, set by a small injected script.) */
+
+/* ===== Luma calendar embed (Events page) ===== */
+.luma-embed {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.luma-embed iframe {
+  display: block;
+  width: 100%;
+  height: 720px;
+  border: 1px solid rgba(191, 203, 218, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+@media (max-width: 600px) {
+  .luma-embed iframe { height: 640px; border-radius: 12px; }
+}
+
+/* ===== GLOBAL MOBILE SCALE — render the whole site 10% smaller on phones =====
+   Scales the content wrapper (not <body>) so the fixed background layer stays full-bleed. */
+@media (max-width: 600px) {
+  #root { zoom: 0.9; }
+}

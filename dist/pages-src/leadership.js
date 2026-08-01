@@ -3,10 +3,10 @@ const PRESS_DEFAULT = [{
   quote: "Called Michael Terpin the 'Godfather of Crypto' for his early advocacy and investment across the industry."
 }, {
   src: "Yahoo Finance",
-  quote: "'Veteran investor predicts shocking bitcoin rally by 2033.' — Coverage of Terpin's Four Seasons model."
+  quote: "'Veteran investor predicts shocking bitcoin rally by 2033.'Coverage of Terpin's Four Seasons model."
 }, {
   src: "Skyhorse Publishing",
-  quote: "Author of 'Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich' — 2024 release."
+  quote: "Author of 'Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich'2024 release."
 }];
 function LeadershipPage() {
   const press = tvList('press', PRESS_DEFAULT);
@@ -14,7 +14,7 @@ function LeadershipPage() {
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Leadership",
     title: "Meet the founder.",
-    intro: "One of the most recognized figures in blockchain and digital asset \u2014 early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
+    intro: "One of the most recognized figures in blockchain and digital asset, early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
   }, /*#__PURE__*/React.createElement(Leader, null), /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {

@@ -1,6 +1,6 @@
 const TIMELINE_DEFAULT = [{
   year: "1994",
-  title: "Marketwire Founded",
+  title: "Globe Newswire Founded",
   desc: "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M."
 }, {
   year: "2013",
@@ -32,7 +32,7 @@ function About() {
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "About Transform Ventures",
     title: "Three decades of building at the edges of media and money.",
-    intro: "Transform Ventures is the venture platform of Michael Terpin \u2014 founder of Marketwire, BitAngels, and Tokenize \u2014 operating across five specialized divisions from San Juan, Puerto Rico."
+    intro: "Transform Ventures is the venture platform of Michael Terpin, founder of Globe Newswire, BitAngels, and Tokenize, operating across five specialized divisions from San Juan, Puerto Rico."
   }, /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {

@@ -1,6 +1,27 @@
-// Transform Ventures — Dark variant landing page
+// Transform Ventures, Dark variant landing page
 
 const { useState, useEffect, useMemo } = React;
+
+// Mobile-only: auto-advance a horizontal scroll carousel every `interval` ms, pausing on user swipe.
+function useAutoCarousel(ref, interval = 4000) {
+  useEffect(() => {
+    const track = ref.current;
+    if (!track) return;
+    let idx = 0, paused = false, resumeT;
+    const scrollable = () => track.scrollWidth - track.clientWidth > 8;
+    const pause = () => { paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, 6000); };
+    track.addEventListener('touchstart', pause, { passive: true });
+    track.addEventListener('pointerdown', pause);
+    const id = setInterval(() => {
+      if (paused || !scrollable()) return;
+      const cards = track.children;
+      if (!cards.length) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({ left: cards[idx].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+    }, interval);
+    return () => { clearInterval(id); clearTimeout(resumeT); track.removeEventListener('touchstart', pause); track.removeEventListener('pointerdown', pause); };
+  }, [ref, interval]);
+}
 
 // ---- Editable content (injected from the database; falls back to defaults below) ----
 const TV = (typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home) || {};
@@ -147,9 +168,11 @@ const Hero = () => {
   return (
   <section className="d-hero">
     <Stars/>
+    <div className="hero-inner">
+    <div className="hero-copy">
     <h1><span className="grad">{h.titleLine1 || "Build with"}<br/>{h.titleLine2 || "conviction"}</span></h1>
     <p className="lead">
-      {h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin — the "Godfather of Crypto."'}
+      {h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin, the "Godfather of Crypto."'}
     </p>
     <div className="ctas">
       <a className="btn-lime" href={h.cta1Href || "pages/divisions.html"}>{h.cta1Text || "Explore divisions →"}</a>
@@ -165,6 +188,11 @@ const Hero = () => {
       <a href={h.youtube || "#"} aria-label="YouTube" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
+    </div>
+    </div>
+    <div className="hero-visual" aria-hidden="true">
+      <img className="hero-logo-3d" src={h.heroLogo || "assets/transform-logo-3d.png"} alt="Transform Ventures crystal logo" width="460" height="460" decoding="async" fetchpriority="high"/>
+    </div>
     </div>
   </section>
   );
@@ -238,7 +266,7 @@ const Globe = () => {
         const alpha = Math.min(1, 0.3 + depth * 0.7 + lit * 0.9);
         const size = 1.2 + depth * 1.2;
 
-        // purple dot grid — brighter accent on the lit equator band
+        // purple dot grid, brighter accent on the lit equator band
         const isAccent = (lit > 0.85 && Math.abs(d.lat) < 0.3);
         const color = isAccent ? `rgba(232,222,255,${alpha})` : `rgba(190,170,255,${alpha})`;
 
@@ -256,7 +284,7 @@ const Globe = () => {
 };
 
 const DIVISIONS_DEFAULT = [
-  { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013" },
+  { name: "Transform Group", tag: "Communications & PR", desc: "The original blockchain PR firm, launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.", kpi: "100+ ICO launches · Since 2013" },
   { name: "Transform Events", tag: "Tokenize · BitAngels · Tiger Mansion", desc: "Premier blockchain events connecting founders and investors worldwide through curated gatherings.", kpi: "3 flagship events" },
   { name: "Transform Capital", tag: "Family Office", desc: "Strategic investments across the digital asset landscape with a long-term investment horizon.", kpi: "Multi-strategy" },
   { name: "Transform Strategies", tag: "Advisory & Consulting", desc: "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.", kpi: "Seed → Scale" },
@@ -266,6 +294,25 @@ const DIVISIONS = (Array.isArray(TV.divisions) && TV.divisions.length) ? TV.divi
 
 const Divisions = () => {
   const head = sec('divisionsHead');
+  const trackRef = React.useRef(null);
+  // Mobile-only: auto-advance the horizontal carousel every 4s, pausing on user swipe.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    let idx = 0, paused = false, resumeT;
+    const scrollable = () => track.scrollWidth - track.clientWidth > 8;
+    const pause = () => { paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, 6000); };
+    track.addEventListener('touchstart', pause, { passive: true });
+    track.addEventListener('pointerdown', pause);
+    const id = setInterval(() => {
+      if (paused || !scrollable()) return;
+      const cards = track.children;
+      if (!cards.length) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({ left: cards[idx].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+    }, 4000);
+    return () => { clearInterval(id); clearTimeout(resumeT); track.removeEventListener('touchstart', pause); track.removeEventListener('pointerdown', pause); };
+  }, []);
   return (
   <section id="divisions" className="d-section">
     <div className="wavy-bg"/>
@@ -273,25 +320,11 @@ const Divisions = () => {
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{head.eyebrow || "Our ecosystem"}</div>
         <h2>{head.title || "Five divisions. One vision."}</h2>
-        <p className="sub">{head.sub || "Transform Ventures operates across five specialized divisions — from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."}</p>
+        <p className="sub">{head.sub || "Transform Ventures operates across five specialized divisions, from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."}</p>
       </div>
-      <div className="divisions-row">
-        {DIVISIONS.slice(0, 3).map((d, i) => (
-          <div key={d.name} className={`dark-card reveal-d d${i+1}`} onMouseMove={(e) => {
-            const r = e.currentTarget.getBoundingClientRect();
-            e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-            e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-          }}>
-            <h3>{d.name}</h3>
-            <div className="tag">{d.tag}</div>
-            <p>{d.desc}</p>
-            <div className="kpi">{d.kpi}</div>
-          </div>
-        ))}
-      </div>
-      <div className="divisions-row divisions-row-2up">
-        {DIVISIONS.slice(3).map((d, i) => (
-          <div key={d.name} className={`dark-card reveal-d d${i+1}`} onMouseMove={(e) => {
+      <div className="divisions-track" ref={trackRef}>
+        {DIVISIONS.map((d, i) => (
+          <div key={d.name} className={`dark-card reveal-d d${(i % 3)+1}`} onMouseMove={(e) => {
             const r = e.currentTarget.getBoundingClientRect();
             e.currentTarget.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
             e.currentTarget.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
@@ -319,7 +352,7 @@ const Feature = () => {
         <div className="copy">
           <div className="tag-row"><span>{f.tag1 || "Advisory"}</span><span>{f.tag2 || "Strategy"}</span></div>
           <h3>{f.title || "Every digital asset venture finds its path."}</h3>
-          <p>{f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale."}</p>
+          <p>{f.desc || "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations, helping blockchain ventures succeed from seed to scale."}</p>
           <ul>
             <li>{f.bullet1 || "End-to-end advisory on token design, distribution, and launch"}</li>
             <li>{f.bullet2 || "Strategic positioning and market-entry plans"}</li>
@@ -345,7 +378,7 @@ const StatBand = () => {
       <div className="reveal-d">
         <div className="cap">{s.cap || "Portfolio & track record"}</div>
         <div className="bignum">{s.bignum || "$200M"}</div>
-        <p className="cap-desc">{s.capDesc || "Marketwire exit to NASDAQ — the foundation that seeded 12+ years of digital asset ventures, clients, and capital."}</p>
+        <p className="cap-desc">{s.capDesc || "Globe Newswire exit to NASDAQ, the foundation that seeded 12+ years of digital asset ventures, clients, and capital."}</p>
       </div>
       <div className="sub-stats">
         <div className="reveal-d d1"><div className="n">{s.sub1n || "100+"}</div><div className="l">{s.sub1l || "ICO-era token launches"}</div></div>
@@ -365,6 +398,8 @@ const EVENTS = (Array.isArray(TV.events) && TV.events.length) ? TV.events : EVEN
 
 const Events = () => {
   const head = sec('eventsHead');
+  const eventsRef = React.useRef(null);
+  useAutoCarousel(eventsRef);
   return (
   <section id="events" className="d-section">
     <div className="wavy-bg"/>
@@ -374,7 +409,7 @@ const Events = () => {
         <h2>{head.title || "Where the industry connects."}</h2>
         <p className="sub">{head.sub || "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders."}</p>
       </div>
-      <div className="events-grid-d">
+      <div className="events-grid-d" ref={eventsRef}>
         {EVENTS.map((e, i) => (
           <a href={e.url} target="_blank" rel="noopener" key={e.name} className={`event-card-d reveal-d d${i+1}`}>
             <div className="thumb"><img src={e.img} alt={e.name} loading="lazy" decoding="async"/></div>
@@ -410,7 +445,7 @@ const Fund = () => {
         <div className="copy">
           <span className="tag-orange">{f.badge || "Amazon Best Seller · 2024"}</span>
           <h3>{f.bookTitle || "Bitcoin Supercycle"}</h3>
-          <p>{f.bookDesc || "How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."}</p>
+          <p>{f.bookDesc || "How the crypto calendar can make you rich, by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy."}</p>
           <div className="kpis">
             <div className="k"><div className="n">{f.kpi1n || "100%"}</div><div className="l">{f.kpi1l || "Bitcoin-Only"}</div></div>
             <div className="k"><div className="n">{f.kpi2n || "Algo"}</div><div className="l">{f.kpi2l || "Algorithmic Trading"}</div></div>
@@ -439,24 +474,24 @@ const Leader = () => {
       <div className="sec-head reveal-d">
         <div className="eyebrow-inline"><span style={{width:5,height:5,borderRadius:'50%',background:'var(--lime)'}}/>{l.eyebrow || "Leadership"}</div>
         <h2>{l.title || "Meet the founder."}</h2>
-        <p className="sub">{l.sub || "Three decades of building at the intersection of media, technology, and capital — from Marketwire to the Bitcoin Supercycle Fund."}</p>
+        <p className="sub">{l.sub || "Three decades of building at the intersection of media, technology, and capital, from Globe Newswire to the Bitcoin Supercycle Fund."}</p>
       </div>
       <div className="leader-d reveal-d">
         <div className="photo">
           <img src={l.photoImg || "assets/michael-terpin.jpg"} alt="Michael Terpin" loading="lazy" decoding="async"/>
           <div className="photo-caption">
             <span className="quote">{l.quote || '"Godfather of Crypto"'}</span>
-            <span className="source">{l.source || "— CNBC"}</span>
+            <span className="source">{l.source || "CNBC"}</span>
           </div>
         </div>
         <div className="info">
           <div className="role">{l.role || "Founder & CEO · CIO, Bitcoin Supercycle Fund"}</div>
           <div className="name">{l.name || "Michael Terpin"}</div>
-          <p style={{marginTop: 20}}>{l.para1 || <>Early bitcoin investor, thought leader, and serial entrepreneur — known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</>}</p>
-          <p style={{marginTop: 14}}>{l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Marketwire, the first internet-based newswire — sold to NASDAQ for $200M."}</p>
+          <p style={{marginTop: 20}}>{l.para1 || <>Early bitcoin investor, thought leader, and serial entrepreneur, known as the "Godfather of Crypto" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of <i>Bitcoin Supercycle</i> (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.</>}</p>
+          <p style={{marginTop: 14}}>{l.para2 || "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Globe Newswire, the first internet-based newswire, sold to NASDAQ for $200M."}</p>
           <div className="leader-stats-d">
             <div className="stat"><div className="n">{l.stat1n || "100+"}</div><div className="l">{l.stat1l || "ICO-era launches"}</div></div>
-            <div className="stat"><div className="n">{l.stat2n || "$200M"}</div><div className="l">{l.stat2l || "Marketwire exit"}</div></div>
+            <div className="stat"><div className="n">{l.stat2n || "$200M"}</div><div className="l">{l.stat2l || "Globe Newswire exit"}</div></div>
             <div className="stat"><div className="n">{l.stat3n || "2013"}</div><div className="l">{l.stat3l || "First digital asset angel group"}</div></div>
           </div>
           <div className="tags">
@@ -511,7 +546,7 @@ const FinalCTA = () => {
     <div className="container">
       <div className="final-cta reveal-d">
         <h2>{c.title || "Ready to transform your blockchain venture?"}</h2>
-        <p>{c.desc || "Whether you're raising capital, launching a token, or need strategic guidance — let's connect."}</p>
+        <p>{c.desc || "Whether you're raising capital, launching a token, or need strategic guidance, let's connect."}</p>
         <div className="ctas">
           <a className="btn-lime" href={c.cta1Href || "pages/contact.html"}>{c.cta1Text || "Start a conversation →"}</a>
           <a className="btn-outline" href={c.cta2Href || "pages/media.html"}>{c.cta2Text || "Latest news & media"}</a>

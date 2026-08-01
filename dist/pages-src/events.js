@@ -1,24 +1,4 @@
-const UPCOMING_DEFAULT = [{
-  date: "Sep 2026",
-  city: "Las Vegas",
-  name: "Tokenize Las Vegas",
-  tag: "Flagship Conference",
-  bg: "linear-gradient(135deg, #6D4AFF, #3A1F9E)"
-}, {
-  date: "Jun 2026",
-  city: "San Juan, PR",
-  name: "BitAngels Summer Summit",
-  tag: "Angel Network",
-  bg: "linear-gradient(135deg, #F7931A, #B25E00)"
-}, {
-  date: "Ongoing",
-  city: "By invitation",
-  name: "Tiger Mansion Dinners",
-  tag: "Invite Only",
-  bg: "linear-gradient(135deg, #0FB5A5, #0A6B63)"
-}];
 function EventsPage() {
-  const upcoming = tvList('upcoming', UPCOMING_DEFAULT);
   const head = tvSec('upcomingHead');
   return /*#__PURE__*/React.createElement(Subpage, {
     eyebrow: "Transform Events",
@@ -43,26 +23,14 @@ function EventsPage() {
       textAlign: 'left'
     }
   }, head.title || "On the calendar.")), /*#__PURE__*/React.createElement("div", {
-    className: "events-list-d"
-  }, upcoming.map((e, i) => /*#__PURE__*/React.createElement("div", {
-    key: i,
-    className: `event-row-d reveal-d d${i % 3 + 1}`
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "swatch",
-    style: {
-      background: e.bg
-    }
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "date"
-  }, e.date), /*#__PURE__*/React.createElement("div", {
-    className: "city"
-  }, e.city)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "name"
-  }, e.name), /*#__PURE__*/React.createElement("div", {
-    className: "tag-line"
-  }, e.tag)), /*#__PURE__*/React.createElement("a", {
-    href: "#",
-    className: "btn-outline"
-  }, "Details \u2192")))))), /*#__PURE__*/React.createElement(EventsList, null), /*#__PURE__*/React.createElement(CTAStrip, null));
+    className: "luma-embed reveal-d"
+  }, /*#__PURE__*/React.createElement("iframe", {
+    src: "https://luma.com/embed/calendar/cal-8JeX51iUBkNpJmP/events",
+    title: "Transform Ventures events calendar",
+    frameBorder: "0",
+    allowFullScreen: true,
+    "aria-hidden": "false",
+    tabIndex: "0"
+  })))), /*#__PURE__*/React.createElement(CTAStrip, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(EventsPage, null));

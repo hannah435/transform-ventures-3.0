@@ -49,7 +49,7 @@ const DIVISIONS = [{
   short: "Group",
   name: "Transform Group",
   tag: "Communications & PR",
-  desc: "The original blockchain PR firm — launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
+  desc: "The original blockchain PR firm, launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
   color: "var(--purple)",
   badge: "Parent Organization"
 }, {
@@ -95,7 +95,7 @@ const CTAStrip = () => /*#__PURE__*/React.createElement("section", {
   className: "container"
 }, /*#__PURE__*/React.createElement("div", {
   className: "final-cta reveal-d"
-}, /*#__PURE__*/React.createElement("h2", null, "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, "Whether you're raising capital, launching a token, or need strategic guidance \u2014 let's connect."), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("h2", null, "Ready to transform your blockchain venture?"), /*#__PURE__*/React.createElement("p", null, "Whether you're raising capital, launching a token, or need strategic guidance, let's connect."), /*#__PURE__*/React.createElement("div", {
   className: "ctas"
 }, /*#__PURE__*/React.createElement("a", {
   className: "btn-lime",
@@ -124,7 +124,7 @@ const Stats = () => /*#__PURE__*/React.createElement("section", {
   className: "n"
 }, "$200M"), /*#__PURE__*/React.createElement("div", {
   className: "l"
-}, "Marketwire Exit to NASDAQ")), /*#__PURE__*/React.createElement("div", {
+}, "Globe Newswire Exit to NASDAQ")), /*#__PURE__*/React.createElement("div", {
   className: "reveal-d d3"
 }, /*#__PURE__*/React.createElement("div", {
   className: "n"
@@ -181,49 +181,14 @@ const Contact = () => {
     className: "eyebrow-inline"
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
-  }), "Get in touch"), /*#__PURE__*/React.createElement("h2", null, info.heading || "Let's build the future together."), /*#__PURE__*/React.createElement("p", null, info.intro || "We'd love to hear about your project, partnership idea, or investment inquiry."), /*#__PURE__*/React.createElement("div", {
-    className: "contact-info-d"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ic"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "pin",
-    size: 16
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "l"
-  }, "Location"), /*#__PURE__*/React.createElement("div", {
-    className: "v"
-  }, info.location || "San Juan, Puerto Rico"))), /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ic"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "mail",
-    size: 16
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "l"
-  }, "Email"), /*#__PURE__*/React.createElement("div", {
-    className: "v"
-  }, info.email || "info@transformventures.io"))), /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "ic"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "spark",
-    size: 16
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "l"
-  }, "Interests"), /*#__PURE__*/React.createElement("div", {
-    className: "v"
-  }, info.interests || "Investments · Advisory · Events · Partnerships"))))), status === 'sent' ? /*#__PURE__*/React.createElement("div", {
+  }), "Get in touch"), /*#__PURE__*/React.createElement("h2", null, info.heading || "Let's build the future together."), /*#__PURE__*/React.createElement("p", null, info.intro || "We'd love to hear about your project, partnership idea, or investment inquiry.")), status === 'sent' ? /*#__PURE__*/React.createElement("div", {
     className: "form-d form-success"
   }, /*#__PURE__*/React.createElement("div", {
     className: "fs-check"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "send",
     size: 22
-  })), /*#__PURE__*/React.createElement("h3", null, "Message sent."), /*#__PURE__*/React.createElement("p", null, "Thanks for reaching out \u2014 we'll get back to you soon.")) : /*#__PURE__*/React.createElement("form", {
+  })), /*#__PURE__*/React.createElement("h3", null, "Message sent."), /*#__PURE__*/React.createElement("p", null, "Thanks for reaching out, we'll get back to you soon.")) : /*#__PURE__*/React.createElement("form", {
     className: "form-d",
     onSubmit: submit
   }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement("span", {
@@ -276,7 +241,7 @@ const Contact = () => {
 };
 const Leader = () => {
   const l = tvSec('leader');
-  const tags = Array.isArray(l.tags) && l.tags.length ? l.tags : ["Godfather of Crypto", "Transform Ventures", "Transform Group", "BitAngels Co-Founder", "Tokenize Creator", "Marketwire Founder", "Author", "Puerto Rico"];
+  const tags = Array.isArray(l.tags) && l.tags.length ? l.tags : ["Godfather of Crypto", "Transform Ventures", "Transform Group", "BitAngels Co-Founder", "Tokenize Creator", "Globe Newswire Founder", "Author", "Puerto Rico"];
   return /*#__PURE__*/React.createElement("section", {
     className: "d-section"
   }, /*#__PURE__*/React.createElement("div", {
@@ -300,11 +265,11 @@ const Leader = () => {
     style: {
       marginTop: 20
     }
-  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur \u2014 known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
+  }, l.para1 || /*#__PURE__*/React.createElement(React.Fragment, null, "Early bitcoin investor, thought leader, and serial entrepreneur, known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of ", /*#__PURE__*/React.createElement("i", null, "Bitcoin Supercycle"), " (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.")), /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 14
     }
-  }, l.para2 || /*#__PURE__*/React.createElement(React.Fragment, null, "Creator of CoinAgenda (now rebranded as ", /*#__PURE__*/React.createElement("i", null, "Tokenize"), "), the leading conference series connecting investors with digital asset, and co-founder of BitAngels (2013), the first digital asset angel group. Previously founded Marketwire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M.")), /*#__PURE__*/React.createElement("div", {
+  }, l.para2 || /*#__PURE__*/React.createElement(React.Fragment, null, "Creator of CoinAgenda (now rebranded as ", /*#__PURE__*/React.createElement("i", null, "Tokenize"), "), the leading conference series connecting investors with digital asset, and co-founder of BitAngels (2013), the first digital asset angel group. Previously founded Globe Newswire, the first Internet-based newswire (backed by Sequoia Capital), sold to NASDAQ for $200M.")), /*#__PURE__*/React.createElement("div", {
     className: "tags"
   }, tags.map((t, i) => /*#__PURE__*/React.createElement("span", {
     key: i
@@ -334,7 +299,7 @@ const Media = () => {
     icon: "linkedin",
     type: "social",
     grad: "linear-gradient(135deg, #0a9488 0%, #2dd4bf 55%, #5eecd5 100%)",
-    title: "Tokenize! LATAM — Featuring the \"Godfather of Crypto\"",
+    title: "Tokenize! LATAM, Featuring the \"Godfather of Crypto\"",
     desc: "Michael Terpin kicks off Tokenize! LATAM, bringing blockchain and digital asset thought leadership to the Latin American market.",
     cta: "View Post",
     url: "https://www.linkedin.com/posts/tokenizecon_whos-better-to-kick-off-tokenize-latam-activity-7442774200999821312-CshG"
@@ -344,7 +309,7 @@ const Media = () => {
     type: "article",
     grad: "linear-gradient(135deg, #120840 0%, #2a1570 50%, #6D4AFF 100%)",
     title: "Veteran Investor Predicts Shocking Bitcoin Rally by 2033",
-    desc: "Michael Terpin outlines his prediction that bitcoin could reach $1 million by 2033 — driven by scarcity from the halving mechanism and growing institutional adoption through spot Bitcoin ETFs.",
+    desc: "Michael Terpin outlines his prediction that bitcoin could reach $1 million by 2033, driven by scarcity from the halving mechanism and growing institutional adoption through spot Bitcoin ETFs.",
     cta: "Read Article",
     url: "https://finance.yahoo.com/news/veteran-investor-predicts-shocking-bitcoin-145042798.html"
   }, {
@@ -371,7 +336,7 @@ const Media = () => {
     type: "interview",
     grad: "linear-gradient(135deg, #1a0d40 0%, #3a1f9e 50%, #6D4AFF 100%)",
     title: "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich",
-    desc: "Michael Terpin joins Brian Rose on London Real to explain how to time the bitcoin supercycle using his Four Seasons framework — turning digital asset's cyclical patterns into a wealth-building strategy.",
+    desc: "Michael Terpin joins Brian Rose on London Real to explain how to time the bitcoin supercycle using his Four Seasons framework, turning digital asset's cyclical patterns into a wealth-building strategy.",
     cta: "Watch Interview",
     url: "https://londonreal.tv/michael-terpin-bitcoin-supercycle-how-the-crypto-calendar-can-make-you-rich/"
   }, {
@@ -468,7 +433,7 @@ const Blog = () => {
     tag: "Industry",
     date: "January 2026",
     title: "The Case for a Bitcoin-Only Hedge Fund",
-    desc: "Why concentration — not diversification across altcoins — is the right call for institutional capital that wants asymmetric upside with defined downside."
+    desc: "Why concentration, not diversification across altcoins, is the right call for institutional capital that wants asymmetric upside with defined downside."
   }];
   return /*#__PURE__*/React.createElement("section", {
     id: "blog",
@@ -526,6 +491,43 @@ const PartnersBar = () => /*#__PURE__*/React.createElement("section", {
 }, "Neo")));
 const EventsList = () => {
   const head = tvSec('brandsHead');
+  const listRef = React.useRef(null);
+  // Mobile-only: auto-advance the horizontal carousel every 4s, pausing on user swipe.
+  useEffect(() => {
+    const track = listRef.current;
+    if (!track) return;
+    let idx = 0,
+      paused = false,
+      resumeT;
+    const scrollable = () => track.scrollWidth - track.clientWidth > 8;
+    const pause = () => {
+      paused = true;
+      clearTimeout(resumeT);
+      resumeT = setTimeout(() => {
+        paused = false;
+      }, 6000);
+    };
+    track.addEventListener('touchstart', pause, {
+      passive: true
+    });
+    track.addEventListener('pointerdown', pause);
+    const id = setInterval(() => {
+      if (paused || !scrollable()) return;
+      const cards = track.children;
+      if (!cards.length) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({
+        left: cards[idx].offsetLeft - cards[0].offsetLeft,
+        behavior: 'smooth'
+      });
+    }, 4000);
+    return () => {
+      clearInterval(id);
+      clearTimeout(resumeT);
+      track.removeEventListener('touchstart', pause);
+      track.removeEventListener('pointerdown', pause);
+    };
+  }, []);
   const events = tvList('brands', [{
     name: "Tokenize",
     tag: "Global Conference",
@@ -556,7 +558,8 @@ const EventsList = () => {
   }, /*#__PURE__*/React.createElement("span", {
     className: "d"
   }), head.eyebrow || "Event Brands"), /*#__PURE__*/React.createElement("h2", null, head.title || "Where the industry connects.")), /*#__PURE__*/React.createElement("div", {
-    className: "events-grid-d"
+    className: "events-grid-d",
+    ref: listRef
   }, events.map((e, i) => /*#__PURE__*/React.createElement("a", {
     href: e.url,
     target: "_blank",
@@ -587,19 +590,19 @@ const DIVISION_DATA = {
     tag: "Communications & PR",
     color: "var(--purple)",
     tagline: "The original blockchain PR firm.",
-    lead: "Founded by Michael Terpin in 2013, Transform launched the first-ever token sale (Mastercoin) and powered the exposure of 100+ prominent tokens during the ICO era — including Augur, Bancor, EOS, Ethereum, Golem, Gnosis, Lisk, MaidSafe, Qtum, VideoCoin, and WAX. Additional campaigns include Aeternity, Atari Token, Bittrex, CoinBene, Dash, Factom, ICON Foundation, Kraken, NEM, OKEx, Polymath, Radix, ShapeShift, Telos, and Tether. The only mainstream business and consumer PR firm with deep roots in blockchain.",
+    lead: "Founded by Michael Terpin in 2013, Transform launched the first-ever token sale (Mastercoin) and powered the exposure of 100+ prominent tokens during the ICO era, including Augur, Bancor, EOS, Ethereum, Golem, Gnosis, Lisk, MaidSafe, Qtum, VideoCoin, and WAX. Additional campaigns include Aeternity, Atari Token, Bittrex, CoinBene, Dash, Factom, ICON Foundation, Kraken, NEM, OKEx, Polymath, Radix, ShapeShift, Telos, and Tether. The only mainstream business and consumer PR firm with deep roots in blockchain.",
     capabilities: [{
       t: "First-ever token sale",
-      d: "Launched the first token sale in blockchain history — Mastercoin, 2013. Powering 100+ prominent tokens through the ICO era and beyond."
+      d: "Launched the first token sale in blockchain history, Mastercoin, 2013. Powering 100+ prominent tokens through the ICO era and beyond."
     }, {
       t: "Digital Asset media leadership",
-      d: "Regular placements in every leading digital asset publication — CoinDesk, Cointelegraph, Decrypt — plus top industry podcasts and YouTube channels."
+      d: "Regular placements in every leading digital asset publication, CoinDesk, Cointelegraph, Decrypt, plus top industry podcasts and YouTube channels."
     }, {
       t: "Tier-1 mainstream coverage",
       d: "Client stories placed in AP, BBC, Bloomberg, Business Insider, CNBC, Forbes, Fox, The New York Times, Reuters, TechCrunch, USA Today, VentureBeat, Wall Street Journal, and WIRED."
     }, {
       t: "Global office network",
-      d: "San Juan HQ with additional offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto — the most extensive footprint in digital asset PR."
+      d: "San Juan HQ with additional offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto, the most extensive footprint in digital asset PR."
     }],
     stats: [["100+", "ICO-era Token Launches"], ["300+", "Clients Since 2013"], ["57%", "Alt-Coin Market Cap"], ["2013", "Agency Founded"]]
   },
@@ -609,7 +612,7 @@ const DIVISION_DATA = {
     tag: "Tokenize · BitAngels · Tiger Mansion",
     color: "var(--teal)",
     tagline: "Where the industry connects.",
-    lead: "Premier blockchain events — Tokenize, BitAngels, Tiger Mansion — connecting founders and investors worldwide through curated conferences and intimate gatherings.",
+    lead: "Premier blockchain events, Tokenize, BitAngels, Tiger Mansion, connecting founders and investors worldwide through curated conferences and intimate gatherings.",
     capabilities: [{
       t: "Tokenize conference",
       d: "A premier blockchain conference exploring the future of tokenization. Global edition."
@@ -653,7 +656,7 @@ const DIVISION_DATA = {
     tag: "Advisory & Consulting",
     color: "var(--purple)",
     tagline: "Expert advisory for blockchain projects.",
-    lead: "Decades of combined experience in token launch strategy, digital asset go-to-market planning, tokenomics design, and investor relations — helping blockchain ventures succeed from seed to scale.",
+    lead: "Decades of combined experience in token launch strategy, digital asset go-to-market planning, tokenomics design, and investor relations, helping blockchain ventures succeed from seed to scale.",
     capabilities: [{
       t: "Token launch strategy",
       d: "End-to-end advisory on token design, distribution, and launch execution for maximum market impact."
@@ -681,10 +684,10 @@ const DIVISION_DATA = {
       d: "Cycle model mapping BTC to predictable halving-driven phases: spring, summer, fall, winter."
     }, {
       t: "Algorithmic trading",
-      d: "Season-specific strategies executed algorithmically — sell near cycle peaks, buy near bottoms."
+      d: "Season-specific strategies executed algorithmically, sell near cycle peaks, buy near bottoms."
     }, {
       t: "Bitcoin-only mandate",
-      d: "100% concentrated in bitcoin — no altcoins, no distractions."
+      d: "100% concentrated in bitcoin, no altcoins, no distractions."
     }, {
       t: "Institutional rails",
       d: "Coinbase Prime custody. NAV Fund Services administration. Regulated structure."
@@ -694,7 +697,7 @@ const DIVISION_DATA = {
       img: `${ASSET}bitcoin-supercycle-book.jpg`,
       title: "Bitcoin Supercycle",
       tag: "Amazon Best Seller · 2024",
-      desc: "How the crypto calendar can make you rich — by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy.",
+      desc: "How the crypto calendar can make you rich, by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy.",
       amazon: "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X"
     }
   }
@@ -711,7 +714,7 @@ function DivisionDetail({
     ...base,
     tagline: h.title || base.tagline,
     lead: h.intro || base.lead,
-    eyebrow: h.eyebrow || `/ ${base.num} — ${base.tag}`,
+    eyebrow: h.eyebrow || `/ ${base.num}, ${base.tag}`,
     capabilities: cap.cap1t ? [[cap.cap1t, cap.cap1d], [cap.cap2t, cap.cap2d], [cap.cap3t, cap.cap3d], [cap.cap4t, cap.cap4d]].filter(c => c[0]).map(c => ({
       t: c[0],
       d: c[1]
