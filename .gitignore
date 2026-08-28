@@ -8,7 +8,9 @@ uploads/
 
 # Build deps
 node_modules/
-package-lock.json
+
+# Generated static site (built in CI on every push)
+site/
 
 # Backend runtime data (the live database — keep out of git)
 content.db

@@ -68,6 +68,11 @@ const Stats = () => (
   </section>
 );
 
+// Contact form endpoint. The site is fully static, so submissions go to Formspree
+// instead of a backend. Create a form at https://formspree.io and paste its ID here
+// (the last path segment of the endpoint it gives you, e.g. "xdorwqkz").
+const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 const Contact = () => {
   const info = tvSec('info');
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -75,22 +80,44 @@ const Contact = () => {
   const submit = async (e) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    const data = {
-      name: fd.get('name'),
-      email: fd.get('email'),
-      topic: fd.get('topic'),
-      message: fd.get('message'),
-      website: fd.get('website'), // honeypot
-    };
+    const name = (fd.get('name') || '').trim();
+    const email = (fd.get('email') || '').trim();
+    const message = (fd.get('message') || '').trim();
+    const topic = (fd.get('topic') || '').trim();
+
+    // Honeypot: real users never fill "website"; bots do. Silently accept and drop.
+    if (fd.get('website')) { setStatus('sent'); return; }
+
+    // Validation the Express route used to do server-side.
+    if (!name || !email || !message) {
+      setError('Name, email, and message are required.');
+      setStatus('error');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setError('Please enter a valid email address.');
+      setStatus('error');
+      return;
+    }
+
     setStatus('sending'); setError('');
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          topic,
+          message,
+          _subject: `Transform Ventures enquiry${topic ? ': ' + topic : ''}`,
+        }),
       });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(body.error || 'Something went wrong. Please try again.');
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        const first = Array.isArray(body.errors) && body.errors[0];
+        throw new Error((first && first.message) || 'Something went wrong. Please try again.');
+      }
       setStatus('sent');
     } catch (err) {
       setError(err.message);

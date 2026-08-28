@@ -1,0 +1,804 @@
+{
+  "home": {
+    "site": {
+      "logo": "assets/transform-ventures-white.png"
+    },
+    "hero": {
+      "titleLine1": "Build with",
+      "titleLine2": "conviction",
+      "lead": "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin, the \"Godfather of Crypto.\"",
+      "cta1Text": "Explore divisions →",
+      "cta1Href": "pages/divisions.html",
+      "cta2Text": "Get in touch",
+      "cta2Href": "pages/contact.html",
+      "twitter": "#",
+      "linkedin": "https://www.linkedin.com/company/transform-ventures/",
+      "youtube": "#"
+    },
+    "divisionsHead": {
+      "eyebrow": "Our ecosystem",
+      "title": "Five divisions. One vision.",
+      "sub": "Transform Ventures operates across five specialized divisions, from digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
+    },
+    "divisions": [
+      {
+        "name": "Transform Group",
+        "tag": "Communications & PR",
+        "desc": "The original blockchain PR firm, launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
+        "kpi": "100+ ICO launches · Since 2013"
+      },
+      {
+        "name": "Transform Events",
+        "tag": "Tokenize · BitAngels · Tiger Mansion",
+        "desc": "Premier blockchain events connecting founders and investors worldwide through curated gatherings.",
+        "kpi": "3 flagship events"
+      },
+      {
+        "name": "Transform Capital",
+        "tag": "Family Office",
+        "desc": "Strategic investments across the digital asset landscape with a long-term investment horizon.",
+        "kpi": "Multi-strategy"
+      },
+      {
+        "name": "Transform Strategies",
+        "tag": "Advisory & Consulting",
+        "desc": "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.",
+        "kpi": "Seed → Scale"
+      },
+      {
+        "name": "Bitcoin Supercycle Fund",
+        "tag": "BTC Investment Fund",
+        "desc": "The first liquid bitcoin-only hedge fund using the \"Four Seasons of Bitcoin\" cycle model and algorithmic trading.",
+        "kpi": "100% BTC · Algo"
+      }
+    ],
+    "feature": {
+      "tag1": "Advisory",
+      "tag2": "Strategy",
+      "title": "Every digital asset venture finds its path.",
+      "desc": "Decades of combined experience in token launch strategy, digital asset go-to-market, tokenomics design, and investor relations, helping blockchain ventures succeed from seed to scale.",
+      "bullet1": "End-to-end advisory on token design, distribution, and launch",
+      "bullet2": "Strategic positioning and market-entry plans",
+      "bullet3": "Access to the full Transform Ventures network",
+      "cta1Text": "Start a conversation →",
+      "cta1Href": "pages/contact.html",
+      "cta2Text": "Learn more",
+      "cta2Href": "pages/divisions.html"
+    },
+    "statBand": {
+      "cap": "Portfolio & track record",
+      "bignum": "$200M",
+      "capDesc": "Globe Newswire exit to NASDAQ, the foundation that seeded 12+ years of digital asset ventures, clients, and capital.",
+      "sub1n": "100+",
+      "sub1l": "ICO-era token launches",
+      "sub2n": "2013",
+      "sub2l": "Launched first-ever token sale"
+    },
+    "eventsHead": {
+      "eyebrow": "Transform Events",
+      "title": "Where the industry connects.",
+      "sub": "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders."
+    },
+    "events": [
+      {
+        "name": "Tokenize",
+        "tag": "Global Conference",
+        "desc": "Industry leaders, investors, and innovators exploring the future of tokenization.",
+        "img": "assets/tokenize-vegas.jpg",
+        "url": "https://tokenizeconference.com/"
+      },
+      {
+        "name": "BitAngels",
+        "tag": "Since 2013 · Angel Network",
+        "desc": "The world's first angel investor network for digital currency startups.",
+        "img": "assets/bitangels-group.webp",
+        "url": "https://bitangels.network/"
+      },
+      {
+        "name": "Tiger Mansion",
+        "tag": "Invite Only",
+        "desc": "An exclusive, invite-only gathering for top-tier digital asset investors and founders.",
+        "img": "assets/tigermansion-event.jpg",
+        "url": "https://www.tigermansionlv.com/"
+      }
+    ],
+    "fund": {
+      "eyebrow": "Investment Fund",
+      "title": "Bitcoin Supercycle Fund.",
+      "sub": "The first liquid bitcoin-only hedge fund combining the \"Four Seasons of Bitcoin\" cycle model with algorithmic trading.",
+      "bookImg": "assets/bitcoin-supercycle-book.jpg",
+      "badge": "Amazon Best Seller · 2024",
+      "bookTitle": "Bitcoin Supercycle",
+      "bookDesc": "How the crypto calendar can make you rich, by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy.",
+      "kpi1n": "100%",
+      "kpi1l": "Bitcoin-Only",
+      "kpi2n": "Algo",
+      "kpi2l": "Algorithmic Trading",
+      "kpi3n": "4 Seasons",
+      "kpi3l": "Cycle-driven",
+      "cta1Text": "Learn more →",
+      "cta1Href": "pages/division-fund.html",
+      "cta2Text": "Buy on Amazon ↗",
+      "cta2Href": "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X"
+    },
+    "leader": {
+      "eyebrow": "Leadership",
+      "title": "Meet the founder.",
+      "sub": "Three decades of building at the intersection of media, technology, and capital, from Globe Newswire to the Bitcoin Supercycle Fund.",
+      "photoImg": "assets/michael-terpin.jpg",
+      "quote": "\"Godfather of Crypto\"",
+      "source": "CNBC",
+      "role": "Founder & CEO · CIO, Bitcoin Supercycle Fund",
+      "name": "Michael Terpin",
+      "para1": "Early bitcoin investor, thought leader, and serial entrepreneur, known as the \"Godfather of Crypto\" (CNBC). Chief Investment Officer of the Bitcoin Supercycle Fund and author of Bitcoin Supercycle (Skyhorse Publishing, 2024), which correctly predicted the November 2024 all-time high for bitcoin.",
+      "para2": "Co-founder of BitAngels (2013), the first digital asset angel group, and creator of Tokenize, the leading conference series connecting investors with blockchain. Previously founded Globe Newswire, the first internet-based newswire, sold to NASDAQ for $200M.",
+      "stat1n": "100+",
+      "stat1l": "ICO-era launches",
+      "stat2n": "$200M",
+      "stat2l": "Globe Newswire exit",
+      "stat3n": "2013",
+      "stat3l": "First digital asset angel group",
+      "tags": [
+        "Godfather of Crypto",
+        "BitAngels Co-Founder",
+        "Tokenize Creator",
+        "Author",
+        "Puerto Rico"
+      ],
+      "ctaText": "Full bio →",
+      "ctaHref": "pages/leadership.html"
+    },
+    "faqHead": {
+      "eyebrow": "FAQ",
+      "title": "Frequently asked questions.",
+      "sub": "Quick answers about Transform Ventures, Michael Terpin, and the Bitcoin Supercycle Fund."
+    },
+    "faq": [
+      {
+        "q": "What is Transform Ventures?",
+        "a": "Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin, known as the \"Godfather of Crypto.\" It provides capital, resources, and strategic guidance to high-growth digital asset projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico."
+      },
+      {
+        "q": "Who is Michael Terpin?",
+        "a": "Michael Terpin is the founder and CEO of Transform Ventures and an early bitcoin investor known as the \"Godfather of Crypto\" (CNBC). He founded Transform Group (the original blockchain PR firm), co-founded BitAngels (the first digital asset angel group, 2013), created the Tokenize conference, and authored Bitcoin Supercycle (2024). He previously founded Globe Newswire, sold to NASDAQ for $200M."
+      },
+      {
+        "q": "What is the Bitcoin Supercycle Fund?",
+        "a": "The Bitcoin Supercycle Fund is the first liquid bitcoin-only hedge fund. It combines Michael Terpin's \"Four Seasons of Bitcoin\" cycle model with algorithmic trading and season-specific strategies, using institutional-grade infrastructure (Coinbase Prime custody, NAV Fund Services administration)."
+      },
+      {
+        "q": "What are the five divisions of Transform Ventures?",
+        "a": "Transform Group (communications & PR), Transform Events (Tokenize, BitAngels, Tiger Mansion), Transform Capital (family office), Transform Strategies (advisory & consulting), and the Bitcoin Supercycle Fund (a bitcoin-only hedge fund)."
+      },
+      {
+        "q": "Where is Transform Ventures located?",
+        "a": "Transform Ventures is headquartered in San Juan, Puerto Rico."
+      },
+      {
+        "q": "How can I contact Transform Ventures?",
+        "a": "Email info@transformventures.io or use the contact page. Transform Ventures works with projects on investments, advisory, events, and partnerships."
+      }
+    ],
+    "finalCta": {
+      "title": "Ready to transform your blockchain venture?",
+      "desc": "Whether you're raising capital, launching a token, or need strategic guidance, let's connect.",
+      "cta1Text": "Start a conversation →",
+      "cta1Href": "pages/contact.html",
+      "cta2Text": "Latest news & media",
+      "cta2Href": "pages/media.html"
+    },
+    "footer": {
+      "blurb": "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.",
+      "copyright": "© 2026 Transform Ventures. All rights reserved.",
+      "location": "San Juan, Puerto Rico"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About Transform Ventures",
+      "title": "Three decades of building at the edges of media and money.",
+      "intro": "Transform Ventures is the venture platform of Michael Terpin, founder of Globe Newswire, BitAngels, and Tokenize, operating across five specialized divisions from San Juan, Puerto Rico."
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "heading": "The communications powerhouse behind digital asset."
+    },
+    "timeline": [
+      {
+        "year": "1994",
+        "title": "Globe Newswire Founded",
+        "desc": "First Internet-based newswire. Backed by Sequoia Capital & Hummer Winblad. Sold to NASDAQ for $200M."
+      },
+      {
+        "year": "2013",
+        "title": "BitAngels & Transform Group",
+        "desc": "Co-founded the first digital asset angel group and launched the original blockchain PR firm. Powered the first-ever token sale (Mastercoin) and 100+ prominent ICO-era tokens including Ethereum, EOS, Augur, Bancor, Golem, Qtum, WAX, and Tether."
+      },
+      {
+        "year": "2015",
+        "title": "Four Seasons of Bitcoin",
+        "desc": "Michael Terpin developed the Four Seasons model, mapping bitcoin to predictable four-year cycles driven by the halving."
+      },
+      {
+        "year": "2018",
+        "title": "CoinAgenda → Tokenize",
+        "desc": "Created the leading conference series connecting mainstream investors with blockchain and digital asset investments."
+      },
+      {
+        "year": "2021",
+        "title": "Transform Ventures",
+        "desc": "Consolidated into a full blockchain and AI advisory and venture studio. Five divisions spanning events, capital, strategy, and fund management."
+      },
+      {
+        "year": "2024",
+        "title": "Bitcoin Supercycle Fund",
+        "desc": "Launched the first liquid bitcoin-only hedge fund using the Four Seasons model and algorithmic trading."
+      }
+    ],
+    "teamHead": {
+      "eyebrow": "Our Team",
+      "title": "The people behind Transform."
+    },
+    "team": [
+      {
+        "name": "Michael Terpin",
+        "role": "Founder & CEO",
+        "bio": "Michael Terpin is the founder and CEO of Transform Ventures, whose divisions include Transform Group PR, a global public relations firm that has served more than 300 clients in the blockchain field and helped launch more than 150 token sales, including Aeternity, Augur, Bancor, Dent, Ethereum, Factom, Golem, Gnosis, Lisk, MaidSafe, Neo, Qtum, SALT Lending, Tether, VideoCoin, and WAX Token; Tokenize!, an event series for digital asset investors; and Transform Strategies, the company's advisory division. Known as the \"Godfather of Crypto\" (CNBC, 2018), he co-founded BitAngels in 2013 and is CEO and CIO of Supercycle Genesis Partners, a bitcoin-only hedge fund.",
+        "photoImg": "assets/michael-terpin.jpg",
+        "linkedin": "https://www.linkedin.com/in/michaelterpin/",
+        "x": "https://twitter.com/michaelterpin"
+      },
+      {
+        "name": "Joyce Chow",
+        "role": "Director of Events",
+        "bio": "Joyce Chow is the Director of Events at Transform Group. She previously founded the iHollywood Film Fest and has worked with major media outlets including CNN and Yahoo!, bringing more than a decade of experience in event production, media, and content development to her role. A graduate of Y Combinator, she has built a career spanning entertainment, blockchain, and emerging technology. At Transform Group, Joyce leads event strategy and production for the agency's blockchain and digital asset clients, drawing on her hands-on experience directing Tokenize! conferences and running global operations for BitAngels, a worldwide ecosystem of founders and funders with a presence in over 35 cities. She is also a Director at Transform Ventures and an active angel investor in blockchain, Web3, AI, and fintech. Joyce is based in San Juan, Puerto Rico, and Los Angeles.",
+        "photoImg": "assets/joyce-chow.jpg",
+        "linkedin": "#",
+        "x": "#"
+      },
+      {
+        "name": "David Lathrop",
+        "role": "Director of Research · Chief of Staff",
+        "bio": "David Lathrop has worked as chief of staff with Transform Ventures founder Michael Terpin since 2019, taking on the director of research role in 2021. He works closely with Transform Ventures advisory clients on strategy and research. He holds a Series 3 License from the National Futures Association (NFA) and is an active digital asset options trader. He also holds a research role at Supercycle Genesis Partners, the bitcoin-only hedge fund started by Terpin.",
+        "photoImg": "",
+        "linkedin": "#",
+        "x": "#"
+      },
+      {
+        "name": "Stephen L. Kanaval",
+        "role": "Writer & Analyst",
+        "bio": "With over 12 years of experience as a financial markets and digital asset writer, Steve brings specialized expertise in translating complex economic concepts into accessible insights. His technical background as a SQL developer complements his writing, allowing him to analyze data-driven trends with precision. As a certified project manager, he has successfully led software development projects for Fortune 100 clients, coordinating cross-functional teams to deliver solutions that meet enterprise requirements.",
+        "photoImg": "",
+        "linkedin": "#",
+        "x": "#"
+      },
+      {
+        "name": "Bee Davies",
+        "role": "Event Coordinator",
+        "bio": "Bee Davies has worked as a host and production coordinator on events for Transform Ventures since 2023. She lives in Los Angeles, where she is also active as an actress and filmmaker.",
+        "photoImg": "",
+        "linkedin": "#",
+        "x": "#"
+      }
+    ]
+  },
+  "divisions": {
+    "hero": {
+      "eyebrow": "Our Ecosystem",
+      "title": "Five divisions. One vision.",
+      "intro": "Transform Ventures operates across five specialized divisions, from pioneering digital asset PR and blockchain events to venture capital, strategic advisory, and a bitcoin-only hedge fund."
+    },
+    "blocks": [
+      {
+        "key": "group",
+        "num": "01",
+        "badge": "Parent Organization",
+        "name": "Transform Group",
+        "color": "var(--purple)",
+        "desc": "The original blockchain PR firm, launched the first-ever token sale (Mastercoin, 2013) and powered 100+ prominent ICO-era launches including Ethereum, EOS, Augur, and Tether.",
+        "cap1t": "First-ever token sale",
+        "cap1d": "Launched the first token sale in blockchain history, Mastercoin, 2013. Powered 100+ prominent tokens through the ICO era including Ethereum, EOS, Augur, Bancor, Golem, and WAX.",
+        "cap2t": "Digital Asset media leadership",
+        "cap2d": "Regular placements in every leading digital asset publication, CoinDesk, Cointelegraph, Decrypt, plus top industry podcasts and YouTube channels.",
+        "cap3t": "Tier-1 mainstream coverage",
+        "cap3d": "Client stories placed in AP, BBC, Bloomberg, CNBC, Forbes, The New York Times, Reuters, TechCrunch, Wall Street Journal, and WIRED.",
+        "cap4t": "Global office network",
+        "cap4d": "San Juan HQ with offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto, the most extensive footprint in digital asset PR."
+      },
+      {
+        "key": "events",
+        "num": "02",
+        "badge": "Events & Conferences",
+        "name": "Transform Events",
+        "color": "var(--teal)",
+        "desc": "Premier blockchain events connecting founders and investors worldwide through curated gatherings.",
+        "cap1t": "Tokenize conference",
+        "cap1d": "A premier blockchain conference exploring the future of tokenization. Global edition.",
+        "cap2t": "BitAngels network",
+        "cap2d": "World's first digital asset angel investor network. Active since 2013.",
+        "cap3t": "Tiger Mansion",
+        "cap3d": "Invite-only executive gathering for top-tier digital asset investors and founders.",
+        "cap4t": "CoinAgenda legacy",
+        "cap4d": "Predecessor conference series connecting mainstream investors with blockchain deals."
+      },
+      {
+        "key": "capital",
+        "num": "03",
+        "badge": "Family Office",
+        "name": "Transform Capital",
+        "color": "#F7931A",
+        "desc": "Strategic investments across the digital asset landscape with a long-term investment horizon.",
+        "cap1t": "Strategic investments",
+        "cap1d": "Direct investments into high-potential blockchain protocols and applications.",
+        "cap2t": "Long-term conviction",
+        "cap2d": "Patient capital with deep understanding of market cycles and adoption curves.",
+        "cap3t": "Ecosystem access",
+        "cap3d": "Portfolio companies gain access to the full Transform Ventures ecosystem.",
+        "cap4t": "Hands-on support",
+        "cap4d": "Active guidance on go-to-market, partnerships, and scaling."
+      },
+      {
+        "key": "strategies",
+        "num": "04",
+        "badge": "Advisory",
+        "name": "Transform Strategies",
+        "color": "var(--purple)",
+        "desc": "Go-to-market strategy, tokenomics design, and ecosystem development for blockchain ventures.",
+        "cap1t": "Token launch strategy",
+        "cap1d": "End-to-end advisory on token design, distribution, and launch execution for maximum market impact.",
+        "cap2t": "Go-to-market planning",
+        "cap2d": "Strategic positioning, messaging, and market entry plans tailored to the blockchain landscape.",
+        "cap3t": "Ecosystem development",
+        "cap3d": "Building partnerships, community, and network effects for sustainable project growth.",
+        "cap4t": "Investor relations",
+        "cap4d": "Connecting projects with the right capital partners and managing ongoing investor communications."
+      },
+      {
+        "key": "fund",
+        "num": "05",
+        "badge": "Investment Fund",
+        "name": "Bitcoin Supercycle Fund",
+        "color": "#F7931A",
+        "desc": "The first liquid bitcoin-only hedge fund using the 'Four Seasons of Bitcoin' cycle model and algorithmic trading.",
+        "cap1t": "Four Seasons of Bitcoin",
+        "cap1d": "Cycle model mapping BTC to predictable halving-driven phases: spring, summer, fall, winter.",
+        "cap2t": "Algorithmic trading",
+        "cap2d": "Season-specific strategies executed algorithmically, sell near cycle peaks, buy near bottoms.",
+        "cap3t": "Bitcoin-only mandate",
+        "cap3d": "100% concentrated in bitcoin, no altcoins, no distractions.",
+        "cap4t": "Institutional rails",
+        "cap4d": "Coinbase Prime custody. NAV Fund Services administration. Regulated structure."
+      }
+    ]
+  },
+  "leadership": {
+    "hero": {
+      "eyebrow": "Leadership",
+      "title": "Meet the founder.",
+      "intro": "One of the most recognized figures in blockchain and digital asset, early bitcoin investor, author, and the entrepreneur CNBC called the 'Godfather of Crypto.'"
+    },
+    "leader": {
+      "role": "Founder & CEO · CIO, Bitcoin Supercycle Fund",
+      "name": "Michael Terpin",
+      "photoImg": "assets/michael-terpin.jpg",
+      "para1": "Michael Terpin is the founder and CEO of Transform Ventures, whose divisions include Transform Group PR, a global public relations firm that has served more than 300 clients in the blockchain field and helped launch more than 150 token sales, including Aeternity, Augur, Bancor, Dent, Ethereum, Factom, Golem, Gnosis, Lisk, MaidSafe, Neo, Qtum, SALT Lending, Tether, VideoCoin, and WAX Token; Tokenize!, an event series for digital asset investors; and Transform Strategies, the company's advisory division. Transform Ventures, LLC, is headquartered in San Juan, Puerto Rico, with offices in Las Vegas, Los Angeles, Miami, Paris, and Dublin. Terpin also co-founded BitAngels, the world's first angel network for digital currency startups, in May 2013.",
+      "para2": "Previously, Terpin founded Globe Newswire (originally Internet Wire), one of the world's largest company newswires, which was acquired in 2006, later sold to NASDAQ for $200 million, then to Apollo Global Management for $335 million, and to Equiniti for $535 million in 2025. Equiniti was sold in May 2026 to digital asset exchange Bullish (NYSE: BLSH). He also co-founded Direct IPO, one of the earliest equity crowdfunding companies. He founded his first PR firm, The Terpin Group, which represented many of the early Internet leaders, including America Online, Earthlink, Match.com, and the Motley Fool. The Terpin Group was sold in 2000 to Financial Dynamics, now part of FTI Consulting (NYSE: FCN). Terpin holds an MFA from SUNY at Buffalo and a dual BA in journalism and English from Syracuse University, where he serves on the board of advisors at the Newhouse School of Public Communications. He is also the CEO and Chief Investment Officer of Supercycle Genesis Partners, LP, a Bitcoin-only hedge fund.",
+      "tags": [
+        "Godfather of Crypto",
+        "Transform Ventures",
+        "Transform Group",
+        "BitAngels Co-Founder",
+        "Tokenize Creator",
+        "Globe Newswire Founder",
+        "Author",
+        "Puerto Rico"
+      ]
+    },
+    "pressHead": {
+      "eyebrow": "Press coverage",
+      "title": "What the media says."
+    },
+    "press": [
+      {
+        "src": "CNBC",
+        "quote": "Called Michael Terpin the 'Godfather of Crypto' for his early advocacy and investment across the industry."
+      },
+      {
+        "src": "Yahoo Finance",
+        "quote": "'Veteran investor predicts shocking bitcoin rally by 2033.'Coverage of Terpin's Four Seasons model."
+      },
+      {
+        "src": "Skyhorse Publishing",
+        "quote": "Author of 'Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich'2024 release."
+      }
+    ]
+  },
+  "events": {
+    "hero": {
+      "eyebrow": "Transform Events",
+      "title": "Where the industry connects.",
+      "intro": "Flagship blockchain conferences and digital asset networking events bringing together industry leaders, angel investors, and founders for deal-making and knowledge sharing."
+    },
+    "upcomingHead": {
+      "eyebrow": "Upcoming",
+      "title": "On the calendar."
+    },
+    "upcoming": [
+      {
+        "date": "Sep 2026",
+        "city": "Las Vegas",
+        "name": "Tokenize Las Vegas",
+        "tag": "Flagship Conference",
+        "bg": "linear-gradient(135deg, #6D4AFF, #3A1F9E)"
+      },
+      {
+        "date": "Jun 2026",
+        "city": "San Juan, PR",
+        "name": "BitAngels Summer Summit",
+        "tag": "Angel Network",
+        "bg": "linear-gradient(135deg, #F7931A, #B25E00)"
+      },
+      {
+        "date": "Ongoing",
+        "city": "By invitation",
+        "name": "Tiger Mansion Dinners",
+        "tag": "Invite Only",
+        "bg": "linear-gradient(135deg, #0FB5A5, #0A6B63)"
+      }
+    ],
+    "brandsHead": {
+      "eyebrow": "Event Brands",
+      "title": "Where the industry connects."
+    },
+    "brands": [
+      {
+        "name": "Tokenize",
+        "tag": "Global Conference",
+        "desc": "A premier blockchain conference bringing together industry leaders, investors, and innovators to explore the future of tokenization.",
+        "img": "assets/tokenize-vegas.jpg",
+        "url": "https://tokenizeconference.com/"
+      },
+      {
+        "name": "BitAngels",
+        "tag": "Since 2013 · Angel Network",
+        "desc": "Co-founded by Michael Terpin in 2013. The world's first angel investor network for digital currency startups.",
+        "img": "assets/bitangels-group.webp",
+        "url": "https://bitangels.network/"
+      },
+      {
+        "name": "Tiger Mansion",
+        "tag": "Invite Only",
+        "desc": "An exclusive, invite-only gathering for top-tier digital asset investors and founders. Intimate, curated networking.",
+        "img": "assets/tigermansion-event.jpg",
+        "url": "https://www.tigermansionlv.com/"
+      }
+    ]
+  },
+  "media": {
+    "hero": {
+      "eyebrow": "News & Media",
+      "title": "In the press.",
+      "intro": "Interviews, appearances, and press coverage featuring Michael Terpin and Transform Ventures across leading digital asset and financial media."
+    },
+    "items": [
+      {
+        "src": "Kitco News",
+        "icon": "play",
+        "type": "youtube",
+        "ytid": "oQkCrnJ8wxk",
+        "grad": "",
+        "title": "The Debt Trap: Why Gold Pumps First and Bitcoin Follows",
+        "desc": "Michael Terpin discusses the macro relationship between gold and bitcoin, the debt cycle, and why bitcoin follows gold's trajectory with a lag.",
+        "cta": "Watch on YouTube",
+        "url": "https://youtu.be/oQkCrnJ8wxk"
+      },
+      {
+        "src": "Bonnie Blockchain",
+        "icon": "play",
+        "type": "youtube",
+        "ytid": "mUM4yvlpMW0",
+        "grad": "",
+        "title": "Bitcoin Market Analysis with Michael Terpin",
+        "desc": "The \"Godfather of Crypto\" joins Bonnie Blockchain to discuss bitcoin market cycles, the Four Seasons model, and what's next for the digital asset market.",
+        "cta": "Watch on YouTube",
+        "url": "https://youtu.be/mUM4yvlpMW0"
+      },
+      {
+        "src": "LinkedIn",
+        "icon": "linkedin",
+        "type": "social",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #0a9488 0%, #2dd4bf 55%, #5eecd5 100%)",
+        "title": "Tokenize! LATAM, Featuring the \"Godfather of Crypto\"",
+        "desc": "Michael Terpin kicks off Tokenize! LATAM, bringing blockchain and digital asset thought leadership to the Latin American market.",
+        "cta": "View Post",
+        "url": "https://www.linkedin.com/posts/tokenizecon_whos-better-to-kick-off-tokenize-latam-activity-7442774200999821312-CshG"
+      },
+      {
+        "src": "Yahoo Finance / TheStreet",
+        "icon": "news",
+        "type": "article",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #120840 0%, #2a1570 50%, #6D4AFF 100%)",
+        "title": "Veteran Investor Predicts Shocking Bitcoin Rally by 2033",
+        "desc": "Michael Terpin outlines his prediction that bitcoin could reach $1 million by 2033, driven by scarcity from the halving mechanism and growing institutional adoption through spot Bitcoin ETFs.",
+        "cta": "Read Article",
+        "url": "https://finance.yahoo.com/news/veteran-investor-predicts-shocking-bitcoin-145042798.html"
+      },
+      {
+        "src": "Benzinga",
+        "icon": "news",
+        "type": "article",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #0a1028 0%, #1a3060 50%, #3b82f6 100%)",
+        "title": "Bitcoin To Reach $190,000 This Cycle, Michael Terpin Says",
+        "desc": "Transform Ventures CEO Michael Terpin shares his bitcoin price target for the current cycle, explaining the Four Seasons model and why the blow-off top phase typically peaks in Q4 after the halving.",
+        "cta": "Read Article",
+        "url": "https://www.benzinga.com/markets/cryptocurrency/24/11/42096519/bitcoin-to-reach-190000-this-cycle-michael-terpin-of-transform-group-says"
+      },
+      {
+        "src": "CoinDesk",
+        "icon": "news",
+        "type": "article",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #3d2a15 0%, #6b4a2a 50%, #f7a72f 100%)",
+        "title": "Transform Ventures CEO Says Bitcoin Could See \"One More Point of Pain\"",
+        "desc": "Michael Terpin discusses bitcoin's near-term outlook, warning of potential downside before the next major rally, and explains how the Supercycle Fund navigates bear market phases.",
+        "cta": "Read Article",
+        "url": "https://www.coindesk.com/markets/2026/02/12/transform-ventures-ceo-michael-terpin-says-bitcoin-could-see-one-more-point-of-pain"
+      },
+      {
+        "src": "London Real",
+        "icon": "mic",
+        "type": "interview",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #1a0d40 0%, #3a1f9e 50%, #6D4AFF 100%)",
+        "title": "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich",
+        "desc": "Michael Terpin joins Brian Rose on London Real to explain how to time the bitcoin supercycle using his Four Seasons framework, turning digital asset's cyclical patterns into a wealth-building strategy.",
+        "cta": "Watch Interview",
+        "url": "https://londonreal.tv/michael-terpin-bitcoin-supercycle-how-the-crypto-calendar-can-make-you-rich/"
+      },
+      {
+        "src": "Supply Shock Podcast",
+        "icon": "mic",
+        "type": "podcast",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #2a0d60 0%, #5b2d99 50%, #9b6dcc 100%)",
+        "title": "Bitcoin's Blow-off Top is Coming",
+        "desc": "Michael Terpin explains why the four-year bitcoin cycle is still intact, how bitcoin operates in \"seasons\" with predictable post-halving behavior, and why macro forces and ETF inflows may distort short-term sentiment but not the cycle.",
+        "cta": "Listen on Apple Podcasts",
+        "url": "https://podcasts.apple.com/us/podcast/bitcoins-blow-off-top-is-coming-michael-terpin/id1558223079?i=1000721015026"
+      },
+      {
+        "src": "Medium",
+        "icon": "pen",
+        "type": "article",
+        "ytid": "",
+        "grad": "linear-gradient(135deg, #0a9488 0%, #0FB5A5 50%, #5eecd5 100%)",
+        "title": "Bitcoin Summer's Sudden End?",
+        "desc": "Michael Terpin analyzes the unexpected shift in bitcoin's seasonal cycle, examining whether the \"summer\" phase ended early and what it means for investors positioning for the next move.",
+        "cta": "Read on Medium",
+        "url": "https://medium.com/@michaelterpin/bitcoin-summers-sudden-end-3b77cd526608"
+      }
+    ]
+  },
+  "blog": {
+    "hero": {
+      "eyebrow": "Blog & Insights",
+      "title": "Analysis from the Godfather of Crypto.",
+      "intro": "Thought leadership and market commentary on bitcoin cycles, digital asset investing, and blockchain technology, from Michael Terpin and the Transform Ventures team."
+    },
+    "posts": [
+      {
+        "id": "four-seasons",
+        "tag": "Bitcoin Cycles",
+        "date": "April 2026",
+        "title": "Understanding the Four Seasons of Bitcoin",
+        "lede": "Michael Terpin's Four Seasons model maps bitcoin's price to a predictable four-year cycle driven by the halving. This framework has become one of the most widely referenced models for understanding where bitcoin is in its macro trajectory, and more importantly, where it's headed next.",
+        "body": [
+          "Spring follows the halving with steady accumulation as smart money enters. This is the phase where experienced investors and institutions begin quietly building positions. Prices rise modestly, but the broader market hasn't yet caught on. The narrative is still cautious, and mainstream media remains skeptical.",
+          "Summer brings the parabolic rally as retail FOMO kicks in. This is the explosive phase that captures headlines. Bitcoin begins making new all-time highs, social media activity surges, and new participants flood into the market. The price acceleration during summer is driven by a feedback loop of rising prices attracting new buyers, which pushes prices even higher.",
+          "Fall marks the blow-off top where the speculative excess peaks. This is the most dangerous phase for uninformed investors. Euphoria reaches its maximum, leverage is at extreme levels, and the market becomes disconnected from fundamentals. The top is often marked by a rapid vertical price spike followed by an equally dramatic reversal.",
+          "Winter is the prolonged bear market where weak hands capitulate. Prices can decline 70–80% from the peak, and the bear market typically lasts 12–18 months. This is when the market separates long-term believers from speculators. For those who understand the cycle, winter represents the ultimate buying opportunity.",
+          "Understanding where we are in the cycle is the foundation of the Supercycle Fund's strategy. Rather than trying to time exact tops and bottoms, the fund adjusts its risk exposure based on which season bitcoin is currently in, increasing allocation during spring and reducing exposure as fall approaches.",
+          "The model has correctly predicted major market turns, including the November 2024 all-time high. By combining this seasonal awareness with algorithmic execution, the Bitcoin Supercycle Fund aims to capture the majority of the upside while avoiding the worst of the drawdowns that define bitcoin's cyclical nature."
+        ]
+      },
+      {
+        "id": "1m-by-2033",
+        "tag": "Market Analysis",
+        "date": "March 2026",
+        "title": "Why Bitcoin Could Reach $1 Million by 2033",
+        "lede": "With each halving reducing supply while institutional demand accelerates through spot ETFs, the math points to a dramatically higher bitcoin price over the next two cycles. This isn't wishful thinking, it's the logical conclusion of basic supply and demand economics applied to the most scarce digital asset ever created.",
+        "body": [
+          "Michael Terpin's projection of $1M by 2033 isn't based on hype, it's built on scarcity economics, diminishing new supply, and the historical pattern of 10–20x returns per cycle. Each halving cuts the rate of new bitcoin creation in half, effectively doubling the stock-to-flow ratio. This mechanism has reliably driven multi-year bull markets since bitcoin's inception.",
+          "The approval of spot Bitcoin ETFs has opened the floodgates for institutional capital. For the first time, pension funds, endowments, and registered investment advisors can gain bitcoin exposure through familiar, regulated vehicles. The daily inflows into these ETFs have at times exceeded the daily production of new bitcoin by orders of magnitude, creating a structural supply deficit.",
+          "Combined with bitcoin's fixed supply cap of 21 million coins, the supply-demand imbalance grows with every halving. Approximately 19.5 million bitcoin have already been mined, and a significant portion of those are estimated to be permanently lost. The remaining supply will be mined over the next century, with each halving making the new issuance increasingly negligible.",
+          "The path to $1 million doesn't require bitcoin to become the world's reserve currency or replace gold entirely. It simply requires continued adoption at the current trajectory, more institutions allocating a small percentage of their portfolios, more nations considering strategic reserves, and more individuals using bitcoin as a savings technology. The math, when applied across two more halving cycles, makes the case compelling."
+        ]
+      },
+      {
+        "id": "algo-trading",
+        "tag": "Fund Strategy",
+        "date": "February 2026",
+        "title": "How Algorithmic Trading Enhances Bitcoin Cycle Returns",
+        "lede": "The Bitcoin Supercycle Fund combines seasonal awareness with algorithmic execution. This dual-layer approach leverages the best of both worlds: macro cycle positioning informed by the Four Seasons model and micro-level trade optimization driven by quantitative signals.",
+        "body": [
+          "While the Four Seasons model tells us when to be aggressive and when to be defensive, the algo layer, powered by Tradely Labs' Project Rich Port, executes trades based on real-time sentiment, news flow, and on-chain signals to optimize entry and exit points. This means the fund isn't just positioned correctly for the macro cycle; it's also making tactical adjustments within each phase to maximize returns.",
+          "The algorithmic system processes thousands of data points per day, including social media sentiment scores, whale wallet movements, exchange inflow and outflow patterns, funding rates across derivatives markets, and breaking news events. These signals are synthesized into actionable trading decisions that would be impossible for a human trader to execute consistently.",
+          "The fund's backtested returns show significant outperformance versus simply holding BTC, primarily by reducing drawdowns during the winter phase and accelerating accumulation during spring. In historical simulations, the algorithmic approach captured approximately 80% of bitcoin's upside during bull phases while experiencing only 30–40% of the drawdowns during bear phases.",
+          "This asymmetric risk-reward profile is particularly attractive to institutional investors who need to manage volatility within their portfolios. By combining cycle awareness with algorithmic precision, the Supercycle Fund offers a sophisticated approach to bitcoin investing that goes far beyond simple buy-and-hold strategies."
+        ]
+      },
+      {
+        "id": "bitcoin-only-fund",
+        "tag": "Industry",
+        "date": "January 2026",
+        "title": "The Case for a Bitcoin-Only Hedge Fund",
+        "lede": "Most digital asset hedge funds diversify across dozens of altcoins, diluting returns and adding complexity. Managing a portfolio of 50 or 100 different tokens requires deep expertise across multiple ecosystems, constant rebalancing, and exposure to projects that may not survive the next bear market. The result is often mediocre performance that fails to justify the fees charged.",
+        "body": [
+          "The Supercycle Fund takes a different approach, 100% bitcoin with tactical positioning across the cycle. By focusing exclusively on bitcoin, the fund eliminates the noise of altcoin selection and concentrates on what matters most: timing the macro cycle correctly and executing with precision.",
+          "Bitcoin's dominance as the macro asset, combined with its predictable halving schedule, makes it the ideal vehicle for a cycle-driven strategy. No other digital asset has the same depth of liquidity, institutional adoption, regulatory clarity, and network security. Bitcoin is the only digital asset asset that has been classified as a commodity by major regulators, making it the most accessible for institutional capital.",
+          "Unlike altcoins which can go to zero, bitcoin has survived every cycle and emerged stronger. Through multiple 80%+ drawdowns, exchange hacks, regulatory crackdowns, and media death spirals, bitcoin's network has continued to grow. Each cycle brings higher lows and higher highs, reinforcing its position as the foundational layer of the digital asset ecosystem.",
+          "For institutional investors seeking digital asset exposure with managed risk, a bitcoin-only approach offers the best risk-adjusted returns. The combination of cycle-based positioning, algorithmic execution, and singular asset focus creates a strategy that is both simple to understand and powerful in execution. The Supercycle Fund is built on the conviction that doing one thing exceptionally well beats doing many things adequately."
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let's build the future together.",
+      "intro": "Whether you're raising capital, launching a token, or need strategic guidance, we'd love to hear about your project."
+    },
+    "info": {
+      "heading": "Let's build the future together.",
+      "intro": "We'd love to hear about your project, partnership idea, or investment inquiry.",
+      "location": "San Juan, Puerto Rico",
+      "email": "info@transformventures.io",
+      "interests": "Investments · Advisory · Events · Partnerships"
+    }
+  },
+  "division-group": {
+    "hero": {
+      "eyebrow": "/ 01, Communications & PR",
+      "title": "The original blockchain PR firm.",
+      "intro": "Founded by Michael Terpin in 2013, Transform launched the first-ever token sale (Mastercoin) and powered the exposure of 100+ prominent tokens during the ICO era, including Augur, Bancor, EOS, Ethereum, Golem, Gnosis, Lisk, MaidSafe, Qtum, VideoCoin, and WAX. Additional campaigns include Aeternity, Atari Token, Bittrex, CoinBene, Dash, Factom, ICON Foundation, Kraken, NEM, OKEx, Polymath, Radix, ShapeShift, Telos, and Tether. The only mainstream business and consumer PR firm with deep roots in blockchain."
+    },
+    "caps": {
+      "cap1t": "First-ever token sale",
+      "cap1d": "Launched the first token sale in blockchain history, Mastercoin, 2013. Powering 100+ prominent tokens through the ICO era and beyond.",
+      "cap2t": "Digital Asset media leadership",
+      "cap2d": "Regular placements in every leading digital asset publication, CoinDesk, Cointelegraph, Decrypt, plus top industry podcasts and YouTube channels.",
+      "cap3t": "Tier-1 mainstream coverage",
+      "cap3d": "Client stories placed in AP, BBC, Bloomberg, Business Insider, CNBC, Forbes, Fox, The New York Times, Reuters, TechCrunch, USA Today, VentureBeat, Wall Street Journal, and WIRED.",
+      "cap4t": "Global office network",
+      "cap4d": "San Juan HQ with additional offices in New York, Los Angeles, San Francisco, Las Vegas, and Toronto, the most extensive footprint in digital asset PR."
+    },
+    "stats": {
+      "stat1n": "100+",
+      "stat1l": "ICO-era Token Launches",
+      "stat2n": "300+",
+      "stat2l": "Clients Since 2013",
+      "stat3n": "57%",
+      "stat3l": "Alt-Coin Market Cap",
+      "stat4n": "2013",
+      "stat4l": "Agency Founded"
+    }
+  },
+  "division-events": {
+    "hero": {
+      "eyebrow": "/ 02, Tokenize · BitAngels · Tiger Mansion",
+      "title": "Where the industry connects.",
+      "intro": "Premier blockchain events, Tokenize, BitAngels, Tiger Mansion, connecting founders and investors worldwide through curated conferences and intimate gatherings."
+    },
+    "caps": {
+      "cap1t": "Tokenize conference",
+      "cap1d": "A premier blockchain conference exploring the future of tokenization. Global edition.",
+      "cap2t": "BitAngels network",
+      "cap2d": "World's first digital asset angel investor network. Active since 2013.",
+      "cap3t": "Tiger Mansion",
+      "cap3d": "Invite-only executive gathering for top-tier digital asset investors and founders.",
+      "cap4t": "CoinAgenda legacy",
+      "cap4d": "Predecessor conference series connecting mainstream investors with blockchain deals."
+    },
+    "stats": {
+      "stat1n": "2013",
+      "stat1l": "BitAngels Founded",
+      "stat2n": "Global",
+      "stat2l": "Tokenize Reach",
+      "stat3n": "Invite Only",
+      "stat3l": "Tiger Mansion",
+      "stat4n": "10+",
+      "stat4l": "Years of Events"
+    }
+  },
+  "division-capital": {
+    "hero": {
+      "eyebrow": "/ 03, Family Office",
+      "title": "Michael Terpin's family office.",
+      "intro": "Deploying strategic capital into blockchain protocols, DeFi infrastructure, and digital asset projects. A Puerto Rico-based digital asset family office with deep conviction and a long-term investment horizon."
+    },
+    "caps": {
+      "cap1t": "Strategic investments",
+      "cap1d": "Direct investments into high-potential blockchain protocols, infrastructure, and applications.",
+      "cap2t": "Long-term conviction",
+      "cap2d": "Patient capital with deep understanding of market cycles and adoption curves.",
+      "cap3t": "Ecosystem access",
+      "cap3d": "Portfolio companies gain access to the full Transform Ventures ecosystem.",
+      "cap4t": "Hands-on support",
+      "cap4d": "Active guidance on go-to-market, partnerships, and scaling."
+    },
+    "stats": {
+      "stat1n": "10+",
+      "stat1l": "Years in Digital Asset",
+      "stat2n": "Multi",
+      "stat2l": "Strategy Approach",
+      "stat3n": "Direct",
+      "stat3l": "Portfolio Access",
+      "stat4n": "Global",
+      "stat4l": "Network Reach"
+    }
+  },
+  "division-strategies": {
+    "hero": {
+      "eyebrow": "/ 04, Advisory & Consulting",
+      "title": "Expert advisory for blockchain projects.",
+      "intro": "Decades of combined experience in token launch strategy, digital asset go-to-market planning, tokenomics design, and investor relations, helping blockchain ventures succeed from seed to scale."
+    },
+    "caps": {
+      "cap1t": "Token launch strategy",
+      "cap1d": "End-to-end advisory on token design, distribution, and launch execution for maximum market impact.",
+      "cap2t": "Go-to-market planning",
+      "cap2d": "Strategic positioning, messaging, and market entry plans tailored to the blockchain landscape.",
+      "cap3t": "Ecosystem development",
+      "cap3d": "Building partnerships, community, and network effects for sustainable project growth.",
+      "cap4t": "Investor relations",
+      "cap4d": "Connecting projects with the right capital partners and managing ongoing investor communications."
+    },
+    "stats": {
+      "stat1n": "Seed",
+      "stat1l": "→ Scale",
+      "stat2n": "Tokenomics",
+      "stat2l": "Design",
+      "stat3n": "GTM",
+      "stat3l": "Planning",
+      "stat4n": "IR",
+      "stat4l": "Advisory"
+    }
+  },
+  "division-fund": {
+    "hero": {
+      "eyebrow": "/ 05, BTC Investment Fund",
+      "title": "The first liquid bitcoin-only hedge fund.",
+      "intro": "Combining the 'Four Seasons of Bitcoin' cycle model with algorithmic trading and season-specific strategies. Institutional-grade: Coinbase Prime custody, NAV Fund Services administration."
+    },
+    "caps": {
+      "cap1t": "Four Seasons of Bitcoin",
+      "cap1d": "Cycle model mapping BTC to predictable halving-driven phases: spring, summer, fall, winter.",
+      "cap2t": "Algorithmic trading",
+      "cap2d": "Season-specific strategies executed algorithmically, sell near cycle peaks, buy near bottoms.",
+      "cap3t": "Bitcoin-only mandate",
+      "cap3d": "100% concentrated in bitcoin, no altcoins, no distractions.",
+      "cap4t": "Institutional rails",
+      "cap4d": "Coinbase Prime custody. NAV Fund Services administration. Regulated structure."
+    },
+    "stats": {
+      "stat1n": "100%",
+      "stat1l": "Bitcoin-Only",
+      "stat2n": "Algo",
+      "stat2l": "Trading Engine",
+      "stat3n": "4 Seasons",
+      "stat3l": "Cycle Model",
+      "stat4n": "2024",
+      "stat4l": "Fund Launch"
+    },
+    "book": {
+      "bookTag": "Amazon Best Seller · 2024",
+      "bookTitle": "Bitcoin Supercycle",
+      "bookImg": "assets/bitcoin-supercycle-book.jpg",
+      "bookDesc": "How the crypto calendar can make you rich, by Michael Terpin. The foundational thesis behind the fund's seasonal signal and cycle-driven strategy.",
+      "bookAmazon": "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X"
+    }
+  }
+}

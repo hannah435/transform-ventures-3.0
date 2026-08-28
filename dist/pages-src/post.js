@@ -1,7 +1,9 @@
 function PostPage() {
   const posts = tvList('posts', []);
   const search = typeof window !== 'undefined' && window.location && window.location.search || '';
-  const id = new URLSearchParams(search).get('id');
+  // Static per-post pages (post-<slug>.html) carry no ?id=, so the build injects
+  // __TV_POST_ID__; the query string still wins for legacy ?id= links.
+  const id = new URLSearchParams(search).get('id') || typeof window !== 'undefined' && window.__TV_POST_ID__ || null;
   const post = posts.find(p => p.id === id) || posts[0] || null;
   React.useEffect(() => {
     const io = new IntersectionObserver(entries => {
