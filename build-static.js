@@ -23,14 +23,9 @@ const CONTENT_JSON = path.join(ROOT, "content.json");
 const SITE = "https://www.transformventures.io";
 
 // Custom domain for GitHub Pages, written to site/CNAME.
-//
-// Deliberately EMPTY while www.transformventures.io still points at Squarespace.
-// Publishing a CNAME makes GitHub redirect the github.io preview URL to that domain
-// — which would serve the old Squarespace site and leave nowhere to review this one.
-//
-// On cutover day: set this to "www.transformventures.io", point Cloudflare DNS at
-// GitHub (see DEPLOY.md), and push.
-const CNAME = "";
+// Set at cutover from Squarespace — the matching Cloudflare DNS records are in
+// DEPLOY.md (records must be grey-cloud / DNS-only, and SSL/TLS mode Full).
+const CNAME = "www.transformventures.io";
 
 // Every server-rendered subpage (file name === content key).
 const SUBPAGES = [
