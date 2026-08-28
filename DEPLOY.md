@@ -49,15 +49,20 @@ Do *not* pick "Deploy from a branch" — the workflow in
 
 ### 2. Hook up the contact form
 
-The site is static, so the form posts to **Formspree** instead of a backend.
+The site is static, so the form posts to **FormSubmit** (formsubmit.co) instead of
+a backend. There is no account to create — the endpoint is just an email address.
 
-1. Sign up at [formspree.io](https://formspree.io) and create a form.
-2. It gives you an endpoint like `https://formspree.io/f/xdorwqkz`.
-3. Open `components/subpage-dark.jsx`, find `FORM_ENDPOINT` near the top of the
-   `Contact` component, and replace `YOUR_FORM_ID` with your real form ID.
-4. Commit and push.
+1. In `components/subpage-dark.jsx`, set `FORM_ENDPOINT` near the top of the
+   `Contact` component to `https://formsubmit.co/ajax/<your email>`.
+2. Commit and push.
+3. **Submit the live form once.** FormSubmit emails you a confirmation link — click
+   it. Nothing is delivered until you do; this is a one-time activation.
+4. After activating, FormSubmit shows you a random alias like
+   `https://formsubmit.co/ajax/a1b2c3d4...`. Swap that in and push again, so your
+   email address isn't sitting in the public JavaScript bundle for spam crawlers.
 
-Formspree emails you each submission. The free tier covers 50 per month.
+Free, unlimited submissions, and replies go straight back to the sender because the
+form sets `_replyto`.
 
 > The honeypot and validation still run client-side before anything is sent, so
 > the spam behaviour matches the old server route.

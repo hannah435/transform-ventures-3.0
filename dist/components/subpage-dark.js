@@ -138,10 +138,17 @@ const Stats = () => /*#__PURE__*/React.createElement("section", {
   className: "l"
 }, "Specialized Divisions")))));
 
-// Contact form endpoint. The site is fully static, so submissions go to Formspree
-// instead of a backend. Create a form at https://formspree.io and paste its ID here
-// (the last path segment of the endpoint it gives you, e.g. "xdorwqkz").
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Contact form endpoint. The site is fully static, so submissions go to FormSubmit
+// (formsubmit.co) instead of a backend. The /ajax/ endpoint returns JSON so the form
+// can stay on the page instead of redirecting.
+//
+// The first submission to a new address triggers a confirmation email — click the
+// link in it once and submissions start arriving. Until then they are held.
+//
+// Swap this for the random alias FormSubmit gives you after activation
+// (https://formsubmit.co/ajax/abc123...) so the address isn't sitting in the public
+// bundle for spam crawlers to scrape.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/hannah@transformventures.io';
 const Contact = () => {
   const info = tvSec('info');
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -185,13 +192,17 @@ const Contact = () => {
           email,
           topic,
           message,
-          _subject: `Transform Ventures enquiry${topic ? ': ' + topic : ''}`
+          _subject: `Transform Ventures enquiry${topic ? ': ' + topic : ''}`,
+          _replyto: email,
+          // hitting reply goes straight back to the sender
+          _captcha: 'false' // we already gate on the honeypot above
         })
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        const first = Array.isArray(body.errors) && body.errors[0];
-        throw new Error(first && first.message || 'Something went wrong. Please try again.');
+      // FormSubmit answers 200 with {"success":"false"} for some failures, so the
+      // body has to be checked as well as the status.
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || String(body.success) === 'false') {
+        throw new Error(body.message || 'Something went wrong. Please try again.');
       }
       setStatus('sent');
     } catch (err) {
