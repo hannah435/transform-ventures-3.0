@@ -25,7 +25,7 @@ function PostPage() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "container"
     }, /*#__PURE__*/React.createElement("a", {
-      href: `${P}blog`,
+      href: `${P}blog/`,
       className: "back-link"
     }, "\u2190 All posts"), /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("span", {
       className: "grad"
@@ -39,7 +39,7 @@ function PostPage() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("a", {
-    href: `${P}blog`,
+    href: `${P}blog/`,
     className: "back-link"
   }, "\u2190 All posts"), /*#__PURE__*/React.createElement("div", {
     className: "eyebrow-inline"

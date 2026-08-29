@@ -57,7 +57,7 @@ const DIVISION_MENU = [
 
 const MEDIA_MENU = [
   { name: "News & Press", sub: "Interviews & media coverage", icon: "news", href: `${P}media#news` },
-  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: `${P}blog` },
+  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: `${P}blog/` },
 ];
 
 const NavDropdown = ({label, items, open, onOpen, onClose}) => (

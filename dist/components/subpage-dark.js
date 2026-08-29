@@ -502,7 +502,7 @@ const Blog = () => {
   }, "Thought leadership and market commentary on bitcoin cycles, digital asset investing, and blockchain technology.")), /*#__PURE__*/React.createElement("div", {
     className: "blog-grid-d"
   }, posts.map((p, i) => /*#__PURE__*/React.createElement("a", {
-    href: `${P}blog#${p.id}`,
+    href: `${P}blog/#${p.id}`,
     key: p.title,
     className: `blog-card-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {

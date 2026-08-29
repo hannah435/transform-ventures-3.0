@@ -39,8 +39,10 @@ const SUBPAGES = [
 const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.42*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
 
 // Public URL for a subpage. Everything sits at the root except the blog, which owns
-// a directory so /blog and /blog/<slug> don't collide.
-const publicPath = (page) => (page === "blog" ? "/blog" : "/" + page);
+// a directory so /blog and /blog/<slug> don't collide. The blog keeps its trailing
+// slash because GitHub Pages 301s /blog -> /blog/, and linking to the pre-redirect
+// form would put an extra hop on every blog link and in the sitemap.
+const publicPath = (page) => (page === "blog" ? "/blog/" : "/" + page);
 
 // Where that page's file is written inside the output directory.
 const outputFile = (page) => (page === "blog" ? path.join("blog", "index.html") : page + ".html");

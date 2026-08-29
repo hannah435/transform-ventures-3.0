@@ -323,7 +323,7 @@ const Blog = () => {
         </div>
         <div className="blog-grid-d">
           {posts.map((p, i) => (
-            <a href={`${P}blog#${p.id}`} key={p.title} className={`blog-card-d reveal-d d${(i%3)+1}`}>
+            <a href={`${P}blog/#${p.id}`} key={p.title} className={`blog-card-d reveal-d d${(i%3)+1}`}>
               <div className="meta">
                 <span className="tag">{p.tag}</span>
                 <span className="date">{p.date}</span>

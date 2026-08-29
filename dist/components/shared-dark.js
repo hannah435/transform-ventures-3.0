@@ -193,7 +193,7 @@ const MEDIA_MENU = [{
   name: "Blog",
   sub: "Insights & analysis",
   icon: "pen",
-  href: `${P}blog`
+  href: `${P}blog/`
 }];
 const NavDropdown = ({
   label,
