@@ -512,7 +512,8 @@
         "title": "Tokenize! LATAM, Featuring the \"Godfather of Crypto\"",
         "desc": "Michael Terpin kicks off Tokenize! LATAM, bringing blockchain and digital asset thought leadership to the Latin American market.",
         "cta": "View Post",
-        "url": "https://www.linkedin.com/posts/tokenizecon_whos-better-to-kick-off-tokenize-latam-activity-7442774200999821312-CshG"
+        "url": "https://www.linkedin.com/posts/tokenizecon_whos-better-to-kick-off-tokenize-latam-activity-7442774200999821312-CshG",
+        "img": "assets/news/tokenize-latam.webp"
       },
       {
         "src": "Yahoo Finance / TheStreet",
@@ -523,7 +524,8 @@
         "title": "Veteran Investor Predicts Shocking Bitcoin Rally by 2033",
         "desc": "Michael Terpin outlines his prediction that bitcoin could reach $1 million by 2033, driven by scarcity from the halving mechanism and growing institutional adoption through spot Bitcoin ETFs.",
         "cta": "Read Article",
-        "url": "https://finance.yahoo.com/news/veteran-investor-predicts-shocking-bitcoin-145042798.html"
+        "url": "https://finance.yahoo.com/news/veteran-investor-predicts-shocking-bitcoin-145042798.html",
+        "img": "assets/news/btc-1m-by-2033.webp"
       },
       {
         "src": "Benzinga",
@@ -534,7 +536,8 @@
         "title": "Bitcoin To Reach $190,000 This Cycle, Michael Terpin Says",
         "desc": "Transform Ventures CEO Michael Terpin shares his bitcoin price target for the current cycle, explaining the Four Seasons model and why the blow-off top phase typically peaks in Q4 after the halving.",
         "cta": "Read Article",
-        "url": "https://www.benzinga.com/markets/cryptocurrency/24/11/42096519/bitcoin-to-reach-190000-this-cycle-michael-terpin-of-transform-group-says"
+        "url": "https://www.benzinga.com/markets/cryptocurrency/24/11/42096519/bitcoin-to-reach-190000-this-cycle-michael-terpin-of-transform-group-says",
+        "img": "assets/news/btc-190k-cycle.webp"
       },
       {
         "src": "CoinDesk",
@@ -545,7 +548,8 @@
         "title": "Transform Ventures CEO Says Bitcoin Could See \"One More Point of Pain\"",
         "desc": "Michael Terpin discusses bitcoin's near-term outlook, warning of potential downside before the next major rally, and explains how the Supercycle Fund navigates bear market phases.",
         "cta": "Read Article",
-        "url": "https://www.coindesk.com/markets/2026/02/12/transform-ventures-ceo-michael-terpin-says-bitcoin-could-see-one-more-point-of-pain"
+        "url": "https://www.coindesk.com/markets/2026/02/12/transform-ventures-ceo-michael-terpin-says-bitcoin-could-see-one-more-point-of-pain",
+        "img": "assets/news/one-more-point-of-pain.webp"
       },
       {
         "src": "London Real",
@@ -556,7 +560,8 @@
         "title": "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich",
         "desc": "Michael Terpin joins Brian Rose on London Real to explain how to time the bitcoin supercycle using his Four Seasons framework, turning digital asset's cyclical patterns into a wealth-building strategy.",
         "cta": "Watch Interview",
-        "url": "https://londonreal.tv/michael-terpin-bitcoin-supercycle-how-the-crypto-calendar-can-make-you-rich/"
+        "url": "https://londonreal.tv/michael-terpin-bitcoin-supercycle-how-the-crypto-calendar-can-make-you-rich/",
+        "img": "assets/news/bitcoin-supercycle-london-real.webp"
       },
       {
         "src": "Supply Shock Podcast",
@@ -567,7 +572,8 @@
         "title": "Bitcoin's Blow-off Top is Coming",
         "desc": "Michael Terpin explains why the four-year bitcoin cycle is still intact, how bitcoin operates in \"seasons\" with predictable post-halving behavior, and why macro forces and ETF inflows may distort short-term sentiment but not the cycle.",
         "cta": "Listen on Apple Podcasts",
-        "url": "https://podcasts.apple.com/us/podcast/bitcoins-blow-off-top-is-coming-michael-terpin/id1558223079?i=1000721015026"
+        "url": "https://podcasts.apple.com/us/podcast/bitcoins-blow-off-top-is-coming-michael-terpin/id1558223079?i=1000721015026",
+        "img": "assets/news/blow-off-top-is-coming.webp"
       },
       {
         "src": "Medium",
@@ -578,7 +584,8 @@
         "title": "Bitcoin Summer's Sudden End?",
         "desc": "Michael Terpin analyzes the unexpected shift in bitcoin's seasonal cycle, examining whether the \"summer\" phase ended early and what it means for investors positioning for the next move.",
         "cta": "Read on Medium",
-        "url": "https://medium.com/@michaelterpin/bitcoin-summers-sudden-end-3b77cd526608"
+        "url": "https://medium.com/@michaelterpin/bitcoin-summers-sudden-end-3b77cd526608",
+        "img": "assets/news/bitcoin-summers-sudden-end.webp"
       }
     ]
   },

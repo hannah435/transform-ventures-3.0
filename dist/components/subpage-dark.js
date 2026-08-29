@@ -424,7 +424,17 @@ const Media = () => {
     className: `news-card-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {
     className: `thumb ${it.type}`
-  }, it.type === 'youtube' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+  }, it.img ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+    src: tvImg(it.img),
+    alt: it.title,
+    loading: "lazy",
+    decoding: "async"
+  }), it.type === 'youtube' && /*#__PURE__*/React.createElement("div", {
+    className: "play-ovr"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "play",
+    size: 22
+  }))) : it.type === 'youtube' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
     src: `https://img.youtube.com/vi/${it.ytid}/maxresdefault.jpg`,
     alt: it.title,
     loading: "lazy",

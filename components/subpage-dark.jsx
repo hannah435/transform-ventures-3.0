@@ -278,7 +278,12 @@ const Media = () => {
           {items.map((it, i) => (
             <a href={it.url} target="_blank" rel="noopener" key={it.title} className={`news-card-d reveal-d d${(i%3)+1}`}>
               <div className={`thumb ${it.type}`}>
-                {it.type === 'youtube' ? (
+                {it.img ? (
+                  <>
+                    <img src={tvImg(it.img)} alt={it.title} loading="lazy" decoding="async"/>
+                    {it.type === 'youtube' && <div className="play-ovr"><Icon name="play" size={22}/></div>}
+                  </>
+                ) : it.type === 'youtube' ? (
                   <>
                     <img src={`https://img.youtube.com/vi/${it.ytid}/maxresdefault.jpg`} alt={it.title} loading="lazy" decoding="async"/>
                     <div className="play-ovr"><Icon name="play" size={22}/></div>
