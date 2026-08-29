@@ -129,15 +129,26 @@ issued (usually a few minutes, occasionally up to an hour).
 
 What comes out:
 
-| Output | Notes |
-|---|---|
-| `index.html` | Home, fully server-rendered, with FAQ structured data |
-| `pages/*.html` | The 12 subpages |
-| `pages/post-<slug>.html` | One file per blog post, each with its own title, canonical URL, and JSON-LD |
-| `pages/post.html` | Redirect shim so old `?id=` links still resolve |
-| `sitemap.xml` | Regenerated with every post URL |
-| `CNAME`, `.nojekyll`, `404.html` | GitHub Pages plumbing |
-| `assets/`, `styles/`, `dist/` | Copied as-is |
+| Output | Served at | Notes |
+|---|---|---|
+| `index.html` | `/` | Home, fully server-rendered, with FAQ structured data |
+| `<name>.html` | `/<name>` | The 11 root subpages — `/about`, `/divisions`, `/contact`… |
+| `blog/index.html` | `/blog` | The blog index |
+| `blog/<slug>.html` | `/blog/<slug>` | One file per post, each with its own title, canonical URL, and JSON-LD |
+| `pages/*.html` | — | Redirect stubs for every retired URL; nothing indexed 404s |
+| `sitemap.xml` | `/sitemap.xml` | Regenerated with the clean URLs |
+| `CNAME`, `.nojekyll`, `404.html` | — | GitHub Pages plumbing |
+| `assets/`, `styles/`, `dist/` | — | Copied as-is |
+
+**URLs have no `.html`.** GitHub Pages resolves `/about` to `about.html` and `/blog`
+to `blog/index.html` on its own, so the files keep their extensions on disk while the
+URLs stay clean. The blog is a directory rather than `blog.html` so `/blog` and
+`/blog/<slug>` can coexist without Pages having to choose between a file and a folder
+of the same name.
+
+**Every path in the markup is absolute** (`/assets/…`, `/about`) rather than relative.
+That's what lets pages at different depths share one set of links. If you add markup
+by hand, start paths with `/`.
 
 Every page ships real HTML in `<div id="root">`, so crawlers and answer engines
 that don't run JavaScript still see full content — the same SEO/AEO behaviour the
@@ -149,10 +160,10 @@ server used to provide.
 
 ## Notes
 
-- **Blog post URLs changed** from `/pages/post.html?id=<slug>` to
-  `/pages/post-<slug>.html`. Old links redirect automatically, and the sitemap
-  lists only the new ones. This is better for SEO — each post now has its own
-  indexable page instead of four posts sharing one URL.
+- **URLs moved to the site root and dropped `.html`.** `/pages/about.html` is now
+  `/about`, and `/pages/post.html?id=four-seasons` is now `/blog/four-seasons`.
+  Every old URL has a redirect stub that forwards and canonicals to the new one, so
+  existing links and anything already indexed keep working.
 - **The old backend is gone.** `server/`, `api/`, and `admin/` are no longer
   deployed. `server/render.js` and `server/content-schema.js` are still used at
   build time; the rest is dead weight you can delete whenever you like.

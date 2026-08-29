@@ -67,7 +67,7 @@ const POSTS_DEFAULT = [
             <div className="container">
               <div className="blog-grid-d">
                 {POSTS.map((p, i) => (
-                  <a href={`${P}post-${p.id}.html`} key={p.id} className={`blog-card-d reveal-d d${(i%3)+1}`}>
+                  <a href={`${P}blog/${p.id}`} key={p.id} className={`blog-card-d reveal-d d${(i%3)+1}`}>
                     <div className="meta">
                       <span className="tag">{p.tag}</span>
                       <span className="date">{p.date}</span>

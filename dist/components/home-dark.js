@@ -48,7 +48,7 @@ function useAutoCarousel(ref, interval = 4000) {
 // ---- Editable content (injected from the database; falls back to defaults below) ----
 const TV = typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home || {};
 const sec = k => TV[k] || {};
-const LOGO = sec('site').logo || "assets/transform-ventures-white.png";
+const LOGO = sec('site').logo || "/assets/transform-ventures-white.png";
 const Stars = () => {
   const stars = useMemo(() => Array.from({
     length: 80
@@ -177,38 +177,38 @@ const DIVISION_MENU = [{
   name: "Transform Group",
   sub: "Communications & PR",
   icon: "megaphone",
-  href: "pages/division-group.html"
+  href: "/division-group"
 }, {
   name: "Transform Events",
   sub: "Tokenize / BitAngels / Tiger Mansion",
   icon: "calendar",
-  href: "pages/division-events.html"
+  href: "/division-events"
 }, {
   name: "Transform Capital",
   sub: "Family office",
   icon: "bank",
-  href: "pages/division-capital.html"
+  href: "/division-capital"
 }, {
   name: "Transform Strategies",
   sub: "Advisory & consulting",
   icon: "compass",
-  href: "pages/division-strategies.html"
+  href: "/division-strategies"
 }, {
   name: "Bitcoin Supercycle Fund",
   sub: "BTC investment fund",
   icon: "bitcoin",
-  href: "pages/division-fund.html"
+  href: "/division-fund"
 }];
 const MEDIA_MENU = [{
   name: "News & Press",
   sub: "Interviews & media coverage",
   icon: "news",
-  href: "pages/media.html#news"
+  href: "/media#news"
 }, {
   name: "Blog",
   sub: "Insights & analysis",
   icon: "pen",
-  href: "pages/blog.html"
+  href: "/blog"
 }];
 const NavDropdown = ({
   label,
@@ -287,13 +287,13 @@ const Nav = () => {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
     className: "d-nav"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "index.html",
+    href: "/",
     className: "brand"
   }, /*#__PURE__*/React.createElement("img", {
     src: LOGO,
     alt: "Transform Ventures"
   })), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/about.html"
+    href: "/about"
   }, "About")), /*#__PURE__*/React.createElement(NavDropdown, {
     label: "Divisions",
     items: DIVISION_MENU,
@@ -301,7 +301,7 @@ const Nav = () => {
     onOpen: () => setOpenMenu('div'),
     onClose: () => setOpenMenu(null)
   }), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/events.html"
+    href: "/events"
   }, "Events")), /*#__PURE__*/React.createElement(NavDropdown, {
     label: "Media",
     items: MEDIA_MENU,
@@ -309,9 +309,9 @@ const Nav = () => {
     onOpen: () => setOpenMenu('media'),
     onClose: () => setOpenMenu(null)
   }), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/leadership.html"
+    href: "/leadership"
   }, "Leadership"))), /*#__PURE__*/React.createElement("a", {
-    href: "pages/contact.html",
+    href: "/contact",
     className: "cta"
   }, "Contact"), /*#__PURE__*/React.createElement("button", {
     className: `d-nav-toggle ${mobile ? 'open' : ''}`,
@@ -326,7 +326,7 @@ const Nav = () => {
   }, "\xD7"), /*#__PURE__*/React.createElement("div", {
     className: "mm-inner"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "pages/about.html",
+    href: "/about",
     className: "mm-link"
   }, "About"), /*#__PURE__*/React.createElement("button", {
     type: "button",
@@ -339,7 +339,7 @@ const Nav = () => {
     href: it.href,
     className: "mm-sub"
   }, it.name))), /*#__PURE__*/React.createElement("a", {
-    href: "pages/events.html",
+    href: "/events",
     className: "mm-link"
   }, "Events"), /*#__PURE__*/React.createElement("button", {
     type: "button",
@@ -352,10 +352,10 @@ const Nav = () => {
     href: it.href,
     className: "mm-sub"
   }, it.name))), /*#__PURE__*/React.createElement("a", {
-    href: "pages/leadership.html",
+    href: "/leadership",
     className: "mm-link"
   }, "Leadership"), /*#__PURE__*/React.createElement("a", {
-    href: "pages/contact.html",
+    href: "/contact",
     className: "mm-cta"
   }, "Contact \u2192"))));
 };
@@ -375,10 +375,10 @@ const Hero = () => {
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: h.cta1Href || "pages/divisions.html"
+    href: h.cta1Href || "/divisions"
   }, h.cta1Text || "Explore divisions →"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
-    href: h.cta2Href || "pages/contact.html"
+    href: h.cta2Href || "/contact"
   }, h.cta2Text || "Get in touch")), /*#__PURE__*/React.createElement("div", {
     className: "hero-socials",
     "aria-label": "Social links"
@@ -423,7 +423,7 @@ const Hero = () => {
     "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("img", {
     className: "hero-logo-3d",
-    src: h.heroLogo || "assets/transform-logo-3d.png",
+    src: h.heroLogo || "/assets/transform-logo-3d.png",
     alt: "Transform Ventures crystal logo",
     width: "460",
     height: "460",
@@ -649,7 +649,7 @@ const Feature = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "visual"
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/transform-logo-3d.png",
+    src: "/assets/transform-logo-3d.png",
     alt: "Transform Ventures",
     className: "feature-3d",
     decoding: "async"
@@ -661,10 +661,10 @@ const Feature = () => {
     className: "actions"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: f.cta1Href || "pages/contact.html"
+    href: f.cta1Href || "/contact"
   }, f.cta1Text || "Start a conversation →"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
-    href: f.cta2Href || "pages/divisions.html"
+    href: f.cta2Href || "/divisions"
   }, f.cta2Text || "Learn more"))))));
 };
 const StatBand = () => {
@@ -703,19 +703,19 @@ const EVENTS_DEFAULT = [{
   name: "Tokenize",
   tag: "Global Conference",
   desc: "Industry leaders, investors, and innovators exploring the future of tokenization.",
-  img: "assets/tokenize-vegas.jpg",
+  img: "/assets/tokenize-vegas.jpg",
   url: "https://tokenizeconference.com/"
 }, {
   name: "BitAngels",
   tag: "Since 2013 · Angel Network",
   desc: "The world's first angel investor network for digital currency startups.",
-  img: "assets/bitangels-group.webp",
+  img: "/assets/bitangels-group.webp",
   url: "https://bitangels.network/"
 }, {
   name: "Tiger Mansion",
   tag: "Invite Only",
   desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.",
-  img: "assets/tigermansion-event.jpg",
+  img: "/assets/tigermansion-event.jpg",
   url: "https://www.tigermansionlv.com/"
 }];
 const EVENTS = Array.isArray(TV.events) && TV.events.length ? TV.events : EVENTS_DEFAULT;
@@ -770,7 +770,7 @@ const Events = () => {
       marginTop: 32
     }
   }, /*#__PURE__*/React.createElement("a", {
-    href: "pages/events.html",
+    href: "/events",
     className: "btn-outline"
   }, "All events \u2192"))));
 };
@@ -801,7 +801,7 @@ const Fund = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "book"
   }, /*#__PURE__*/React.createElement("img", {
-    src: f.bookImg || "assets/bitcoin-supercycle-book.jpg",
+    src: f.bookImg || "/assets/bitcoin-supercycle-book.jpg",
     alt: "Bitcoin Supercycle book",
     loading: "lazy",
     decoding: "async"
@@ -833,7 +833,7 @@ const Fund = () => {
     className: "actions"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: f.cta1Href || "pages/division-fund.html"
+    href: f.cta1Href || "/division-fund"
   }, f.cta1Text || "Learn more →"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
     href: f.cta2Href || "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X",
@@ -870,7 +870,7 @@ const Leader = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "photo"
   }, /*#__PURE__*/React.createElement("img", {
-    src: l.photoImg || "assets/michael-terpin.jpg",
+    src: l.photoImg || "/assets/michael-terpin.jpg",
     alt: "Michael Terpin",
     loading: "lazy",
     decoding: "async"
@@ -923,7 +923,7 @@ const Leader = () => {
       marginTop: 28
     }
   }, /*#__PURE__*/React.createElement("a", {
-    href: l.ctaHref || "pages/leadership.html",
+    href: l.ctaHref || "/leadership",
     className: "btn-outline"
   }, l.ctaText || "Full bio →"))))));
 };
@@ -990,10 +990,10 @@ const FinalCTA = () => {
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: c.cta1Href || "pages/contact.html"
+    href: c.cta1Href || "/contact"
   }, c.cta1Text || "Start a conversation →"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
-    href: c.cta2Href || "pages/media.html"
+    href: c.cta2Href || "/media"
   }, c.cta2Text || "Latest news & media")))));
 };
 const Footer = () => {
@@ -1014,15 +1014,15 @@ const Footer = () => {
   }), /*#__PURE__*/React.createElement("p", null, ft.blurb || "Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential.")), /*#__PURE__*/React.createElement("div", {
     className: "col"
   }, /*#__PURE__*/React.createElement("h4", null, "Divisions"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/division-group.html"
+    href: "/division-group"
   }, "Transform Group")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/division-events.html"
+    href: "/division-events"
   }, "Transform Events")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/division-capital.html"
+    href: "/division-capital"
   }, "Transform Capital")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/division-strategies.html"
+    href: "/division-strategies"
   }, "Transform Strategies")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/division-fund.html"
+    href: "/division-fund"
   }, "Supercycle Fund")))), /*#__PURE__*/React.createElement("div", {
     className: "col"
   }, /*#__PURE__*/React.createElement("h4", null, "Events & News"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
@@ -1038,11 +1038,11 @@ const Footer = () => {
     target: "_blank",
     rel: "noopener"
   }, "Tiger Mansion")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/media.html"
+    href: "/media"
   }, "News & Media")))), /*#__PURE__*/React.createElement("div", {
     className: "col"
   }, /*#__PURE__*/React.createElement("h4", null, "Connect"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "pages/contact.html"
+    href: "/contact"
   }, "Contact")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#"
   }, "Twitter / X")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {

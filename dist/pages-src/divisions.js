@@ -66,11 +66,11 @@ const CAPABILITIES = {
   }]
 };
 const DIV_HREFS = {
-  group: "division-group.html",
-  events: "division-events.html",
-  capital: "division-capital.html",
-  strategies: "division-strategies.html",
-  fund: "division-fund.html"
+  group: "/division-group",
+  events: "/division-events",
+  capital: "/division-capital",
+  strategies: "/division-strategies",
+  fund: "/division-fund"
 };
 function DivisionsPage() {
   const BLOCKS_DEFAULT = DIVISIONS.map(d => {

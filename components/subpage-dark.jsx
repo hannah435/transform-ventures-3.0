@@ -46,8 +46,8 @@ const CTAStrip = () => (
         <h2>Ready to transform your blockchain venture?</h2>
         <p>Whether you're raising capital, launching a token, or need strategic guidance, let's connect.</p>
         <div className="ctas">
-          <a className="btn-lime" href={`${P}contact.html`}>Start a conversation →</a>
-          <a className="btn-outline" href={`${P}media.html`}>Latest news & media</a>
+          <a className="btn-lime" href={`${P}contact`}>Start a conversation →</a>
+          <a className="btn-outline" href={`${P}media`}>Latest news & media</a>
         </div>
       </div>
     </div>
@@ -323,7 +323,7 @@ const Blog = () => {
         </div>
         <div className="blog-grid-d">
           {posts.map((p, i) => (
-            <a href={`${P}blog.html#${p.id}`} key={p.title} className={`blog-card-d reveal-d d${(i%3)+1}`}>
+            <a href={`${P}blog#${p.id}`} key={p.title} className={`blog-card-d reveal-d d${(i%3)+1}`}>
               <div className="meta">
                 <span className="tag">{p.tag}</span>
                 <span className="date">{p.date}</span>
@@ -513,13 +513,13 @@ function DivisionDetail({ slug }) {
       <section className="d-page-hero division-hero">
         <div className="hero-glow" aria-hidden="true"/>
         <div className="container">
-          <a href={`${P}divisions.html`} className="back-link">← All divisions</a>
+          <a href={`${P}divisions`} className="back-link">← All divisions</a>
           <div className="eyebrow-inline" style={{color: d.color}}><span className="d" style={{background: d.color}}/>{d.eyebrow}</div>
           <h1><span className="grad">{d.tagline}</span></h1>
           <p className="lead">{d.lead}</p>
           <div className="ctas">
-            <a className="btn-lime" href={`${P}contact.html`}>Get in touch →</a>
-            <a className="btn-outline" href={`${P}divisions.html`}>Explore all divisions</a>
+            <a className="btn-lime" href={`${P}contact`}>Get in touch →</a>
+            <a className="btn-outline" href={`${P}divisions`}>Explore all divisions</a>
           </div>
         </div>
       </section>
@@ -562,7 +562,7 @@ function DivisionDetail({ slug }) {
                 <h3>{d.book.title}</h3>
                 <p>{d.book.desc}</p>
                 <div className="actions" style={{marginTop: 24}}>
-                  <a className="btn-lime" href={`${P}contact.html`}>Learn more →</a>
+                  <a className="btn-lime" href={`${P}contact`}>Learn more →</a>
                   <a className="btn-outline" href={d.book.amazon} target="_blank" rel="noopener">Buy on Amazon ↗</a>
                 </div>
               </div>

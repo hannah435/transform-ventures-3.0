@@ -21,7 +21,7 @@ function PostPage(){
             <Nav/>
             <section className="d-page-hero">
               <div className="container">
-                <a href={`${P}blog.html`} className="back-link">← All posts</a>
+                <a href={`${P}blog`} className="back-link">← All posts</a>
                 <h1><span className="grad">Post not found.</span></h1>
                 <p className="lead">This article may have been moved or removed.</p>
               </div>
@@ -37,7 +37,7 @@ function PostPage(){
           <Nav/>
           <section className="d-page-hero">
             <div className="container">
-              <a href={`${P}blog.html`} className="back-link">← All posts</a>
+              <a href={`${P}blog`} className="back-link">← All posts</a>
               <div className="eyebrow-inline"><span className="d"/>{post.tag}{post.date ? ` · ${post.date}` : ''}</div>
               <h1><span className="grad">{post.title}</span></h1>
               {post.lede && <p className="lead">{post.lede}</p>}

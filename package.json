@@ -7,7 +7,7 @@
     "build:pages": "babel pages-src --out-dir dist/pages-src --presets=@babel/preset-react --extensions .jsx",
     "build": "npm run build:components && npm run build:pages",
     "build:static": "npm run build && node build-static.js",
-    "preview": "python3 -m http.server 4000 --directory site",
+    "preview": "node preview-server.js",
     "seed": "node server/seed.js",
     "start": "node server/server.js",
     "dev": "npm run build && node server/seed.js && node server/server.js"

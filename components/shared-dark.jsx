@@ -30,10 +30,13 @@ const Icon = ({ name, size = 16 }) => {
   return map[name] || null;
 };
 
-const inPages = typeof window !== 'undefined' && window.location.pathname.includes('/pages/');
-const P = inPages ? '' : 'pages/';
-const HOME = inPages ? '../index.html' : 'index.html';
-const ASSET = inPages ? '../assets/' : 'assets/';
+// Every URL on the site is absolute from the domain root, so these are the same no
+// matter how deep the current page sits (/about vs /blog/four-seasons). Kept as
+// constants rather than inlined so pages read the same as they did before.
+const inPages = false; // retained for the window export below; nothing branches on it now
+const P = '/';
+const HOME = '/';
+const ASSET = '/assets/';
 
 // ---- Editable content for the current page (injected from the database; falls back to JSX defaults) ----
 const TV_PAGE = (typeof window !== 'undefined' && window.__TV_PAGE__) || '';
@@ -41,20 +44,20 @@ const TV_DATA = (typeof window !== 'undefined' && window.__TV_CONTENT__ && windo
 const tvSec = (k) => (TV_DATA[k] && typeof TV_DATA[k] === 'object' && !Array.isArray(TV_DATA[k])) ? TV_DATA[k] : {};
 const tvList = (k, fb) => (Array.isArray(TV_DATA[k]) && TV_DATA[k].length) ? TV_DATA[k] : fb;
 const tvVal = (k, fb) => { const v = TV_DATA[k]; return (v === undefined || v === null || v === '') ? fb : v; };
-// Resolve an image path relative to the current page (subpages live one level deeper).
-const tvImg = (src) => (!src || /^(https?:|\/|\.\.\/)/.test(src)) ? src : (inPages ? '../' : '') + src;
+// Resolve an image path to an absolute site path, leaving absolute and remote URLs alone.
+const tvImg = (src) => (!src || /^(https?:|\/)/.test(src)) ? src : '/' + src.replace(/^\.\.\//, '');
 
 const DIVISION_MENU = [
-  { name: "Transform Group", sub: "Communications & PR", icon: "megaphone", href: `${P}division-group.html` },
-  { name: "Transform Events", sub: "Tokenize / BitAngels / Tiger Mansion", icon: "calendar", href: `${P}division-events.html` },
-  { name: "Transform Capital", sub: "Family office", icon: "bank", href: `${P}division-capital.html` },
-  { name: "Transform Strategies", sub: "Advisory & consulting", icon: "compass", href: `${P}division-strategies.html` },
-  { name: "Bitcoin Supercycle Fund", sub: "BTC investment fund", icon: "bitcoin", href: `${P}division-fund.html` },
+  { name: "Transform Group", sub: "Communications & PR", icon: "megaphone", href: `${P}division-group` },
+  { name: "Transform Events", sub: "Tokenize / BitAngels / Tiger Mansion", icon: "calendar", href: `${P}division-events` },
+  { name: "Transform Capital", sub: "Family office", icon: "bank", href: `${P}division-capital` },
+  { name: "Transform Strategies", sub: "Advisory & consulting", icon: "compass", href: `${P}division-strategies` },
+  { name: "Bitcoin Supercycle Fund", sub: "BTC investment fund", icon: "bitcoin", href: `${P}division-fund` },
 ];
 
 const MEDIA_MENU = [
-  { name: "News & Press", sub: "Interviews & media coverage", icon: "news", href: `${P}media.html#news` },
-  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: `${P}blog.html` },
+  { name: "News & Press", sub: "Interviews & media coverage", icon: "news", href: `${P}media#news` },
+  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: `${P}blog` },
 ];
 
 const NavDropdown = ({label, items, open, onOpen, onClose}) => (
@@ -99,19 +102,19 @@ const Nav = () => {
           <img src={`${ASSET}transform-ventures-white.png`} alt="Transform Ventures"/>
         </a>
         <ul>
-          <li><a href={`${P}about.html`}>About</a></li>
+          <li><a href={`${P}about`}>About</a></li>
           <NavDropdown label="Divisions" items={DIVISION_MENU}
             open={openMenu === 'div'}
             onOpen={() => setOpenMenu('div')}
             onClose={() => setOpenMenu(null)}/>
-          <li><a href={`${P}events.html`}>Events</a></li>
+          <li><a href={`${P}events`}>Events</a></li>
           <NavDropdown label="Media" items={MEDIA_MENU}
             open={openMenu === 'media'}
             onOpen={() => setOpenMenu('media')}
             onClose={() => setOpenMenu(null)}/>
-          <li><a href={`${P}leadership.html`}>Leadership</a></li>
+          <li><a href={`${P}leadership`}>Leadership</a></li>
         </ul>
-        <a href={`${P}contact.html`} className="cta">Contact</a>
+        <a href={`${P}contact`} className="cta">Contact</a>
         <button className={`d-nav-toggle ${mobile ? 'open' : ''}`} onClick={() => setMobile(!mobile)} aria-label="Menu">
           <span/><span/><span/>
         </button>
@@ -119,7 +122,7 @@ const Nav = () => {
       <div className={`mobile-menu-d ${mobile ? 'open' : ''}`}>
         <button className="mm-close" onClick={closeMobile} aria-label="Close menu">×</button>
         <div className="mm-inner">
-          <a href={`${P}about.html`} className="mm-link">About</a>
+          <a href={`${P}about`} className="mm-link">About</a>
           <button type="button" className={`mm-link mm-expand ${mobileSub==='div'?'open':''}`} onClick={() => setMobileSub(mobileSub==='div'?null:'div')}>
             <span>Divisions</span> <Chev/>
           </button>
@@ -128,7 +131,7 @@ const Nav = () => {
               {DIVISION_MENU.map(it => <a key={it.name} href={it.href} className="mm-sub">{it.name}</a>)}
             </div>
           )}
-          <a href={`${P}events.html`} className="mm-link">Events</a>
+          <a href={`${P}events`} className="mm-link">Events</a>
           <button type="button" className={`mm-link mm-expand ${mobileSub==='media'?'open':''}`} onClick={() => setMobileSub(mobileSub==='media'?null:'media')}>
             <span>Media</span> <Chev/>
           </button>
@@ -137,8 +140,8 @@ const Nav = () => {
               {MEDIA_MENU.map(it => <a key={it.name} href={it.href} className="mm-sub">{it.name}</a>)}
             </div>
           )}
-          <a href={`${P}leadership.html`} className="mm-link">Leadership</a>
-          <a href={`${P}contact.html`} className="mm-cta">Contact →</a>
+          <a href={`${P}leadership`} className="mm-link">Leadership</a>
+          <a href={`${P}contact`} className="mm-cta">Contact →</a>
         </div>
       </div>
     </>
@@ -156,20 +159,20 @@ const Footer = () => (
         <div className="col">
           <h4>Divisions</h4>
           <ul>
-            <li><a href={`${P}division-group.html`}>Transform Group</a></li>
-            <li><a href={`${P}division-events.html`}>Transform Events</a></li>
-            <li><a href={`${P}division-capital.html`}>Transform Capital</a></li>
-            <li><a href={`${P}division-strategies.html`}>Transform Strategies</a></li>
-            <li><a href={`${P}division-fund.html`}>Supercycle Fund</a></li>
+            <li><a href={`${P}division-group`}>Transform Group</a></li>
+            <li><a href={`${P}division-events`}>Transform Events</a></li>
+            <li><a href={`${P}division-capital`}>Transform Capital</a></li>
+            <li><a href={`${P}division-strategies`}>Transform Strategies</a></li>
+            <li><a href={`${P}division-fund`}>Supercycle Fund</a></li>
           </ul>
         </div>
         <div className="col">
           <h4>Company</h4>
           <ul>
-            <li><a href={`${P}about.html`}>About</a></li>
-            <li><a href={`${P}leadership.html`}>Leadership</a></li>
-            <li><a href={`${P}media.html`}>News & Media</a></li>
-            <li><a href={`${P}contact.html`}>Contact</a></li>
+            <li><a href={`${P}about`}>About</a></li>
+            <li><a href={`${P}leadership`}>Leadership</a></li>
+            <li><a href={`${P}media`}>News & Media</a></li>
+            <li><a href={`${P}contact`}>Contact</a></li>
           </ul>
         </div>
         <div className="col">

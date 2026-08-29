@@ -26,7 +26,7 @@ function useAutoCarousel(ref, interval = 4000) {
 // ---- Editable content (injected from the database; falls back to defaults below) ----
 const TV = (typeof window !== 'undefined' && window.__TV_CONTENT__ && window.__TV_CONTENT__.home) || {};
 const sec = (k) => TV[k] || {};
-const LOGO = sec('site').logo || "assets/transform-ventures-white.png";
+const LOGO = sec('site').logo || "/assets/transform-ventures-white.png";
 
 const Stars = () => {
   const stars = useMemo(() => Array.from({length: 80}, (_, i) => ({
@@ -63,16 +63,16 @@ const Icon = ({name}) => {
 };
 
 const DIVISION_MENU = [
-  { name: "Transform Group", sub: "Communications & PR", icon: "megaphone", href: "pages/division-group.html" },
-  { name: "Transform Events", sub: "Tokenize / BitAngels / Tiger Mansion", icon: "calendar", href: "pages/division-events.html" },
-  { name: "Transform Capital", sub: "Family office", icon: "bank", href: "pages/division-capital.html" },
-  { name: "Transform Strategies", sub: "Advisory & consulting", icon: "compass", href: "pages/division-strategies.html" },
-  { name: "Bitcoin Supercycle Fund", sub: "BTC investment fund", icon: "bitcoin", href: "pages/division-fund.html" },
+  { name: "Transform Group", sub: "Communications & PR", icon: "megaphone", href: "/division-group" },
+  { name: "Transform Events", sub: "Tokenize / BitAngels / Tiger Mansion", icon: "calendar", href: "/division-events" },
+  { name: "Transform Capital", sub: "Family office", icon: "bank", href: "/division-capital" },
+  { name: "Transform Strategies", sub: "Advisory & consulting", icon: "compass", href: "/division-strategies" },
+  { name: "Bitcoin Supercycle Fund", sub: "BTC investment fund", icon: "bitcoin", href: "/division-fund" },
 ];
 
 const MEDIA_MENU = [
-  { name: "News & Press", sub: "Interviews & media coverage", icon: "news", href: "pages/media.html#news" },
-  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: "pages/blog.html" },
+  { name: "News & Press", sub: "Interviews & media coverage", icon: "news", href: "/media#news" },
+  { name: "Blog", sub: "Insights & analysis", icon: "pen", href: "/blog" },
 ];
 
 const NavDropdown = ({label, items, open, onOpen, onClose}) => (
@@ -113,23 +113,23 @@ const Nav = () => {
   return (
     <>
       <nav className="d-nav">
-        <a href="index.html" className="brand">
+        <a href="/" className="brand">
           <img src={LOGO} alt="Transform Ventures"/>
         </a>
         <ul>
-          <li><a href="pages/about.html">About</a></li>
+          <li><a href="/about">About</a></li>
           <NavDropdown label="Divisions" items={DIVISION_MENU}
             open={openMenu === 'div'}
             onOpen={() => setOpenMenu('div')}
             onClose={() => setOpenMenu(null)}/>
-          <li><a href="pages/events.html">Events</a></li>
+          <li><a href="/events">Events</a></li>
           <NavDropdown label="Media" items={MEDIA_MENU}
             open={openMenu === 'media'}
             onOpen={() => setOpenMenu('media')}
             onClose={() => setOpenMenu(null)}/>
-          <li><a href="pages/leadership.html">Leadership</a></li>
+          <li><a href="/leadership">Leadership</a></li>
         </ul>
-        <a href="pages/contact.html" className="cta">Contact</a>
+        <a href="/contact" className="cta">Contact</a>
         <button className={`d-nav-toggle ${mobile ? 'open' : ''}`} onClick={() => setMobile(!mobile)} aria-label="Menu">
           <span/><span/><span/>
         </button>
@@ -137,7 +137,7 @@ const Nav = () => {
       <div className={`mobile-menu-d ${mobile ? 'open' : ''}`}>
         <button className="mm-close" onClick={closeMobile} aria-label="Close menu">×</button>
         <div className="mm-inner">
-          <a href="pages/about.html" className="mm-link">About</a>
+          <a href="/about" className="mm-link">About</a>
           <button type="button" className={`mm-link mm-expand ${mobileSub==='div'?'open':''}`} onClick={() => setMobileSub(mobileSub==='div'?null:'div')}>
             <span>Divisions</span> <Chev/>
           </button>
@@ -146,7 +146,7 @@ const Nav = () => {
               {DIVISION_MENU.map(it => <a key={it.name} href={it.href} className="mm-sub">{it.name}</a>)}
             </div>
           )}
-          <a href="pages/events.html" className="mm-link">Events</a>
+          <a href="/events" className="mm-link">Events</a>
           <button type="button" className={`mm-link mm-expand ${mobileSub==='media'?'open':''}`} onClick={() => setMobileSub(mobileSub==='media'?null:'media')}>
             <span>Media</span> <Chev/>
           </button>
@@ -155,8 +155,8 @@ const Nav = () => {
               {MEDIA_MENU.map(it => <a key={it.name} href={it.href} className="mm-sub">{it.name}</a>)}
             </div>
           )}
-          <a href="pages/leadership.html" className="mm-link">Leadership</a>
-          <a href="pages/contact.html" className="mm-cta">Contact →</a>
+          <a href="/leadership" className="mm-link">Leadership</a>
+          <a href="/contact" className="mm-cta">Contact →</a>
         </div>
       </div>
     </>
@@ -175,8 +175,8 @@ const Hero = () => {
       {h.lead || 'Capital, resources, and strategic guidance for blockchain and digital asset projects with high-growth potential. Led by Michael Terpin, the "Godfather of Crypto."'}
     </p>
     <div className="ctas">
-      <a className="btn-lime" href={h.cta1Href || "pages/divisions.html"}>{h.cta1Text || "Explore divisions →"}</a>
-      <a className="btn-outline" href={h.cta2Href || "pages/contact.html"}>{h.cta2Text || "Get in touch"}</a>
+      <a className="btn-lime" href={h.cta1Href || "/divisions"}>{h.cta1Text || "Explore divisions →"}</a>
+      <a className="btn-outline" href={h.cta2Href || "/contact"}>{h.cta2Text || "Get in touch"}</a>
     </div>
     <div className="hero-socials" aria-label="Social links">
       <a href={h.twitter || "#"} aria-label="Twitter / X" target="_blank" rel="noopener">
@@ -191,7 +191,7 @@ const Hero = () => {
     </div>
     </div>
     <div className="hero-visual" aria-hidden="true">
-      <img className="hero-logo-3d" src={h.heroLogo || "assets/transform-logo-3d.png"} alt="Transform Ventures crystal logo" width="460" height="460" decoding="async" fetchpriority="high"/>
+      <img className="hero-logo-3d" src={h.heroLogo || "/assets/transform-logo-3d.png"} alt="Transform Ventures crystal logo" width="460" height="460" decoding="async" fetchpriority="high"/>
     </div>
     </div>
   </section>
@@ -348,7 +348,7 @@ const Feature = () => {
     <div className="wavy-bg"/>
     <div className="container">
       <div className="feature-split reveal-d">
-        <div className="visual"><img src="assets/transform-logo-3d.png" alt="Transform Ventures" className="feature-3d" decoding="async"/></div>
+        <div className="visual"><img src="/assets/transform-logo-3d.png" alt="Transform Ventures" className="feature-3d" decoding="async"/></div>
         <div className="copy">
           <div className="tag-row"><span>{f.tag1 || "Advisory"}</span><span>{f.tag2 || "Strategy"}</span></div>
           <h3>{f.title || "Every digital asset venture finds its path."}</h3>
@@ -359,8 +359,8 @@ const Feature = () => {
             <li>{f.bullet3 || "Access to the full Transform Ventures network"}</li>
           </ul>
           <div className="actions">
-            <a className="btn-lime" href={f.cta1Href || "pages/contact.html"}>{f.cta1Text || "Start a conversation →"}</a>
-            <a className="btn-outline" href={f.cta2Href || "pages/divisions.html"}>{f.cta2Text || "Learn more"}</a>
+            <a className="btn-lime" href={f.cta1Href || "/contact"}>{f.cta1Text || "Start a conversation →"}</a>
+            <a className="btn-outline" href={f.cta2Href || "/divisions"}>{f.cta2Text || "Learn more"}</a>
           </div>
         </div>
       </div>
@@ -390,9 +390,9 @@ const StatBand = () => {
 };
 
 const EVENTS_DEFAULT = [
-  { name: "Tokenize", tag: "Global Conference", desc: "Industry leaders, investors, and innovators exploring the future of tokenization.", img: "assets/tokenize-vegas.jpg", url: "https://tokenizeconference.com/" },
-  { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "The world's first angel investor network for digital currency startups.", img: "assets/bitangels-group.webp", url: "https://bitangels.network/" },
-  { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.", img: "assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
+  { name: "Tokenize", tag: "Global Conference", desc: "Industry leaders, investors, and innovators exploring the future of tokenization.", img: "/assets/tokenize-vegas.jpg", url: "https://tokenizeconference.com/" },
+  { name: "BitAngels", tag: "Since 2013 · Angel Network", desc: "The world's first angel investor network for digital currency startups.", img: "/assets/bitangels-group.webp", url: "https://bitangels.network/" },
+  { name: "Tiger Mansion", tag: "Invite Only", desc: "An exclusive, invite-only gathering for top-tier digital asset investors and founders.", img: "/assets/tigermansion-event.jpg", url: "https://www.tigermansionlv.com/" },
 ];
 const EVENTS = (Array.isArray(TV.events) && TV.events.length) ? TV.events : EVENTS_DEFAULT;
 
@@ -422,7 +422,7 @@ const Events = () => {
         ))}
       </div>
       <div className="reveal-d" style={{textAlign:'center', marginTop: 32}}>
-        <a href="pages/events.html" className="btn-outline">All events →</a>
+        <a href="/events" className="btn-outline">All events →</a>
       </div>
     </div>
   </section>
@@ -441,7 +441,7 @@ const Fund = () => {
         <p className="sub">{f.sub || 'The first liquid bitcoin-only hedge fund combining the "Four Seasons of Bitcoin" cycle model with algorithmic trading.'}</p>
       </div>
       <div className="fund-banner reveal-d">
-        <div className="book"><img src={f.bookImg || "assets/bitcoin-supercycle-book.jpg"} alt="Bitcoin Supercycle book" loading="lazy" decoding="async"/></div>
+        <div className="book"><img src={f.bookImg || "/assets/bitcoin-supercycle-book.jpg"} alt="Bitcoin Supercycle book" loading="lazy" decoding="async"/></div>
         <div className="copy">
           <span className="tag-orange">{f.badge || "Amazon Best Seller · 2024"}</span>
           <h3>{f.bookTitle || "Bitcoin Supercycle"}</h3>
@@ -452,7 +452,7 @@ const Fund = () => {
             <div className="k"><div className="n">{f.kpi3n || "4 Seasons"}</div><div className="l">{f.kpi3l || "Cycle-driven"}</div></div>
           </div>
           <div className="actions">
-            <a className="btn-lime" href={f.cta1Href || "pages/division-fund.html"}>{f.cta1Text || "Learn more →"}</a>
+            <a className="btn-lime" href={f.cta1Href || "/division-fund"}>{f.cta1Text || "Learn more →"}</a>
             <a className="btn-outline" href={f.cta2Href || "https://www.amazon.com/Bitcoin-Supercycle-Crypto-Calendar-Make/dp/151078215X"} target="_blank" rel="noopener">{f.cta2Text || "Buy on Amazon ↗"}</a>
           </div>
         </div>
@@ -478,7 +478,7 @@ const Leader = () => {
       </div>
       <div className="leader-d reveal-d">
         <div className="photo">
-          <img src={l.photoImg || "assets/michael-terpin.jpg"} alt="Michael Terpin" loading="lazy" decoding="async"/>
+          <img src={l.photoImg || "/assets/michael-terpin.jpg"} alt="Michael Terpin" loading="lazy" decoding="async"/>
           <div className="photo-caption">
             <span className="quote">{l.quote || '"Godfather of Crypto"'}</span>
             <span className="source">{l.source || "CNBC"}</span>
@@ -498,7 +498,7 @@ const Leader = () => {
             {tags.map((t, i) => <span key={i}>{t}</span>)}
           </div>
           <div style={{marginTop: 28}}>
-            <a href={l.ctaHref || "pages/leadership.html"} className="btn-outline">{l.ctaText || "Full bio →"}</a>
+            <a href={l.ctaHref || "/leadership"} className="btn-outline">{l.ctaText || "Full bio →"}</a>
           </div>
         </div>
       </div>
@@ -548,8 +548,8 @@ const FinalCTA = () => {
         <h2>{c.title || "Ready to transform your blockchain venture?"}</h2>
         <p>{c.desc || "Whether you're raising capital, launching a token, or need strategic guidance, let's connect."}</p>
         <div className="ctas">
-          <a className="btn-lime" href={c.cta1Href || "pages/contact.html"}>{c.cta1Text || "Start a conversation →"}</a>
-          <a className="btn-outline" href={c.cta2Href || "pages/media.html"}>{c.cta2Text || "Latest news & media"}</a>
+          <a className="btn-lime" href={c.cta1Href || "/contact"}>{c.cta1Text || "Start a conversation →"}</a>
+          <a className="btn-outline" href={c.cta2Href || "/media"}>{c.cta2Text || "Latest news & media"}</a>
         </div>
       </div>
     </div>
@@ -570,11 +570,11 @@ const Footer = () => {
         <div className="col">
           <h4>Divisions</h4>
           <ul>
-            <li><a href="pages/division-group.html">Transform Group</a></li>
-            <li><a href="pages/division-events.html">Transform Events</a></li>
-            <li><a href="pages/division-capital.html">Transform Capital</a></li>
-            <li><a href="pages/division-strategies.html">Transform Strategies</a></li>
-            <li><a href="pages/division-fund.html">Supercycle Fund</a></li>
+            <li><a href="/division-group">Transform Group</a></li>
+            <li><a href="/division-events">Transform Events</a></li>
+            <li><a href="/division-capital">Transform Capital</a></li>
+            <li><a href="/division-strategies">Transform Strategies</a></li>
+            <li><a href="/division-fund">Supercycle Fund</a></li>
           </ul>
         </div>
         <div className="col">
@@ -583,13 +583,13 @@ const Footer = () => {
             <li><a href="https://tokenizeconference.com/" target="_blank" rel="noopener">Tokenize</a></li>
             <li><a href="https://bitangels.network/" target="_blank" rel="noopener">BitAngels</a></li>
             <li><a href="https://www.tigermansionlv.com/" target="_blank" rel="noopener">Tiger Mansion</a></li>
-            <li><a href="pages/media.html">News & Media</a></li>
+            <li><a href="/media">News & Media</a></li>
           </ul>
         </div>
         <div className="col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a href="#">Twitter / X</a></li>
             <li><a href="https://www.linkedin.com/company/transform-ventures/" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="#">Telegram</a></li>

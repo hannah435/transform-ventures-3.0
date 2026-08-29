@@ -40,7 +40,7 @@ function BlogPage() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "blog-grid-d"
   }, POSTS.map((p, i) => /*#__PURE__*/React.createElement("a", {
-    href: `${P}post-${p.id}.html`,
+    href: `${P}blog/${p.id}`,
     key: p.id,
     className: `blog-card-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {

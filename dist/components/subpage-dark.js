@@ -99,10 +99,10 @@ const CTAStrip = () => /*#__PURE__*/React.createElement("section", {
   className: "ctas"
 }, /*#__PURE__*/React.createElement("a", {
   className: "btn-lime",
-  href: `${P}contact.html`
+  href: `${P}contact`
 }, "Start a conversation \u2192"), /*#__PURE__*/React.createElement("a", {
   className: "btn-outline",
-  href: `${P}media.html`
+  href: `${P}media`
 }, "Latest news & media")))));
 const Stats = () => /*#__PURE__*/React.createElement("section", {
   className: "d-section stat-band"
@@ -502,7 +502,7 @@ const Blog = () => {
   }, "Thought leadership and market commentary on bitcoin cycles, digital asset investing, and blockchain technology.")), /*#__PURE__*/React.createElement("div", {
     className: "blog-grid-d"
   }, posts.map((p, i) => /*#__PURE__*/React.createElement("a", {
-    href: `${P}blog.html#${p.id}`,
+    href: `${P}blog#${p.id}`,
     key: p.title,
     className: `blog-card-d reveal-d d${i % 3 + 1}`
   }, /*#__PURE__*/React.createElement("div", {
@@ -802,7 +802,7 @@ function DivisionDetail({
   }), /*#__PURE__*/React.createElement("div", {
     className: "container"
   }, /*#__PURE__*/React.createElement("a", {
-    href: `${P}divisions.html`,
+    href: `${P}divisions`,
     className: "back-link"
   }, "\u2190 All divisions"), /*#__PURE__*/React.createElement("div", {
     className: "eyebrow-inline",
@@ -822,10 +822,10 @@ function DivisionDetail({
     className: "ctas"
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: `${P}contact.html`
+    href: `${P}contact`
   }, "Get in touch \u2192"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
-    href: `${P}divisions.html`
+    href: `${P}divisions`
   }, "Explore all divisions")))), /*#__PURE__*/React.createElement("section", {
     className: "d-section stat-band"
   }, /*#__PURE__*/React.createElement("div", {
@@ -880,7 +880,7 @@ function DivisionDetail({
     }
   }, /*#__PURE__*/React.createElement("a", {
     className: "btn-lime",
-    href: `${P}contact.html`
+    href: `${P}contact`
   }, "Learn more \u2192"), /*#__PURE__*/React.createElement("a", {
     className: "btn-outline",
     href: d.book.amazon,

@@ -38,6 +38,13 @@ const SUBPAGES = [
 // as a cosine of scroll position. Injected on every page, exactly as the server did.
 const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.42*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
 
+// Public URL for a subpage. Everything sits at the root except the blog, which owns
+// a directory so /blog and /blog/<slug> don't collide.
+const publicPath = (page) => (page === "blog" ? "/blog" : "/" + page);
+
+// Where that page's file is written inside the output directory.
+const outputFile = (page) => (page === "blog" ? path.join("blog", "index.html") : page + ".html");
+
 const escAttr = (s) =>
   String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -145,16 +152,16 @@ function buildPageHTML(page, file, pathname, content) {
   return injectSSR(html, renderPage(page, data, pathname));
 }
 
-// Blog posts become one static file each: pages/post-<slug>.html.
-// They stay at the `pages/` level on purpose — the shared components resolve assets
-// with a two-level scheme (`../styles/`, `P = inPages ? '' : 'pages/'`), so a deeper
-// directory would break every relative path.
+// Blog posts become one static file each at blog/<slug>.html, served as /blog/<slug>.
+// The blog index lives at blog/index.html rather than blog.html so that /blog and
+// /blog/<slug> can coexist without GitHub Pages having to guess between a file and a
+// directory of the same name.
 function buildPostHTML(post, blog) {
   let html = detachFromVercel(fs.readFileSync(path.join(ROOT, "pages", "post.html"), "utf8"));
 
   const title = post.title;
   const desc = post.lede || "";
-  const url = SITE + "/pages/post-" + encodeURIComponent(post.id) + ".html";
+  const url = SITE + "/blog/" + encodeURIComponent(post.id);
 
   html = html
     .replace(/\{\{TITLE\}\}/g, () => escAttr(title))
@@ -177,7 +184,7 @@ function buildPostHTML(post, blog) {
       "@context": "https://schema.org", "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
-        { "@type": "ListItem", position: 2, name: "Blog", item: SITE + "/pages/blog.html" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: SITE + "/blog" },
         { "@type": "ListItem", position: 3, name: title, item: url },
       ],
     },
@@ -192,31 +199,50 @@ function buildPostHTML(post, blog) {
     ";window.__TV_CONTENT__=" + jsonForScript({ post: blog }) + ";</script>";
   html = injectHead(html, tag);
 
-  return injectSSR(html, renderPage("post", blog, "/pages/post.html", "?id=" + post.id));
+  return injectSSR(html, renderPage("post", blog, "/blog/" + post.id, "?id=" + post.id));
 }
 
-// Legacy `/pages/post.html?id=<slug>` links (already indexed and in the old sitemap)
-// forward to the new per-post file so nothing 404s.
-function buildPostRedirect(posts) {
-  const first = posts[0] ? posts[0].id : "";
+// A redirect stub for an old URL. GitHub Pages can't do server-side redirects, so
+// each retired path gets a tiny page that canonicals to the new one and forwards.
+// `location.replace` keeps the dead URL out of the visitor's back-button history.
+function buildRedirect(target, label) {
   return `<!DOCTYPE html>
 <html lang="en" data-dark>
 <head>
   <meta charset="UTF-8"/>
   <meta name="robots" content="noindex, follow"/>
   <title>Redirecting: Transform Ventures</title>
-  <link rel="canonical" href="${SITE}/pages/blog.html"/>
+  <link rel="canonical" href="${SITE}${target}"/>
+  <meta http-equiv="refresh" content="0; url=${target}"/>
+  <script>location.replace(${JSON.stringify(target)} + location.hash);</script>
+</head>
+<body>
+  <p>This page moved to <a href="${target}">${label || target}</a>.</p>
+</body>
+</html>
+`;
+}
+
+// The old `/pages/post.html?id=<slug>` URL carried the slug in the query string, so
+// it needs to read it at runtime rather than redirect to one fixed target.
+function buildPostQueryRedirect(posts) {
+  return `<!DOCTYPE html>
+<html lang="en" data-dark>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="robots" content="noindex, follow"/>
+  <title>Redirecting: Transform Ventures</title>
+  <link rel="canonical" href="${SITE}/blog"/>
   <script>
     (function () {
       var ids = ${JSON.stringify(posts.map((p) => p.id))};
       var id = new URLSearchParams(location.search).get('id');
-      var to = ids.indexOf(id) !== -1 ? id : ${JSON.stringify(first)};
-      location.replace(to ? 'post-' + encodeURIComponent(to) + '.html' : 'blog.html');
+      location.replace(ids.indexOf(id) !== -1 ? '/blog/' + encodeURIComponent(id) : '/blog');
     })();
   </script>
 </head>
 <body>
-  <p>Redirecting to the article. <a href="blog.html">All posts</a> if you are not forwarded.</p>
+  <p>This page moved. <a href="/blog">All posts</a>.</p>
 </body>
 </html>
 `;
@@ -229,10 +255,8 @@ function buildSitemap(posts) {
 
   const entries = [
     url(SITE + "/", "1.0", "weekly"),
-    ...SUBPAGES.map((p) =>
-      url(SITE + "/pages/" + p + ".html", p === "divisions" ? "0.9" : "0.8", "monthly")
-    ),
-    ...posts.map((p) => url(SITE + "/pages/post-" + encodeURIComponent(p.id) + ".html", "0.6", "monthly")),
+    ...SUBPAGES.map((p) => url(SITE + publicPath(p), p === "divisions" ? "0.9" : "0.8", "monthly")),
+    ...posts.map((p) => url(SITE + "/blog/" + encodeURIComponent(p.id), "0.6", "monthly")),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`;
@@ -251,27 +275,46 @@ async function main() {
   const content = await loadContent();
 
   fs.rmSync(OUT, { recursive: true, force: true });
-  fs.mkdirSync(path.join(OUT, "pages"), { recursive: true });
+  fs.mkdirSync(path.join(OUT, "blog"), { recursive: true });
+  fs.mkdirSync(path.join(OUT, "pages"), { recursive: true }); // redirect stubs only
 
   // Home
   fs.writeFileSync(path.join(OUT, "index.html"), buildPageHTML("home", "index.html", "/", content));
   console.log("  ✔ index.html");
 
-  // Subpages
+  // Subpages — written to the root (blog gets its own directory) and served
+  // extensionless, which GitHub Pages resolves to the .html file for us.
   for (const page of SUBPAGES) {
-    const html = buildPageHTML(page, "pages/" + page + ".html", "/pages/" + page + ".html", content);
-    fs.writeFileSync(path.join(OUT, "pages", page + ".html"), html);
+    const html = buildPageHTML(page, "pages/" + page + ".html", publicPath(page), content);
+    fs.writeFileSync(path.join(OUT, outputFile(page)), html);
   }
-  console.log("  ✔ " + SUBPAGES.length + " subpages");
+  console.log("  ✔ " + SUBPAGES.length + " subpages at /<name>");
 
   // Blog posts
   const blog = content.blog || {};
   const posts = Array.isArray(blog.posts) ? blog.posts : [];
   for (const post of posts) {
-    fs.writeFileSync(path.join(OUT, "pages", "post-" + post.id + ".html"), buildPostHTML(post, blog));
+    fs.writeFileSync(path.join(OUT, "blog", post.id + ".html"), buildPostHTML(post, blog));
   }
-  fs.writeFileSync(path.join(OUT, "pages", "post.html"), buildPostRedirect(posts));
-  console.log("  ✔ " + posts.length + " blog posts (+ legacy ?id= redirect)");
+  console.log("  ✔ " + posts.length + " blog posts at /blog/<slug>");
+
+  // Redirect stubs for every URL the old structure exposed, so nothing that is
+  // already indexed or linked from elsewhere starts 404ing.
+  let stubs = 0;
+  for (const page of SUBPAGES) {
+    fs.writeFileSync(path.join(OUT, "pages", page + ".html"), buildRedirect(publicPath(page), page));
+    stubs++;
+  }
+  for (const post of posts) {
+    fs.writeFileSync(
+      path.join(OUT, "pages", "post-" + post.id + ".html"),
+      buildRedirect("/blog/" + encodeURIComponent(post.id), post.title)
+    );
+    stubs++;
+  }
+  fs.writeFileSync(path.join(OUT, "pages", "post.html"), buildPostQueryRedirect(posts));
+  stubs++;
+  console.log("  ✔ " + stubs + " redirect stubs for the old /pages/ URLs");
 
   // Static assets
   for (const dir of ["assets", "styles", "dist"]) {
