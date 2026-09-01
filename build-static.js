@@ -38,6 +38,34 @@ const SUBPAGES = [
 // as a cosine of scroll position. Injected on every page, exactly as the server did.
 const BG_PULSE = "<script>(function(){var o=document.documentElement;function u(){var y=window.pageYOffset||0;o.style.setProperty('--bg-dim',(0.42*(1-Math.cos(y/280))).toFixed(3));}var t=false;addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(function(){u();t=false;});}},{passive:true});u();})();</script>";
 
+// Canonical entity definitions, reused across every JSON-LD block on the site.
+// `sameAs` is what lets search and answer engines tie these pages to the same
+// real-world entity they already know from elsewhere, so it is worth keeping accurate.
+// Only profiles actually linked from the site are listed — an unverifiable sameAs is
+// worse than none.
+const ORG_SAME_AS = ["https://www.linkedin.com/company/transform-ventures/"];
+const PERSON_SAME_AS = [
+  "https://www.linkedin.com/in/michaelterpin/",
+  "https://twitter.com/michaelterpin",
+  "https://medium.com/@michaelterpin",
+];
+
+const AUTHOR = {
+  "@type": "Person",
+  name: "Michael Terpin",
+  url: SITE + "/leadership",
+  jobTitle: "Founder & CEO",
+  sameAs: PERSON_SAME_AS,
+};
+
+const PUBLISHER = {
+  "@type": "Organization",
+  name: "Transform Ventures",
+  url: SITE + "/",
+  logo: { "@type": "ImageObject", url: SITE + "/assets/transform-ventures.png" },
+  sameAs: ORG_SAME_AS,
+};
+
 // Public URL for a subpage. Everything sits at the root except the blog, which owns
 // a directory so /blog and /blog/<slug> don't collide. The blog keeps its trailing
 // slash because GitHub Pages 301s /blog -> /blog/, and linking to the pre-redirect
@@ -128,6 +156,55 @@ function injectSSR(html, ssr) {
 
 // ---------- page builders ----------
 
+// Page-specific JSON-LD beyond what the HTML shells already carry. Everything here is
+// derived from content.json rather than written by hand, so it can't drift from what
+// the page actually says — structured data that contradicts the page is penalised.
+function extraLd(page, data, html) {
+  const descOf = () => {
+    const m = html.match(/<meta name="description" content="([^"]*)"/);
+    return m ? m[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"') : "";
+  };
+  const out = [];
+
+  // Each division is a real sub-organisation of Transform Ventures.
+  if (page.startsWith("division-")) {
+    out.push({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: TITLES[page] || page,
+      url: SITE + publicPath(page),
+      description: (data.hero && data.hero.intro) || descOf(),
+      parentOrganization: { "@type": "Organization", name: "Transform Ventures", url: SITE + "/" },
+    });
+  }
+
+  // The press page: an ItemList of the actual coverage, each entry pointing at the
+  // outlet's own URL so the citation is attributable.
+  if (page === "media" && Array.isArray(data.items) && data.items.length) {
+    out.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Transform Ventures in the press",
+      description: descOf(),
+      numberOfItems: data.items.length,
+      itemListElement: data.items.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": it.type === "youtube" || it.type === "podcast" || it.type === "interview" ? "MediaObject" : "Article",
+          name: it.title,
+          url: it.url,
+          ...(it.desc ? { description: it.desc } : {}),
+          ...(it.src ? { publisher: { "@type": "Organization", name: it.src } } : {}),
+          about: { "@type": "Person", name: "Michael Terpin", sameAs: PERSON_SAME_AS },
+        },
+      })),
+    });
+  }
+
+  return out;
+}
+
 function buildPageHTML(page, file, pathname, content) {
   const data = content[page] || {};
   let html = detachFromVercel(fs.readFileSync(path.join(ROOT, file), "utf8"));
@@ -151,6 +228,10 @@ function buildPageHTML(page, file, pathname, content) {
     html = html.replace("</head>", () => '<script type="application/ld+json">' + jsonForScript(faqLd) + "</script>\n</head>");
   }
 
+  for (const ld of extraLd(page, data, html)) {
+    html = html.replace("</head>", () => '<script type="application/ld+json">' + jsonForScript(ld) + "</script>\n</head>");
+  }
+
   return injectSSR(html, renderPage(page, data, pathname));
 }
 
@@ -170,23 +251,30 @@ function buildPostHTML(post, blog) {
     .replace(/\{\{DESC\}\}/g, () => escAttr(desc))
     .replace(/\{\{URL\}\}/g, () => escAttr(url));
 
+  const published = toISODate(post.date);
+  const bodyText = Array.isArray(post.body) ? post.body.join(" ") : "";
+
   const ld = [
     {
       "@context": "https://schema.org", "@type": "BlogPosting",
       headline: title, description: desc,
-      datePublished: toISODate(post.date), articleSection: post.tag || "",
-      author: { "@type": "Person", name: "Michael Terpin" },
-      publisher: {
-        "@type": "Organization", name: "Transform Ventures",
-        logo: { "@type": "ImageObject", url: SITE + "/assets/transform-ventures.png" },
-      },
+      datePublished: published,
+      // No separate edit date is tracked, so the two match rather than claiming a
+      // freshness the content doesn't have.
+      dateModified: published,
+      articleSection: post.tag || "",
+      author: AUTHOR,
+      publisher: PUBLISHER,
+      inLanguage: "en-US",
+      ...(bodyText ? { wordCount: bodyText.split(/\s+/).filter(Boolean).length } : {}),
+      isPartOf: { "@type": "Blog", name: "Transform Ventures Blog", url: SITE + "/blog/" },
       url, mainEntityOfPage: url,
     },
     {
       "@context": "https://schema.org", "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
-        { "@type": "ListItem", position: 2, name: "Blog", item: SITE + "/blog" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: SITE + "/blog/" },
         { "@type": "ListItem", position: 3, name: title, item: url },
       ],
     },
@@ -250,15 +338,81 @@ function buildPostQueryRedirect(posts) {
 `;
 }
 
+// Editorial preamble for llms.txt. Only the prose lives here — every URL below it is
+// generated, because the hand-maintained version silently kept pointing at /pages/*.html
+// URLs for a while after the site moved to clean ones.
+const LLMS_INTRO = `# Transform Ventures
+
+> Transform Ventures is the blockchain and digital asset venture platform of Michael Terpin, known as the "Godfather of Crypto" (CNBC). It provides capital, resources, and strategic guidance to high-growth digital asset projects across five specialized divisions, and is headquartered in San Juan, Puerto Rico.
+
+Founded on three decades of building at the intersection of media and money, Transform Ventures grew out of Globe Newswire (the first internet-based newswire, sold to NASDAQ for $200M), BitAngels (the first digital asset angel group, 2013), and Transform Group (the original blockchain PR firm, which powered the first-ever token sale, Mastercoin, 2013, and 100+ ICO-era tokens including Ethereum, EOS, and Tether).
+
+## Key facts
+- Founder & CEO: Michael Terpin, early bitcoin investor, author of "Bitcoin Supercycle: How the Crypto Calendar Can Make You Rich" (Skyhorse, 2024), creator of the "Four Seasons of Bitcoin" cycle model.
+- Headquarters: San Juan, Puerto Rico.
+- Five divisions: Transform Group (PR & communications), Transform Events (Tokenize, BitAngels, Tiger Mansion), Transform Capital (family office), Transform Strategies (advisory & consulting), Bitcoin Supercycle Fund (the first liquid bitcoin-only hedge fund).
+`;
+
+const LLMS_MAIN = ["about", "divisions", "leadership", "events", "media", "blog", "contact"];
+const LLMS_DIVISIONS = ["division-group", "division-events", "division-capital", "division-strategies", "division-fund"];
+const TITLES = {
+  about: "About", divisions: "Divisions", leadership: "Leadership", events: "Events",
+  media: "News & Media", blog: "Blog", contact: "Contact",
+  "division-group": "Transform Group", "division-events": "Transform Events",
+  "division-capital": "Transform Capital", "division-strategies": "Transform Strategies",
+  "division-fund": "Bitcoin Supercycle Fund",
+};
+
+// `descriptions` is each page's own <meta name="description">, so llms.txt and the
+// pages can never describe the site differently.
+function buildLlmsTxt(descriptions, posts) {
+  const line = (page) =>
+    `- [${TITLES[page] || page}](${SITE}${publicPath(page)}): ${descriptions[page] || ""}`.trimEnd();
+
+  const sections = [
+    LLMS_INTRO,
+    "## Main pages",
+    `- [Home](${SITE}/): ${descriptions.home || ""}`.trimEnd(),
+    ...LLMS_MAIN.map(line),
+    "",
+    "## Divisions",
+    ...LLMS_DIVISIONS.map(line),
+  ];
+
+  if (posts.length) {
+    sections.push("", "## Articles");
+    for (const p of posts) {
+      const when = p.date ? ` (${p.date})` : "";
+      sections.push(`- [${p.title}](${SITE}/blog/${encodeURIComponent(p.id)})${when}: ${(p.lede || "").trim()}`.trimEnd());
+    }
+  }
+
+  sections.push(
+    "",
+    "## Contact",
+    "- Email: info@transformventures.io",
+    "- Location: San Juan, Puerto Rico",
+    ""
+  );
+  return sections.join("\n");
+}
+
 function buildSitemap(posts) {
-  const today = new Date().toISOString().slice(0, 10);
-  const url = (loc, priority, changefreq) =>
-    `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  // lastmod is only emitted where a real date is known — the posts carry their own.
+  // Stamping every page with the build date would tell crawlers the whole site changed
+  // on every deploy, and Google's documented response to inaccurate lastmod is to stop
+  // trusting the field altogether.
+  const url = (loc, priority, changefreq, lastmod) =>
+    `  <url>\n    <loc>${loc}</loc>\n` +
+    (lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : "") +
+    `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 
   const entries = [
     url(SITE + "/", "1.0", "weekly"),
     ...SUBPAGES.map((p) => url(SITE + publicPath(p), p === "divisions" ? "0.9" : "0.8", "monthly")),
-    ...posts.map((p) => url(SITE + "/blog/" + encodeURIComponent(p.id), "0.6", "monthly")),
+    ...posts.map((p) =>
+      url(SITE + "/blog/" + encodeURIComponent(p.id), "0.6", "monthly", toISODate(p.date))
+    ),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`;
@@ -280,14 +434,24 @@ async function main() {
   fs.mkdirSync(path.join(OUT, "blog"), { recursive: true });
   fs.mkdirSync(path.join(OUT, "pages"), { recursive: true }); // redirect stubs only
 
+  // Each page's own <meta name="description">, reused to build llms.txt.
+  const descriptions = {};
+  const describe = (page, html) => {
+    const m = html.match(/<meta name="description" content="([^"]*)"/);
+    if (m) descriptions[page] = m[1].replace(/&amp;/g, "&").replace(/&quot;/g, '"');
+  };
+
   // Home
-  fs.writeFileSync(path.join(OUT, "index.html"), buildPageHTML("home", "index.html", "/", content));
+  const homeHTML = buildPageHTML("home", "index.html", "/", content);
+  describe("home", homeHTML);
+  fs.writeFileSync(path.join(OUT, "index.html"), homeHTML);
   console.log("  ✔ index.html");
 
   // Subpages — written to the root (blog gets its own directory) and served
   // extensionless, which GitHub Pages resolves to the .html file for us.
   for (const page of SUBPAGES) {
     const html = buildPageHTML(page, "pages/" + page + ".html", publicPath(page), content);
+    describe(page, html);
     fs.writeFileSync(path.join(OUT, outputFile(page)), html);
   }
   console.log("  ✔ " + SUBPAGES.length + " subpages at /<name>");
@@ -322,10 +486,12 @@ async function main() {
   for (const dir of ["assets", "styles", "dist"]) {
     fs.cpSync(path.join(ROOT, dir), path.join(OUT, dir), { recursive: true });
   }
-  for (const file of ["robots.txt", "llms.txt"]) {
-    if (fs.existsSync(path.join(ROOT, file))) fs.copyFileSync(path.join(ROOT, file), path.join(OUT, file));
+  if (fs.existsSync(path.join(ROOT, "robots.txt"))) {
+    fs.copyFileSync(path.join(ROOT, "robots.txt"), path.join(OUT, "robots.txt"));
   }
-  console.log("  ✔ assets, styles, dist, robots.txt, llms.txt");
+  // llms.txt is generated, never copied — see buildLlmsTxt.
+  fs.writeFileSync(path.join(OUT, "llms.txt"), buildLlmsTxt(descriptions, posts));
+  console.log("  ✔ assets, styles, dist, robots.txt, llms.txt (generated)");
 
   // Sitemap + GitHub Pages files
   fs.writeFileSync(path.join(OUT, "sitemap.xml"), buildSitemap(posts));
